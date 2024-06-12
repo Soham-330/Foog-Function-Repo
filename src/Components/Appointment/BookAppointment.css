@@ -1,16 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-sizing: border-box;
-}
-body{
-    background-image: linear-gradient(to bottom right, #F27BBD, #874CCC);
-    background-repeat: no-repeat;
-    height: 96.6vh;
-    background-size: cover;
-}
-
 .container{
     display: flex;
     justify-content: space-around;
@@ -19,18 +6,34 @@ body{
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     padding: 1rem;
+    width: 80vw;
+    align-self: center;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-body{
+    margin: -0.8rem -0.5rem;
+    padding-bottom: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to bottom right, #F27BBD, #874CCC);
+    background-repeat: no-repeat;
+    height: 96.6vh;
+    background-size: cover;
 }
 
 
 .description{
-    width: 60vw;
+    width: 50vw;
     font-size: 1.3rem;
     color: #F6E9B2;
 }
 
 .description h2{
     font-size: 3rem;
+    background-color: #e63946;
 }
 
 .counselor-det{
@@ -50,6 +53,16 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: fixed;
+}
+
+.creden{
+    font-size: 1.4rem;
+}
+
+.appointment-det{
+    font-size: 1.4rem;
+    padding:0;
+    margin:0.7rem;
 }
 
 .book{

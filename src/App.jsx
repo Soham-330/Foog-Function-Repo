@@ -6,7 +6,6 @@ function App(){
 
     return (
         <>
-            <ContactUs />
             <BookAppointment price='Rs. 200' dur='1 Hour'/>
         </>
     )
