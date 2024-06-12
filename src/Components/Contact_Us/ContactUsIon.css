@@ -1,0 +1,12 @@
+:root{
+    --ion-color-primary: #b7e4c7;
+	--ion-color-primary-rgb: 183,228,199;
+	--ion-color-primary-contrast: #000000;
+	--ion-color-primary-contrast-rgb: 0,0,0;
+	--ion-color-primary-shade: #a1c9af;
+	--ion-color-primary-tint: #bee7cd;
+}
+
+.contact-btn{
+    box-shadow: 1px 1px 1px hsla(106, 100%, 55%, 0.842);
+}

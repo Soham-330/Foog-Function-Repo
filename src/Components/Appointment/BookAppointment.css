@@ -1,0 +1,68 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-image: linear-gradient(to bottom right, #F27BBD, #874CCC);
+    background-repeat: no-repeat;
+    height: 96.6vh;
+    background-size: cover;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.description{
+    width: 60vw;
+    font-size: 1.3rem;
+    color: #F6E9B2;
+}
+
+.description h2{
+    font-size: 3rem;
+}
+
+.counselor-det{
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    color: #FFEBB2;
+}
+
+.image{
+    background-image: url("https://imgs.search.brave.com/eQiyHnGIZitZZvE2umYt_ReH6OD5YLimXEuQpk9aRyY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOC8w/MS8xNC8yMy8xMi9u/YXR1cmUtMzA4Mjgz/Ml82NDAuanBn");
+    width: 8rem;
+    height: 8rem;
+    padding: 3.5rem;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: fixed;
+}
+
+.book{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+.book-btn{
+    font-size: 1rem;
+    --ion-color-primary: #891652;
+	--ion-color-primary-rgb: 137,22,82;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255,255,255;
+	--ion-color-primary-shade: #791348;
+	--ion-color-primary-tint: #952d63;
+}
