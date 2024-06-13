@@ -22,6 +22,7 @@
     background-repeat: no-repeat;
     height: 96.6vh;
     background-size: cover;
+    width: 99.44vw;
 }
 
 
@@ -78,4 +79,15 @@
 	--ion-color-primary-contrast-rgb: 255,255,255;
 	--ion-color-primary-shade: #791348;
 	--ion-color-primary-tint: #952d63;
+}
+
+@media(max-width:500px){
+    .container{
+        flex-direction: column;
+    }
+    .image{
+        width: 5rem;
+        height: 5rem;
+        padding: 3rem;
+    }
 }

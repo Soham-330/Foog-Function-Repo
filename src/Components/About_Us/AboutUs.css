@@ -1,12 +1,18 @@
-body{
-    background-color: #023047;
+.about-us{
+    background-image: linear-gradient(to bottom right,#f9844a,#4895ef);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150vh;
+    font-size: 1.1rem;
+    color:#333d29;
+    /* margin-right: -0.5rem; */
 }
 
-.heading{
+.heading-about{
     display: flex;
     justify-content: center;
     padding: 0.5rem;
-    background-color: #caf0f8;
+    background-color: #f3722c;
 }
 
 .row-odd{
@@ -19,6 +25,8 @@ body{
     width: 80vw;
     margin-left: 5vw;
     position: relative;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 3px 5px 2px rgba(0, 0, 0, 0.423);
     left: 0px;
 }
 
@@ -31,12 +39,15 @@ body{
     width: 80vw;
     margin-left: 15vw;
     margin-top: 3rem;
-    background-color: #0077b6;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 3px 5px 2px rgba(0, 0, 0, 0.423);
 }
 
-img{
+.image-about{
     border-radius: 0.5rem;
     border: 1px solid transparent;
+    padding: 1rem;
+    transition: all 0.2s ease;
 }
 
 .content{
@@ -44,6 +55,7 @@ img{
     padding: 0.5rem;
     border: 2px solid transparent;
     font-family: cursive;
+    transition: all 0.2s ease;
 }
 
 .product-disc-heading{
@@ -55,7 +67,7 @@ img{
 .content:hover{
     border:2px solid blue;
 }
-img:hover{
+.image-about:hover{
     border: 1px solid rgba(4, 4, 4, 0.351);
 }
 
@@ -77,5 +89,8 @@ img:hover{
         margin-left: 5vw;
         margin-right: 5vw;
         padding: 1rem;
+    }
+    .content{
+        color: #f4d35e;
     }
 }
