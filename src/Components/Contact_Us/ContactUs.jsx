@@ -13,12 +13,12 @@ function ContactUs(){
             <div className="contact-options">
                 <div id="wrapper-1">
                     <textarea name="" id="" placeholder='Write Us...' className='text-us'></textarea>
+                    <input placeholder='Enter Email or Mobile Number...' className='email-num' />
                     <div className="send">
                         <IonButton className='send-btn'>Send Message</IonButton>
                     </div>
                 </div>
                 <hr />
-                {/* <div className="divider"></div> */}
                 <div id="wrapper-2">
                     <IonButton size='large' className='whatsapp-btn contact-btn'>Whatsapp Us</IonButton>
                     <IonButton size='large' className='email-btn contact-btn'>Email Us</IonButton>

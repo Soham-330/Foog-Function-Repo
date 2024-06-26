@@ -1,0 +1,25 @@
+.cat-card{
+    width: 30vw;
+    display: inline-block;
+    margin-top: 5px;
+}
+.cat-card img{
+    width: 30vw;
+    height: 35vh;
+    /* height: 30vw; */
+}
+.card-btn{
+    margin-left: 30vw;
+    margin-bottom: 10px;
+}
+
+@media (max-width:600px){
+    .cat-card{
+        width: 90vw;
+        display: inline-block;
+    }
+    .cat-card img{
+        width: 90vw;
+        /* height: 30vw; */
+    }
+}

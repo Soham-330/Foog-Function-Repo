@@ -3,15 +3,22 @@
     background-size: cover;
     background-repeat: no-repeat;
     height: 150vh;
-    font-size: 1.1rem;
+    font-size: 20px;
     color:#333d29;
-    /* margin-right: -0.5rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .heading-about{
     display: flex;
     justify-content: center;
-    padding: 0.5rem;
+    padding: 0.50px;
+    margin-top: 10px;
+    width: 20vw;
+    border-radius: 5px;
     background-color: #f3722c;
 }
 
@@ -19,14 +26,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 30px;
     background-color: #00b4d8;
-    border-radius: 1rem;
+    border-radius: 5px;
     width: 80vw;
-    margin-left: 5vw;
+    margin-right: 15vw;
     position: relative;
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 3px 5px 2px rgba(0, 0, 0, 0.423);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.045);
     left: 0px;
 }
 
@@ -35,24 +42,25 @@
     flex-direction: row-reverse;
     justify-content: space-around;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 5px;
     width: 80vw;
     margin-left: 15vw;
-    margin-top: 3rem;
+    margin-top: 30px;
+    padding: 10px 0;
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 3px 5px 2px rgba(0, 0, 0, 0.423);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.045);
 }
 
 .image-about{
-    border-radius: 0.5rem;
+    border-radius: 5px;
     border: 1px solid transparent;
-    padding: 1rem;
+    padding: 10px;
     transition: all 0.2s ease;
 }
 
-.content{
-    width: 40vw;
-    padding: 0.5rem;
+.content-about{
+    width: 60vw;
+    padding: 0.50px;
     border: 2px solid transparent;
     font-family: cursive;
     transition: all 0.2s ease;
@@ -77,20 +85,26 @@
 
     .row-even{
         flex-direction: column;
-        margin-left: 5vw;
-        margin-right: 5vw;
-        padding: 1rem;
+        /* margin-left: 5vw;
+        margin-right: 5vw; */
+        padding: 10px;
     }
-    img{
-        margin-bottom: 1rem;
+    .image-about{
+        margin-bottom: 10px;
+        padding: 0;
     }
     .row-odd{
         flex-direction: column;
-        margin-left: 5vw;
-        margin-right: 5vw;
-        padding: 1rem;
+        /* margin-left: 5vw;
+        margin-right: 5vw; */
+        padding: 10px;
     }
-    .content{
+    .content-about{
         color: #f4d35e;
+        padding: 0;
+        font-size: 22px;
     }
+    .image-about img{
+    }
+
 }

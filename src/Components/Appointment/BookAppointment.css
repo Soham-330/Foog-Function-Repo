@@ -2,18 +2,18 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 10px;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
-    padding: 1rem;
+    padding: 10px;
     width: 80vw;
     align-self: center;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .appointment-body{
-    margin: -0.8rem -0.5rem;
-    padding-bottom: 1.8rem;
+    margin: -0.80px -0.50px;
+    padding-bottom: 1.80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,18 +28,18 @@
 
 .description{
     width: 50vw;
-    font-size: 1.3rem;
+    font-size: 1.30px;
     color: #F6E9B2;
 }
 
 .description h2{
-    font-size: 3rem;
+    font-size: 30px;
     background-color: #e63946;
 }
 
 .counselor-det{
     display: flex;
-    margin-top: 1rem;
+    margin-top: 10px;
     flex-direction: column;
     align-items: center;
     color: #FFEBB2;
@@ -47,9 +47,9 @@
 
 .image{
     background-image: url("https://imgs.search.brave.com/eQiyHnGIZitZZvE2umYt_ReH6OD5YLimXEuQpk9aRyY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOC8w/MS8xNC8yMy8xMi9u/YXR1cmUtMzA4Mjgz/Ml82NDAuanBn");
-    width: 8rem;
-    height: 8rem;
-    padding: 3.5rem;
+    width: 80px;
+    height: 80px;
+    padding: 3.50px;
     border-radius: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -57,22 +57,22 @@
 }
 
 .creden{
-    font-size: 1.4rem;
+    font-size: 1.40px;
 }
 
 .appointment-det{
-    font-size: 1.4rem;
+    font-size: 1.40px;
     padding:0;
-    margin:0.7rem;
+    margin:0.70px;
 }
 
 .book{
-    margin-top: 3rem;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
 }
 .book-btn{
-    font-size: 1rem;
+    font-size: 10px;
     --ion-color-primary: #891652;
 	--ion-color-primary-rgb: 137,22,82;
 	--ion-color-primary-contrast: #ffffff;
@@ -86,8 +86,8 @@
         flex-direction: column;
     }
     .image{
-        width: 5rem;
-        height: 5rem;
-        padding: 3rem;
+        width: 50px;
+        height: 50px;
+        padding: 30px;
     }
 }
