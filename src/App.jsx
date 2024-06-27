@@ -1,14 +1,31 @@
-import { setupIonicReact } from '@ionic/react'
-import ContactUs from './Components/Contact_Us/ContactUs'
-import BookAppointment from './Components/Appointment/BookAppointment'      
-setupIonicReact
-function App(){
+import Hero from "./components/Hero"
+import About from './components/About'
+import Contact from './components/Contact'
+import Testimonials from './components/Testimonial'
+import Footer from './components/Footer'
+import BookAppointment from './components/BookAppointment'
+import Products from './components/Products'
+import Co from "./components/co"
 
-    return (
-        <>
-            <ContactUs />
-            <BookAppointment price='Rs. 200' dur='1 Hour'/>
-        </>
-    )
+
+
+function App() {
+
+  return (
+    <>
+      <Hero />
+      <About />
+      <Contact />
+      <hr />
+      <Products />
+      <hr />
+      <BookAppointment />
+
+      <Testimonials />
+      <Footer />
+    </>
+
+  )
 }
+
 export default App

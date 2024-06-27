@@ -1,0 +1,96 @@
+.appointment-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    height: 75%;
+}
+
+
+
+
+.description {
+    width: 50vw;
+    font-size: 1rem;
+    color: #f2f2f2;
+}
+
+.description h2 {
+    font-size: 35px;
+    margin-left: 20px;
+}
+
+.counselor-det {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f2f2f2;
+}
+
+.image {
+    background-image: url("https://imgs.search.brave.com/eQiyHnGIZitZZvE2umYt_ReH6OD5YLimXEuQpk9aRyY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOC8w/MS8xNC8yMy8xMi9u/YXR1cmUtMzA4Mjgz/Ml82NDAuanBn");
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.creden {
+    font-size: 1.2rem;
+    margin: 10px;
+}
+
+.appointment-det {
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
+.book-btn {
+    font-size: 1.5rem;
+    height: 45px;
+    margin-top: 30px;
+    --ion-color-primary: #9c89ff;
+}
+
+@media only screen and (max-width: 770px) {
+
+
+    .appointment-body {
+        height: max-content;
+        margin: 50px 0px;
+    }
+
+    .container {
+        padding: 10px 0px;
+        flex-direction: column;
+        height: max-content;
+    }
+
+
+
+    .description{
+        width: 100%;
+        padding: 10px;
+
+    }
+
+    .description h2 {
+        font-size: 30px;
+    }
+
+    .description p {
+        font-size: 0.9rem;
+    }
+
+}
