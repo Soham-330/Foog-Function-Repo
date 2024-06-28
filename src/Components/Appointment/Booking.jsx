@@ -60,6 +60,11 @@ const Availability = () => {
           start: selectedSlot.start.toISOString().split('T')[1].substring(0, 5),
           end: selectedSlot.end.toISOString().split('T')[1].substring(0, 5)
         });
+        await addDoc(collection(db, 'dietician_unavial'), {
+          date,
+          start: selectedSlot.start.toISOString().split('T')[1].substring(0, 5),
+          end: selectedSlot.end.toISOString().split('T')[1].substring(0, 5)
+        });
         alert("Slot booked successfully!");
       } catch (error) {
         console.error("Error booking slot:", error);
