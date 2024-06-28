@@ -1,5 +1,5 @@
 {
-  "name": "my-react-app",
+  "name": "clean-vite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,20 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "homepage": "./"
   },
   "dependencies": {
-    "@ionic/react": "^8.2.1",
-    "bootstrap": "^5.3.3",
+    "@ionic/react": "^8.2.2",
+    "better-react-carousel": "^1.1.2",
     "firebase": "^10.12.2",
-    "git": "^0.1.5",
-    "ionicons": "^7.4.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
-    "universal-cookie": "^7.1.4",
-    "uuid": "^9.0.1"
+    "react-multi-carousel": "^2.8.5",
+    "react-responsive-carousel": "^3.2.23"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
