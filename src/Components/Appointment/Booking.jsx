@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { db } from "../../Config/FirebaseConfig";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { format, addDays } from 'date-fns';
+import { IonApp, IonContent, IonList, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
+import '@ionic/react/css/core.css';
 
+
+setupIonicReact();
 
 const Availability = () => {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(format(addDays(new Date(), 1), 'yyyy-MM-dd'));
   const [unavailability, setUnavailability] = useState([]);
   const [availability, setAvailability] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -41,11 +46,26 @@ const Availability = () => {
     const endOfDay = new Date(`${date}T17:00:00`);
     let availableSlots = generateTimeSlots(startOfDay, endOfDay, 30 * 60 * 1000);
 
+    if (unavailability.length === 0) {
+      setAvailability(availableSlots);
+      return;
+    }
+
     unavailability.forEach(({ start, end }) => {
       const startUnavailable = new Date(`${date}T${start}`);
       const endUnavailable = new Date(`${date}T${end}`);
-      availableSlots = availableSlots.filter(slot => {
-        return endUnavailable <= slot.start || startUnavailable >= slot.end;
+      availableSlots = availableSlots.flatMap(slot => {
+        if (endUnavailable <= slot.start || startUnavailable >= slot.end) {
+          return [slot];
+        }
+        const newSlots = [];
+        if (startUnavailable > slot.start) {
+          newSlots.push({ start: slot.start, end: startUnavailable });
+        }
+        if (endUnavailable < slot.end) {
+          newSlots.push({ start: endUnavailable, end: slot.end });
+        }
+        return newSlots;
       });
     });
 
@@ -57,17 +77,18 @@ const Availability = () => {
       try {
         await addDoc(collection(db, 'booked_slots'), {
           date,
-          start: selectedSlot.start.toISOString().split('T')[1].substring(0, 5),
-          end: selectedSlot.end.toISOString().split('T')[1].substring(0, 5)
+          start: format(selectedSlot.start, 'HH:mm'),
+          end: format(selectedSlot.end, 'HH:mm')
         });
         await addDoc(collection(db, 'dietician_unavial'), {
           date,
-          start: selectedSlot.start.toISOString().split('T')[1].substring(0, 5),
-          end: selectedSlot.end.toISOString().split('T')[1].substring(0, 5)
+          start: format(selectedSlot.start, 'HH:mm'),
+          end: format(selectedSlot.end, 'HH:mm')
         });
         alert("Slot booked successfully!");
       } catch (error) {
         console.error("Error booking slot:", error);
+        alert("Error booking slot. Please try again.");
       }
     }
   };
@@ -79,43 +100,43 @@ const Availability = () => {
   }, [date]);
 
   useEffect(() => {
-    if (unavailability.length > 0) {
-      calculateAvailability();
+    if (date) {
+      if (unavailability.length > 0) {
+        calculateAvailability();
+      } else {
+        setAvailability(generateTimeSlots(new Date(`${date}T09:00:00`), new Date(`${date}T17:00:00`), 30 * 60 * 1000));
+      }
     }
-  }, [unavailability]);
+  }, [unavailability, date]);
 
   return (
-    <div>
-      <h1>Dietician Availability</h1>
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
-      {availability.length > 0 && (
-        <ul>
-          {availability.map((slot, index) => (
-            <li key={index}>
-              <label>
-                <input
-                  type="radio"
-                  name="slot"
-                  value={index}
-                  onChange={() => setSelectedSlot(slot)}
-                />
-                {slot.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {slot.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-              </label>
-            </li>
-          ))}
-        </ul>
-      )}
-      {selectedSlot && (
-        <button onClick={handleBookSlot}>Book Slot</button>
-      )}
-    </div>
+    <IonApp>
+      <IonContent>
+        <h1>Dietician Availability</h1>
+        <IonDatetime
+          displayFormat="YYYY-MM-DD"
+          min={format(new Date(), 'yyyy-MM-dd')}
+          value={date}
+          onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
+        />
+        {availability.length > 0 && (
+          <IonList>
+            <IonRadioGroup value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
+              {availability.map((slot, index) => (
+                <IonItem key={index}>
+                  <IonLabel>{format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}</IonLabel>
+                  <IonRadio slot="start" value={slot} />
+                </IonItem>
+              ))}
+            </IonRadioGroup>
+          </IonList>
+        )}
+        {selectedSlot && (
+          <IonButton onClick={handleBookSlot}>Book Slot</IonButton>
+        )}
+      </IonContent>
+    </IonApp>
   );
 };
-
-
 
 export default Availability

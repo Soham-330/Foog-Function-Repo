@@ -1,5 +1,5 @@
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../Config/FirebaseConfig";
+import { db } from "../../../firebase";
 import { useState } from "react";
 
 const AdminAvailability = () => {

@@ -1,7 +1,7 @@
 import { setupIonicReact, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonHeader, IonTitle } from "@ionic/react"
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../Config/FirebaseConfig";
+import { db } from "../../../firebase";
 import CatCard from "./CatCard";
 import './Categories.css'
 

@@ -1,19 +1,20 @@
-import Hero from "./components/Hero"
-import About from './components/About'
-import Contact from './components/Contact'
-import Testimonials from './components/Testimonial'
-import Footer from './components/Footer'
-import BookAppointment from './components/BookAppointment'
-import Products from './components/Products'
-import Co from "./components/co"
-
+// import Hero from "./components/Hero"
+// import About from './components/About'
+// import Contact from './components/Contact'
+// import Footer from './components/Footer'
+// import BookAppointment from './components/BookAppointment'
+// import Products from './components/Products'
+import Availability from "./Components/Appointment/Booking"
+import AdminAvailability from "./Components/Appointment/DieticianUn"
+// import './Components/Hero.css'
+import BookAppointment from "./Components/BookAppointment"
 
 
 function App() {
 
   return (
     <>
-      <Hero />
+      {/* <Hero />
       <About />
       <Contact />
       <hr />
@@ -22,7 +23,10 @@ function App() {
       <BookAppointment />
 
       <Testimonials />
-      <Footer />
+      <Footer /> */}
+      <Availability />
+      <hr />
+      <AdminAvailability />
     </>
 
   )

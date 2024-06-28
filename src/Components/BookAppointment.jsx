@@ -1,8 +1,25 @@
 import { IonButton, setupIonicReact } from '@ionic/react';
 import './BookAppointment.css'
+import { useEffect, useState } from 'react';
 setupIonicReact();
 
 function BookAppointment(props) {
+    const [dieticians, setDieticians] = useState([]);
+    const DieticianList = () => {
+      
+        useEffect(() => {
+          const fetchDieticians = async () => {
+            const querySnapshot = await getDocs(collection(db, 'dietician'));
+            const dieticianData = querySnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data()
+            }));
+            setDieticians(dieticianData);
+          };
+      
+          fetchDieticians();
+        }, []);
+    }
 
     return(
         <>
@@ -21,10 +38,13 @@ function BookAppointment(props) {
                     <div className="image"></div>
                     <div className="creden">
                         <ul>
-                            <li>Creden 1</li>
-                            <li>Creden 2</li>
-                            <li>Creden 3</li>
-                            <li>Creden 4</li>
+                            {dieticians.map(dietician => (
+                                <li key={dietician.id}>
+                                <h2>{dietician.name}</h2>
+                                <p>{dietician.creden}</p>
+                                <img src={dietician.image} alt={dietician.name} />
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <p className='appointment-det'>Price: Rs300</p>
