@@ -9,7 +9,7 @@ function BookAppointment(props) {
 
     return (
         <>
-        <Carousel>
+     
         <div className="appointment-body">
                 <div className="container">
                     <div className="description">
@@ -21,6 +21,8 @@ function BookAppointment(props) {
                             Repellat officia consequuntur laboriosam id eum quidem doloribus,
                         </p>
                     </div>
+
+                    <Carousel>
                     <div className="counselor-det">
                         <div className="image"></div>
                         <div className="creden">
@@ -37,19 +39,6 @@ function BookAppointment(props) {
                         <IonButton className='book-btn'> Book An Appointment</IonButton>
 
                     </div>
-                </div>
-
-            </div><div className="appointment-body">
-                <div className="container">
-                    <div className="description">
-                        <h2 className='heading'>Heading</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam recusandae corporis laudantium. Itaque minima eos laborum aperiam velit quod omnis rem sit praesentium dolorem repellat, totam modi nihil, maxime inventore!
-                            Nobis, corporis nemo.
-                        </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, quibusdam amet provident tenetur enim corrupti suscipit nobis quam, fuga, saepe vel ipsum eum quo. Obcaecati quibusdam a nostrum officiis tenetur.
-                            Repellat officia consequuntur laboriosam id eum quidem doloribus,
-                        </p>
-                    </div>
                     <div className="counselor-det">
                         <div className="image"></div>
                         <div className="creden">
@@ -66,11 +55,12 @@ function BookAppointment(props) {
                         <IonButton className='book-btn'> Book An Appointment</IonButton>
 
                     </div>
+                    </Carousel>
                 </div>
 
             </div>
 
-        </Carousel>
+    
             
 
         </>
