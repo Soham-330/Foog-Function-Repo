@@ -1,11 +1,17 @@
-import Categories from "./Components/Categories/Categories"
-
+import Availability from "./Components/Appointment/Booking";
+import AdminAvailability from "./Components/Appointment/DieticianUn";
 
 function App(){
 
     return (
         <>
-            <Categories />
+            <Availability />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <AdminAvailability />
         </>
     )
 }
