@@ -4,11 +4,12 @@
 // import Footer from './components/Footer'
 // import BookAppointment from './components/BookAppointment'
 // import Products from './components/Products'
+import { IonApp, setupIonicReact } from "@ionic/react"
 import Availability from "./Components/Appointment/Booking"
 import AdminAvailability from "./Components/Appointment/DieticianUn"
-// import './Components/Hero.css'
+import './Components/Hero.css'
 import BookAppointment from "./Components/BookAppointment"
-
+setupIonicReact();
 
 function App() {
 
@@ -24,9 +25,9 @@ function App() {
 
       <Testimonials />
       <Footer /> */}
-      <Availability />
-      <hr />
-      <AdminAvailability />
+      {/* <AdminAvailability /> */}
+      {/* <Availability /> */}
+      <BookAppointment />
     </>
 
   )

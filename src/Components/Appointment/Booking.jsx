@@ -110,7 +110,6 @@ const Availability = () => {
   }, [unavailability, date]);
 
   return (
-    <IonApp>
       <IonContent>
         <h1>Dietician Availability</h1>
         <IonDatetime
@@ -135,7 +134,6 @@ const Availability = () => {
           <IonButton onClick={handleBookSlot}>Book Slot</IonButton>
         )}
       </IonContent>
-    </IonApp>
   );
 };
 

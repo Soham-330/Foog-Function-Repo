@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 const Gallery = () => {
   return (
     <>
-        <Carousel  showArrows={true} showThumbs={true}>
+        <Carousel>
         <div className="box2">
                     <div className="img2"></div>
                     <div className="text">
