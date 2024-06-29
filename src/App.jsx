@@ -9,6 +9,7 @@ import Availability from "./Components/Appointment/Booking"
 import AdminAvailability from "./Components/Appointment/DieticianUn"
 import './Components/Hero.css'
 import BookAppointment from "./Components/BookAppointment"
+import Categories from './Components/Categories/Categories'
 setupIonicReact();
 
 function App() {
@@ -26,8 +27,9 @@ function App() {
       <Testimonials />
       <Footer /> */}
       {/* <AdminAvailability /> */}
-      {/* <Availability /> */}
-      <BookAppointment />
+      <IonApp>
+      <Availability />
+      </IonApp>
     </>
 
   )

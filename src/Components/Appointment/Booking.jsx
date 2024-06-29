@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { format, addDays } from 'date-fns';
-import { IonApp, IonContent, IonList, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
+import { IonContent, IonList, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
 import '@ionic/react/css/core.css';
-
 
 setupIonicReact();
 
@@ -110,30 +109,37 @@ const Availability = () => {
   }, [unavailability, date]);
 
   return (
-      <IonContent>
-        <h1>Dietician Availability</h1>
-        <IonDatetime
-          displayFormat="YYYY-MM-DD"
-          min={format(new Date(), 'yyyy-MM-dd')}
-          value={date}
-          onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
-        />
-        {availability.length > 0 && (
-          <IonList>
-            <IonRadioGroup value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
-              {availability.map((slot, index) => (
-                <IonItem key={index}>
-                  <IonLabel>{format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}</IonLabel>
-                  <IonRadio slot="start" value={slot} />
-                </IonItem>
-              ))}
-            </IonRadioGroup>
-          </IonList>
-        )}
-        {selectedSlot && (
-          <IonButton onClick={handleBookSlot}>Book Slot</IonButton>
-        )}
-      </IonContent>
+    <IonContent>
+    <h1>Dietician Availability</h1>
+    <IonDatetime
+      displayFormat="YYYY-MM-DD"
+      min={format(new Date(), 'yyyy-MM-dd')}
+      value={date}
+      onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
+    />
+    {availability.length > 0 && (
+      <IonRadioGroup className="radio-group" value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
+        {availability.map((slot, index) => (
+          <IonItem key={index} className="radio-item">
+            <IonLabel className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
+              {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
+            </IonLabel>
+            <input
+              type="radio"
+              className="radio-input"
+              name="slot"
+              value={index}
+              checked={selectedSlot === slot}
+              onChange={() => setSelectedSlot(slot)}
+             />
+          </IonItem>
+        ))}
+      </IonRadioGroup>
+    )}
+    {selectedSlot && (
+      <IonButton onClick={handleBookSlot} style={{ marginTop: '20px' }}>Book Slot</IonButton>
+    )}
+  </IonContent>
   );
 };
 
