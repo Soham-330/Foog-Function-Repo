@@ -6,10 +6,11 @@
 // import Products from './components/Products'
 import { IonApp, setupIonicReact } from "@ionic/react"
 import Availability from "./Components/Appointment/Booking"
-import AdminAvailability from "./Components/Appointment/DieticianUn"
+import AdminAvailability from "./Components/Admin/DieticianUn"
 import './Components/Hero.css'
 import BookAppointment from "./Components/BookAppointment"
 import Categories from './Components/Categories/Categories'
+import AdminPrompt from "./Components/Admin/AdminPrompt"
 setupIonicReact();
 
 function App() {
@@ -26,10 +27,8 @@ function App() {
 
       <Testimonials />
       <Footer /> */}
-      {/* <AdminAvailability /> */}
-      <IonApp>
-      <Availability />
-      </IonApp>
+      <AdminAvailability />
+      <AdminPrompt />
     </>
 
   )
