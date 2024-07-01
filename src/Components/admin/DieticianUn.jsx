@@ -51,11 +51,11 @@ const AdminAvailability = () => {
 
   return (
     <>
-    <div className='title2 title3'>
-          <h2>Admin: Add Unavailability</h2>
-        </div>
+      <div className='title2 title3'>
+        <h2>Admin: Add Unavailability</h2>
+      </div>
       <div className="doc-unavail">
-        
+
 
         <div className="timings0">
           <IonItem className="admin-item">
@@ -90,7 +90,10 @@ const AdminAvailability = () => {
               onIonChange={(e) => setEnd(e.detail.value)}
             />
           </IonItem>
-          <IonButton className="ibutton3" onClick={handleAddUnavailability}>Add Unavailability</IonButton>
+          <div className="button0">
+            <IonButton className="ibutton3" onClick={handleAddUnavailability}>Add Unavailability</IonButton>
+          </div>
+        
         </div>
 
 

@@ -93,7 +93,10 @@
         padding: 10px 0px;
         flex-direction: column;
         height: max-content;
+        width: auto;
+        margin: 20px;
     }
+
 
 
 

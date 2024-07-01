@@ -13,7 +13,8 @@ function About() {
                     </div>
                     <div className="text">
                         <h3>Title</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta ut nesciunt voluptas aliquam. Quod aliquam provident repudiandae deleniti. Ex suscipit eius ab nihil temporibus dolores tenetur similique laudantium corporis recusandae!</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta ut nesciunt voluptas aliquam. Quod aliquam provident repudiandae deleniti. Ex suscipit eius ab nihil temporibus dolores tenetur similique laudantium corporis recusandae!
+                        </p>
                     </div>
                 </div>
                 <div className="box even">

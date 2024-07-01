@@ -31,3 +31,11 @@
     --ion-color-primary: #9c89ff;
     margin-bottom: 30px;
 }
+
+@media only screen and (max-width: 770px) {
+
+    .catCard{
+        width: auto;
+        margin: 20px 20px;
+    }
+}
