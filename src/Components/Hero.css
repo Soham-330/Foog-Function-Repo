@@ -220,10 +220,26 @@ p {
 /* ******Footer***** */
 
 footer {
-    margin: 50px;
-    text-align: center;
-    color: #F2f2f2;
+    color: white;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 30px;
+   background-color: #0000003f;
+
 }
+
+footer h3{
+    margin-left: 20px;
+}
+
+
+.map iframe {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
 
 
 /* ********Media Queries****** */
@@ -278,7 +294,13 @@ footer {
         padding: 0%;
     }
 
+    footer{
+        flex-direction: column;
+    }
+
 }
+
+
 
 
 

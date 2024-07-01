@@ -5,7 +5,10 @@ import Testimonials from './components/Testimonial'
 import Footer from './components/Footer'
 import BookAppointment from './components/BookAppointment'
 import Products from './components/Products'
-import Co from "./components/co"
+import { Route, Routes } from "react-router-dom"
+import Categories from "./components/Categories"
+import AdminAvailability from "./components/admin/DieticianUn"
+import AdminPrompt from "./components/admin/AdminPrompt"
 
 
 
@@ -13,16 +16,31 @@ function App() {
 
   return (
     <>
-      <Hero />
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/bookappointment" element={<BookAppointment />} />
+        <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/footer" element={<Footer />} />
+      </Routes>
+
+
       <About />
       <Contact />
       <hr />
       <Products />
+      <Categories />
       <hr />
       <BookAppointment />
-
       <Testimonials />
       <Footer />
+
+
+
+      <AdminPrompt />
+      <AdminAvailability />
     </>
 
   )
