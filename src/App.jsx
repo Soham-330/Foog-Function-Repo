@@ -1,6 +1,6 @@
-// import Hero from "./components/Hero"
+import Hero from './Components/Hero'
 // import About from './components/About'
-// import Contact from './components/Contact'
+import Contact from './Components/Contact'
 // import Footer from './components/Footer'
 // import BookAppointment from './components/BookAppointment'
 // import Products from './components/Products'
@@ -27,6 +27,7 @@ function App() {
 
       <Testimonials />
       <Footer /> */}
+      <Contact />
       <AdminAvailability />
       <AdminPrompt />
     </>
