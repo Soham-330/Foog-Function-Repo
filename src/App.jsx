@@ -27,11 +27,10 @@ function App() {
 
       <Testimonials />
       <Footer /> */}
-      <Contact />
-      <AdminAvailability />
-      <AdminPrompt />
+      <IonApp>
+      <Availability id='vuV3HsgyRmOo3FlRg6tZ' />
+      </IonApp>
     </>
-
   )
 }
 

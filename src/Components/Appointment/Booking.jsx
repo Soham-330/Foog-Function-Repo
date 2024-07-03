@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { format, addDays } from 'date-fns';
-import { IonContent, IonList, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
+import { IonContent, IonAlert, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
 import '@ionic/react/css/core.css';
 
 setupIonicReact();
 
-const Availability = () => {
+const Availability = (props) => {
   const [date, setDate] = useState(format(addDays(new Date(), 1), 'yyyy-MM-dd'));
   const [unavailability, setUnavailability] = useState([]);
   const [availability, setAvailability] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const fetchUnavailability = async (selectedDate) => {
     try {
@@ -77,7 +78,8 @@ const Availability = () => {
         await addDoc(collection(db, 'booked_slots'), {
           date,
           start: format(selectedSlot.start, 'HH:mm'),
-          end: format(selectedSlot.end, 'HH:mm')
+          end: format(selectedSlot.end, 'HH:mm'),
+          dietician_id: props.id,
         });
         await addDoc(collection(db, 'dietician_unavial'), {
           date,
@@ -85,11 +87,22 @@ const Availability = () => {
           end: format(selectedSlot.end, 'HH:mm')
         });
         alert("Slot booked successfully!");
+        setDate(format(addDays(new Date(), 1), 'yyyy-MM-dd'));
+        setSelectedSlot(null);
       } catch (error) {
         console.error("Error booking slot:", error);
         alert("Error booking slot. Please try again.");
       }
     }
+  };
+
+  const handleConfirm = () => {
+    setShowAlert(true);
+  };
+
+  const confirmBookSlot = () => {
+    handleBookSlot();
+    setShowAlert(false);
   };
 
   useEffect(() => {
@@ -113,32 +126,50 @@ const Availability = () => {
     <h1>Dietician Availability</h1>
     <IonDatetime
       displayFormat="YYYY-MM-DD"
-      min={format(new Date(), 'yyyy-MM-dd')}
+      min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
       value={date}
       onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
+      presentation="date"
     />
     {availability.length > 0 && (
-      <IonRadioGroup className="radio-group" value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
-        {availability.map((slot, index) => (
-          <IonItem key={index} className="radio-item">
-            <IonLabel className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
-              {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
-            </IonLabel>
+      <IonRadioGroup value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
+      {availability.map((slot, index) => (
+        <IonItem key={index} className="radio-item" onClick={() => setSelectedSlot(slot)}>
+          <div className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
+            {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
             <input
               type="radio"
               className="radio-input"
               name="slot"
               value={index}
               checked={selectedSlot === slot}
-              onChange={() => setSelectedSlot(slot)}
-             />
-          </IonItem>
-        ))}
-      </IonRadioGroup>
+              readOnly
+            />
+          </div>
+        </IonItem>
+      ))}
+    </IonRadioGroup>
     )}
     {selectedSlot && (
-      <IonButton onClick={handleBookSlot} style={{ marginTop: '20px' }}>Book Slot</IonButton>
+      <IonButton onClick={handleConfirm} style={{ marginTop: '20px' }}>Book Slot</IonButton>
     )}
+    <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          header={'Confirm Booking'}
+          message={`Date: ${format(date, 'dd-MM-yyyy')} Time Slot: ${selectedSlot ? format(selectedSlot.start, 'HH:mm') : ''} - ${selectedSlot ? format(selectedSlot.end, 'HH:mm') : ''}`}
+          buttons={[
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => setShowAlert(false)
+            },
+            {
+              text: 'Confirm',
+              handler: confirmBookSlot
+            }
+          ]}
+        />
   </IonContent>
   );
 };

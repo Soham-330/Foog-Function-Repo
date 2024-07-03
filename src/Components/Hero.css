@@ -212,14 +212,29 @@ p {
 
 
 /* This is CSS of Radio Buttons of Bookings.jsx */
-.radio-group {
-    display: flex;
-    flex-wrap: wrap;
-}
+.admin-container {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .admin-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  .admin-item {
+    margin-bottom: 20px;
+  }
+  
+  .ion-no-padding {
+    padding: 0 !important;
+  }
   
   .radio-item {
     display: inline-block;
     margin: 10px;
+    cursor: pointer;
   }
   
   .radio-label {
@@ -230,7 +245,6 @@ p {
     border-radius: 5px;
     text-align: center;
     transition: background-color 0.3s;
-    cursor: pointer;
   }
   
   .radio-label.selected {
@@ -239,20 +253,12 @@ p {
   }
   
   .radio-input {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+    display: none;
   }
   
-
-
-
-
-
+  .admin-button {
+    width: 100%;
+  }
 
 
 
