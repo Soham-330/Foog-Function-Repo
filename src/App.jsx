@@ -1,16 +1,8 @@
 import Hero from './Components/Hero'
-// import About from './components/About'
-import Contact from './Components/Contact'
-// import Footer from './components/Footer'
-// import BookAppointment from './components/BookAppointment'
-// import Products from './components/Products'
 import { IonApp, setupIonicReact } from "@ionic/react"
-import Availability from "./Components/Appointment/Booking"
-import AdminAvailability from "./Components/Admin/DieticianUn"
 import './Components/Hero.css'
-import BookAppointment from "./Components/BookAppointment"
+import AdminPage from './Components/Admin/AdminPage'
 import Categories from './Components/Categories/Categories'
-import AdminPrompt from "./Components/Admin/AdminPrompt"
 setupIonicReact();
 
 function App() {
@@ -28,8 +20,9 @@ function App() {
       <Testimonials />
       <Footer /> */}
       <IonApp>
-      <Availability id='vuV3HsgyRmOo3FlRg6tZ' />
+      <AdminPage />
       </IonApp>
+      {/* <Categories /> */}
     </>
   )
 }
