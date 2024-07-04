@@ -41,12 +41,23 @@ function BookAppointment(props) {
             <div className="appointment-body">
                 <div className="container">
                     <div className="description">
-                        <h2 className='heading'>Heading</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam recusandae corporis laudantium. Itaque minima eos laborum aperiam velit quod omnis rem sit praesentium dolorem repellat, totam modi nihil, maxime inventore!
-                            Nobis, corporis nemo.
+                        <h2 className='heading'>Dietician Services</h2>
+                        <p>Book a one-on-one consultation with a certified dietician to discuss your dietary needs and health goals. Our dieticians provide personalized advice, meal planning, and practical strategies to help you achieve better health.
                         </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, quibusdam amet provident tenetur enim corrupti suscipit nobis quam, fuga, saepe vel ipsum eum quo. Obcaecati quibusdam a nostrum officiis tenetur.
-                            Repellat officia consequuntur laboriosam id eum quidem doloribus,
+                        <p>
+                            <b>Benefits:</b>
+                            <ul>
+                                <li>Tailored Guidance: Customized nutrition plans based on your lifestyle and goals.</li>
+                                <li>    Expert Support: Professional advice from certified dieticians.</li>
+                                <li>Health Monitoring: Regular follow-ups to track and adjust your progress.</li>
+                                <li>     Convenience: In-person or virtual appointments to fit your schedule.</li>
+
+
+
+
+                            </ul>
+
+
                         </p>
                     </div>
                     <div className="carousel">
@@ -54,7 +65,7 @@ function BookAppointment(props) {
                             {dieticians.map((dietician, index) => (
                                 <div className='doc-carousel' key={index}>
                                     <img src={dietician.image} alt={`Dietician ${dietician.name}`} />
-                                    <h2>{dietician.name}</h2>
+                                    <h3>{dietician.name}</h3>
                                     <ul>
                                         {Array.isArray(dietician.credentials) ? (
                                             dietician.credentials.map((credential, credIndex) => (

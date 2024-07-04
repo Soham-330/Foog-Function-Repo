@@ -49,7 +49,6 @@ function Contact() {
         const phoneRegex = /^\d{10}$/;
 
         if (!(emailRegex.test(newEmail) || phoneRegex.test(newEmail))) {
-            setMessage('Please enter a valid Email or Mobile number');
             alert('Please enter a valid Email or Mobile number');
         }
         else {
@@ -85,7 +84,7 @@ function Contact() {
                         onChange={handleChangeEmail} />
 
                     <IonButton className="ibuttons2" onClick={validateInput}>Send Message</IonButton>
-                
+
                 </div>
 
 
@@ -94,12 +93,10 @@ function Contact() {
 
                 <div className="vl"> </div>
                 <div className="buttons2">
-                    <IonButton className="ibuttons2">Whatsapp Us</IonButton>
-                    <IonButton className="ibuttons2">Email us</IonButton>
-                    <IonButton className="ibuttons2">Call Us </IonButton>
-                    
+                    <IonButton className="ibuttons2" href='https://wa.me/919309417021/?text=Hello' target='_main'>Whatsapp Us</IonButton>
+                    <IonButton className="ibuttons2" href="mailto:foogfunction3@gmail.com" target='_main'>Email Us</IonButton>
+                    <IonButton className="ibuttons2" href='tel:+91-9309417021' target='_main'>Call Us</IonButton>
                 </div>
-
 
             </div>
 

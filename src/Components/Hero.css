@@ -61,7 +61,7 @@ h1 {
 .ibutton {
     margin: 10px;
     width: 200px;
-    font-size:0.9rem ;
+    font-size: 0.9rem;
     --ion-color-primary: #9c89ff;
 }
 
@@ -90,18 +90,39 @@ h1 {
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     color: white;
+
 }
 
 .img {
-    height: 200px;
-    width: 200px;
-    background-color: black;
+    height: 220px;
+    width: 220px;
+    /* background-color: black; */
     margin: 20px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+}
+
+.i1 {
+    background-image: url(https://img.freepik.com/premium-photo/woman-suit-with-her-arms-crossed_662214-18300.jpg);
+    background-position: top;
+}
+
+.i2 {
+    background-image: url(https://img.freepik.com/premium-photo/young-indian-businessman-suit-tie-standing-office-ai-generated_843560-800.jpg);
+}
+
+.i3 {
+    background-image: url(https://img.freepik.com/premium-photo/portrait-confident-professional-compliance-officer-modern-office-setting_928211-15588.jpg);
+}
+
+.i4 {
+    background-image: url(https://img.freepik.com/premium-photo/portrait-smiling-handsome-asian-indian-businessman-generative-ai_1002329-232.jpg);
 }
 
 .text {
     flex: 3;
-    padding: 50px;
+    /* padding: 50px; */
 }
 
 .text h3 {
@@ -109,6 +130,9 @@ h1 {
     margin-left: 18px;
 }
 
+.box h4 {
+    margin-left: 20px;
+}
 
 
 /* ******ContactUS****** */
@@ -155,11 +179,12 @@ textarea {
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-textarea::placeholder, input::placeholder {
+textarea::placeholder,
+input::placeholder {
     color: white;
 }
 
-input{
+input {
     margin-top: 30px;
     border: none;
     padding: 20px;
@@ -169,6 +194,7 @@ input{
     width: 100%;
 
 }
+
 .ibuttons2 {
     font-size: 1.5rem;
     margin-top: 30px;
@@ -205,11 +231,28 @@ input{
     background-color: #e00000;
     border-radius: 50%;
     margin: 30px;
+    background-size: cover;
+}
+
+.j1 {
+    background-image: url(https://img.freepik.com/premium-photo/good-looking-indian-young-male-wearing-shirt-dark-background-generative-ai_802140-1334.jpg);
+}
+
+.j2 {
+    background-image: url(https://img.freepik.com/premium-photo/indian-young-college-girl-generative-ai_802140-1201.jpg);
+}
+
+.j3 {
+    background-image: url(https://img.freepik.com/premium-photo/good-looking-indian-young-male-wearing-shirt-generative-ai_802140-1336.jpg);
 }
 
 p {
+    font-size: 20px;
     margin: 20px;
 }
+
+
+
 
 
 
@@ -222,15 +265,15 @@ p {
 
 footer {
     color: white;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-   padding: 30px;
-   background-color: #0000003f;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+    background-color: #0000003f;
 
 }
 
-footer h3{
+footer h3 {
     margin-left: 20px;
 }
 
@@ -253,16 +296,17 @@ footer h3{
 
     }
 
-    .buttons{
+    .buttons {
         flex-direction: column;
     }
 
-    .ibutton{
+    .ibutton {
         width: 130%;
         height: 45px;
     }
-    .vl{
-        border:3px solid rgba(223, 223, 223, 0.133);
+
+    .vl {
+        border: 3px solid rgba(223, 223, 223, 0.133);
         height: 5px;
         width: 500px;
 
@@ -287,27 +331,22 @@ footer h3{
         padding: 0%;
     }
 
-    .even{
+    .even {
         flex-direction: column-reverse;
     }
 
-    .box2{
+    .box2 {
         flex-direction: column;
         padding: 0%;
         width: auto;
         margin: 40px 20px;
     }
 
-    footer{
+    footer {
         flex-direction: column;
     }
 
-    .map iframe{
+    .map iframe {
         width: 350px;
     }
 }
-
-
-
-
-

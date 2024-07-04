@@ -1,4 +1,4 @@
-import { setupIonicReact, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton } from "@ionic/react";
+import { setupIonicReact, IonButton } from "@ionic/react";
 import './CatCard.css';
 setupIonicReact();
 function CatCard(props){
