@@ -3,6 +3,7 @@ import { IonApp, IonHeader, IonToolbar, IonTitle, IonContent, setupIonicReact } 
 import FeedbackList from "./FeedbackList";
 import AddCategory from "./AddCategory";
 import AddProduct from "./AddProduct";
+import DeleteItems from "./DeleteItems";
 
 setupIonicReact();
 
@@ -18,6 +19,8 @@ const AdminPage = () => {
         <AddCategory />
         <h2>Add Product</h2>
         <AddProduct />
+        <h2>Delete Items</h2>
+        <DeleteItems />
         <h2>Feedbacks</h2>
         <FeedbackList />
     </>
