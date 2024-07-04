@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import BookAppointment from './components/BookAppointment'
 import Products from './components/Products'
 import { Route, Routes } from "react-router-dom"
-import { Link } from "react-router-dom"
+
 import Categories from "./components/Categories"
 import AdminPrompt from "./components/admin/AdminPrompt"
 import AdminAvailability from "./components/admin/a/DieticianUn (1)"
@@ -14,6 +14,7 @@ import AdminAvailability from "./components/admin/a/DieticianUn (1)"
 import './App.css'
 import Home from "./components/Home"
 import AdminPage from "./components/Admin"
+import Navbar from "./components/navbar"
 
 
 
@@ -21,18 +22,8 @@ function App() {
 
   return (
     <>
-   
 
-      <div className="nav">
-        <Link className="link" to="/"> Home </Link>
-        <Link className="link" to="/Admin"> Admin </Link>
-        <Link className="link" to="/Products"> Products </Link>
-        <Link className="link" to="/About"> About </Link>
-        <Link className="link" to="/Contact"> Contact </Link>
-        <Link className="link" to="/Testimonials"> Testimonials </Link>
-        <Link className="link" to="/BookAppointment"> Book-Appointment </Link>
-
-      </div>
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Admin" element={<AdminPage />} />
