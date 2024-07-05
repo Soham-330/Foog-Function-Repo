@@ -8,7 +8,6 @@ const AddCategory = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [text, setText] = useState("");
-  const [recentCategories, setRecentCategories] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +17,6 @@ const AddCategory = () => {
         image,
         text
       });
-      const newCategory = { name, image, text, };
-      setRecentCategories([newCategory, ...recentCategories]);
       setName("");
       setImage("");
       setText("");
@@ -55,19 +52,6 @@ const AddCategory = () => {
       />
       <button type="submit">Add Category</button>
     </form>
-    <h3>Recently Added Categories</h3>
-      {recentCategories.map((category) => (
-        <IonCard key={category.id}>
-          <img src={category.image} height='200px'/>
-          <IonCardHeader>
-            <IonCardTitle>{category.name}</IonCardTitle>
-            <IonCardSubtitle>{category.text}</IonCardSubtitle>
-          </IonCardHeader>
-          <IonCardContent>
-            <p>{category.text}</p>
-          </IonCardContent>
-        </IonCard>
-      ))}
     </>
   );
 };

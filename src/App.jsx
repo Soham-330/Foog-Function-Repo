@@ -3,6 +3,7 @@ import { IonApp, setupIonicReact } from "@ionic/react"
 import './Components/Hero.css'
 import AdminPage from './Components/Admin/AdminPage'
 import Categories from './Components/Categories/Categories'
+import BookAppointment from './Components/BookAppointment'
 setupIonicReact();
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
       <Testimonials />
       <Footer /> */}
+
       <IonApp>
       <AdminPage />
       </IonApp>

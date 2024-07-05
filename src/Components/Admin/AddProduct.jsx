@@ -11,7 +11,6 @@ const AddProduct = () => {
   const [text, setText] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [recentProducts, setRecentProducts] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -30,14 +29,12 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "products"), {
+      await addDoc(collection(db, "products"), {
         name,
         image,
         text,
         categoryId: selectedCategory
       });
-      const newProduct = { id: docRef.id, name, image, text, categoryId: selectedCategory };
-      setRecentProducts([newProduct, ...recentProducts]);
       setName("");
       setImage("");
       setText("");
@@ -86,19 +83,6 @@ const AddProduct = () => {
       </select>
       <button type="submit">Add Product</button>
     </form>
-    <h3>Recently Added Products</h3>
-      {recentProducts.map((product) => (
-        <IonCard key={product.id}>
-          <img src={product.image} height='200px' />
-          <IonCardHeader>
-            <IonCardTitle>{product.name}</IonCardTitle>
-            <IonCardSubtitle>{product.text}</IonCardSubtitle>
-          </IonCardHeader>
-          <IonCardContent>
-            <p>{product.text}</p>
-          </IonCardContent>
-        </IonCard>
-      ))}
     </>
   );
 };
