@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-easy-swipe": "^0.0.23",
     "react-multi-carousel": "^2.8.5",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

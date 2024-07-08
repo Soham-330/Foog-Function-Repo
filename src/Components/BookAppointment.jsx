@@ -1,11 +1,12 @@
 import { IonButton, setupIonicReact } from '@ionic/react';
 import './BookAppointment.css'
 setupIonicReact();
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, useHistory } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { Link } from 'react-router-dom';
 
 function BookAppointment(props) {
 
@@ -15,7 +16,7 @@ function BookAppointment(props) {
         const fetchDieticians = async () => {
             try {
                 const querySnapshot = await getDocs(collection(db, 'dietician'));
-                const fetchedDieticians = querySnapshot.docs.map(doc => doc.data());
+                const fetchedDieticians = querySnapshot.docs.map(doc =>({ id: doc.id, ...doc.data() }));
                 setDieticians(fetchedDieticians);
             } catch (error) {
                 console.error("Error fetching dieticians: ", error);
@@ -35,6 +36,10 @@ function BookAppointment(props) {
         return <p>No dieticians found!</p>;
     }
 
+    const handleButtonClick = (id) =>{
+        return;
+    }
+
     return (
         <>
 
@@ -44,21 +49,15 @@ function BookAppointment(props) {
                         <h2 className='heading'>Dietician Services</h2>
                         <p>Book a one-on-one consultation with a certified dietician to discuss your dietary needs and health goals. Our dieticians provide personalized advice, meal planning, and practical strategies to help you achieve better health.
                         </p>
-                        <p>
+                        <div>
                             <b>Benefits:</b>
                             <ul>
                                 <li>Tailored Guidance: Customized nutrition plans based on your lifestyle and goals.</li>
                                 <li>    Expert Support: Professional advice from certified dieticians.</li>
                                 <li>Health Monitoring: Regular follow-ups to track and adjust your progress.</li>
                                 <li>     Convenience: In-person or virtual appointments to fit your schedule.</li>
-
-
-
-
                             </ul>
-
-
-                        </p>
+                        </div>
                     </div>
                     <div className="carousel">
                         <Carousel showArrows={true} showThumbs={false} showStatus={false}>
@@ -75,7 +74,7 @@ function BookAppointment(props) {
                                     </ul>
                                     <h3 className='price'>{`Price: Rs ${dietician.fees}`}</h3>
                                     <h3 className='duration'>Duration: 30 mins</h3>
-                                    <IonButton className='book-btn'> Book An Appointment</IonButton>
+                                    <IonButton className='book-btn' onClick={() => handleButtonClick(dietician.id)}> Book An Appointment</IonButton>
                                 </div>
                             ))}
                         </Carousel>

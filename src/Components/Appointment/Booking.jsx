@@ -3,6 +3,7 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { format, addDays } from 'date-fns';
 import { IonContent, IonAlert, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
+import { useParams } from "react-router-dom";
 import '@ionic/react/css/core.css';
 
 setupIonicReact();
@@ -15,6 +16,7 @@ const Availability = (props) => {
   const [showAlert, setShowAlert] = useState(false);
 
   const fetchUnavailability = async (selectedDate) => {
+    let { id } = useParams();
     try {
       const q = query(
         collection(db, 'dietician_unavial'),

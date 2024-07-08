@@ -4,27 +4,17 @@ import './Components/Hero.css'
 import AdminPage from './Components/Admin/AdminPage'
 import Categories from './Components/Categories/Categories'
 import BookAppointment from './Components/BookAppointment'
+import { Router } from 'react-router-dom'
+import DieticianSlotManager from './Components/Admin/BookedSlots'
+import UserDetails from './Components/UserDetails'
 setupIonicReact();
 
 function App() {
 
   return (
     <>
-      {/* <Hero />
-      <About />
-      <Contact />
-      <hr />
-      <Products />
-      <hr />
-      <BookAppointment />
-
-      <Testimonials />
-      <Footer /> */}
-
-      <IonApp>
-      <AdminPage />
-      </IonApp>
-      {/* <Categories /> */}
+      <DieticianSlotManager />
+      <UserDetails />
     </>
   )
 }
