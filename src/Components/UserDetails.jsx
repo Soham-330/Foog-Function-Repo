@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import { IonButton, setupIonicReact } from '@ionic/react';
+setupIonicReact();
 
 const UserDetailsForm = () => {
   const [name, setName] = useState('');
@@ -86,7 +88,7 @@ const UserDetailsForm = () => {
         <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button type="submit">Submit</button>
+      <IonButton type="submit">Submit</IonButton>
     </form>
   );
 };

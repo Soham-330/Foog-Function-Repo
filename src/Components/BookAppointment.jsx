@@ -1,7 +1,7 @@
 import { IonButton, setupIonicReact } from '@ionic/react';
 import './BookAppointment.css'
 setupIonicReact();
-import React, { Component, useEffect, useState, useHistory } from 'react';
+import React, { useEffect, useState } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { collection, getDocs } from 'firebase/firestore';
@@ -12,6 +12,7 @@ function BookAppointment(props) {
 
     const [dieticians, setDieticians] = useState([]);
     const [loading, setLoading] = useState(true);
+    
     useEffect(() => {
         const fetchDieticians = async () => {
             try {
@@ -36,13 +37,8 @@ function BookAppointment(props) {
         return <p>No dieticians found!</p>;
     }
 
-    const handleButtonClick = (id) =>{
-        return;
-    }
-
     return (
         <>
-
             <div className="appointment-body">
                 <div className="container">
                     <div className="description">
@@ -74,7 +70,10 @@ function BookAppointment(props) {
                                     </ul>
                                     <h3 className='price'>{`Price: Rs ${dietician.fees}`}</h3>
                                     <h3 className='duration'>Duration: 30 mins</h3>
-                                    <IonButton className='book-btn' onClick={() => handleButtonClick(dietician.id)}> Book An Appointment</IonButton>
+                                    <Link to={`/dieticians/${dietician.id}`} >
+                                        <IonButton className='book-btn'> Book An Appointment</IonButton>
+                                    </Link>
+                                    
                                 </div>
                             ))}
                         </Carousel>
@@ -83,10 +82,6 @@ function BookAppointment(props) {
                 </div>
 
             </div>
-
-
-
-
         </>
     );
 }

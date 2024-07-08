@@ -45,9 +45,12 @@ const DieticianSlotManager = () => {
   };
 
   const handleFreeSlot = async (slotId) => {
-    const slotDoc = doc(db, 'booked_slots', slotId);
-    await deleteDoc(slotDoc);
-    setBookedSlots(bookedSlots.filter(slot => slot.id !== slotId));
+    const confirm = window.confirm("Are you sure you want to free this slot?");
+    if (confirm) {
+      const slotDoc = doc(db, 'booked_slots', slotId);
+      await deleteDoc(slotDoc);
+      setBookedSlots(bookedSlots.filter(slot => slot.id !== slotId));
+    }
   };
 
   const toggleSlotView = () => {

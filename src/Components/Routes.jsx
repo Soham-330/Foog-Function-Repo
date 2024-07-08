@@ -1,17 +1,17 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Hero from './Hero';
 import BookAppointment from './BookAppointment';
 import Availability from './Appointment/Booking'
+import UserDetailsForm from './UserDetails';
 
-
-const Routes = () => (
-  <BrowserRouter >
-      <Switch>
-        <Route path="/" exact component={BookAppointment} />
-        <Route path="/page/:id" component={Availability} />
-      </Switch>
-    </BrowserRouter >
+const AllRoutes = () => (
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/dieticians" element={<BookAppointment />} />
+        <Route path="/dieticians/:id" element={<Availability />} />
+        <Route path="/userdetails" element={<UserDetailsForm />} />
+      </Routes>
 );
 
-export default Routes;
+export default AllRoutes;
