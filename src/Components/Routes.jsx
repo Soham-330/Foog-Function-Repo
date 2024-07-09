@@ -8,8 +8,8 @@ import UserDetailsForm from './UserDetails';
 const AllRoutes = () => (
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/dieticians" element={<BookAppointment />} />
-        <Route path="/dieticians/:id" element={<Availability />} />
+        <Route path="/appointment" element={<BookAppointment />} />
+        <Route path="/appointment/:id" element={<Availability />} />
         <Route path="/userdetails" element={<UserDetailsForm />} />
       </Routes>
 );

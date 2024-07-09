@@ -70,7 +70,7 @@ function BookAppointment(props) {
                                     </ul>
                                     <h3 className='price'>{`Price: Rs ${dietician.fees}`}</h3>
                                     <h3 className='duration'>Duration: 30 mins</h3>
-                                    <Link to={`/dieticians/${dietician.id}`} >
+                                    <Link to={`/appointment/${dietician.id}`} >
                                         <IonButton className='book-btn'> Book An Appointment</IonButton>
                                     </Link>
                                     

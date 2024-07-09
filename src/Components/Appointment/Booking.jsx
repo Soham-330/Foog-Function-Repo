@@ -4,8 +4,7 @@ import { db } from "../../../firebase";
 import { Link, useParams } from "react-router-dom"
 import { format, addDays } from 'date-fns';
 import { IonContent, IonAlert, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
-import '@ionic/react/css/core.css';
-import UserDetailsForm from "../UserDetails";
+// import '@ionic/react/css/core.css';
 
 setupIonicReact();
 
@@ -18,7 +17,7 @@ const Availability = (props) => {
 
   const id = useParams();
 
-  //User det begin
+  //User details begin
 
   const [name, setName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
@@ -89,13 +88,14 @@ const Availability = (props) => {
     }
   };
 
-  // User Det end
+  // User Details end
 
   const fetchUnavailability = async (selectedDate) => {
     try {
       const q = query(
         collection(db, 'dietician_unavial'),
-        where('date', '==', selectedDate)
+        where('date', '==', selectedDate),
+        where('consultantId', '==', id.id),
       );
       const snapshot = await getDocs(q);
       const data = snapshot.docs.map(doc => doc.data());
