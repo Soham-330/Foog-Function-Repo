@@ -14,7 +14,7 @@
     "@ionic/react": "^8.2.2",
     "better-react-carousel": "^1.1.2",
     "date-fns": "^3.6.0",
-    "firebase": "^10.12.2",
+    "firebase": "^10.12.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",

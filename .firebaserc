@@ -1,9 +1,5 @@
 {
   "projects": {
-    "default": "foogfunction-5af77",
-    "foogfunction": "foogfunction-5af77"
-  },
-  "targets": {},
-  "etags": {},
-  "dataconnectEmulatorConfig": {}
+    "default": "foogfunction-5af77"
+  }
 }
