@@ -63,8 +63,8 @@ const DieticianSlotManager = () => {
 
   const handleRescheduleSlot = async (slotId) => {
     const newDate = prompt("Enter new date (YYYY-MM-DD):");
-    const newStart = prompt("Enter new start time (HH:MM):");
-    const newEnd = prompt("Enter new end time (HH:MM):");
+    const newStart = prompt("Enter new start time (HH:MM) 24Hour Format:");
+    const newEnd = prompt("Enter new end time (HH:MM) 24Hour Format:");
     if (newDate && newStart && newEnd) {
       const slotDoc = doc(db, 'booked_slots', slotId);
       await updateDoc(slotDoc, { date: newDate, start: newStart, end: newEnd });
