@@ -43,6 +43,12 @@ const OrdersComponent = () => {
     }
   };
 
+  const toggleCompletion = async (id, isCompleted) => {
+    const orderDoc = doc(db, 'orders', id);
+    await updateDoc(orderDoc, { isCompleted: !isCompleted });
+    fetchOrders(); // Refresh the list
+  };
+
   return (
     <div>
       <button onClick={() => setShowCompleted(!showCompleted)}>
@@ -68,6 +74,9 @@ const OrdersComponent = () => {
             ) : (
               <button onClick={() => setEditOrderId(order.id)}>Modify Quantity</button>
             )}
+            <button onClick={() => toggleCompletion(order.id, order.isCompleted)}>
+              Mark as {order.isCompleted ? 'Incomplete' : 'Complete'}
+            </button>
             <button onClick={() => deleteOrder(order.id)}>Delete Order</button>
           </li>
         ))}
