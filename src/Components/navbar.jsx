@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
 
 function Navbar() {
 
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const [totalQuantity, setTotalQuantity] = useState(0);
+    const carts = useSelector(store => store.cart.items);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        let total = 0;
+        carts.forEach(item => total += item.quantity);
+        setTotalQuantity(total);
+    }, [carts])
 
     return (
 
@@ -25,6 +35,8 @@ function Navbar() {
                     <Link className="link" to="/Contact"> Contact </Link>
                     <Link className="link" to="/Testimonials"> Testimonials </Link>
                     <Link className="link" to="/BookAppointment"> Book-Appointment </Link>
+                    <Link className="link" to="/Cart">Cart  <span className="quantity" >{totalQuantity}</span></Link>
+
                 </div>
 
 
@@ -32,13 +44,13 @@ function Navbar() {
 
             </div>
             <div className={menuOpen ? "sidebar open" : "sidebar closed"}>
-                <Link className="link" to="/"> Home </Link>
-                <Link className="link" to="/Admin"> Admin </Link>
-                <Link className="link" to="/Products"> Products </Link>
-                <Link className="link" to="/About"> About </Link>
-                <Link className="link" to="/Contact"> Contact </Link>
-                <Link className="link" to="/Testimonials"> Testimonials </Link>
-                <Link className="link" to="/BookAppointment"> Book-Appointment </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/"> Home </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/Admin"> Admin </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/Products"> Products </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/About"> About </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/Contact"> Contact </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/Testimonials"> Testimonials </Link>
+                <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/BookAppointment"> Book-Appointment </Link>
             </div>
 
         </>

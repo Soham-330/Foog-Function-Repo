@@ -7,7 +7,7 @@ import './Admin.css';
 
 setupIonicReact();
 
-const AdminAvailability = () => {
+const AdminAvailability1 = () => {
   const [dieticians, setDieticians] = useState([]);
   const [selectedDietician, setSelectedDietician] = useState('');
   const [date, setDate] = useState(format(addDays(new Date(),0), 'yyyy-MM-dd'));
@@ -134,4 +134,4 @@ const AdminAvailability = () => {
   );
 };
 
-export default AdminAvailability;
+export default AdminAvailability1;

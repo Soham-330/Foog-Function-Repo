@@ -42,10 +42,40 @@
 }
 
 
+.addItems{
+    margin: 50px;
+}
+.addItems h2{
+    color: white;
+}
+
+.addItems button, select{
+    width: 100%;
+    margin-top: 30px;
+    border: none;
+    padding: 20px;
+    background-color:#9c89ff;;
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    color: rgb(255, 255, 255);
+}
+.addContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 @media only screen and (max-width: 770px) {
 
     .adminFeedback{
         width: auto;
         margin: 20px 20px;
+    }
+
+    .addContainer{
+        flex-direction: column;
     }
 }

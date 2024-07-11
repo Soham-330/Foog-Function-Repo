@@ -2,7 +2,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import './admin.css'
-function AdminPrompt() {
+function FeedbackList() {
 
     const [feedbacks, setFeedbacks] = useState([]);
 
@@ -35,4 +35,4 @@ function AdminPrompt() {
     );
 }
 
-export default AdminPrompt
+export default FeedbackList

@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import Availability from "./Booking"
 
 function BookAppointment(props) {
 
@@ -84,7 +85,6 @@ function BookAppointment(props) {
                 </div>
 
             </div>
-
 
 
 

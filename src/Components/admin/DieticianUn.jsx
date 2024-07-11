@@ -1,16 +1,18 @@
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { IonSelect, IonSelectOption, IonItem, IonLabel, IonInput, IonButton, IonDatetime, setupIonicReact } from '@ionic/react';
+import { IonSelect, IonSelectOption, IonAlert, IonItem, IonLabel, IonInput, IonButton, IonDatetime, setupIonicReact } from '@ionic/react';
 import { useEffect, useState } from "react";
+import { format, addDays } from "date-fns";
 
 setupIonicReact();
 
 const AdminAvailability = () => {
   const [dieticians, setDieticians] = useState([]);
   const [selectedDietician, setSelectedDietician] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(format(addDays(new Date(),0), 'yyyy-MM-dd'));
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const fetchDieticians = async () => {
@@ -49,6 +51,15 @@ const AdminAvailability = () => {
     }
   };
 
+  const handleConfirm = () => {
+    setShowAlert(true);
+  };
+
+  const confirmAddUnavailability = () => {
+    handleAddUnavailability();
+    setShowAlert(false);
+  };
+
   return (
     <>
       <div className='title2 title3'>
@@ -72,33 +83,52 @@ const AdminAvailability = () => {
               displayFormat="YYYY-MM-DD"
               value={date}
               onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
+              presentation="date"
             />
           </IonItem>
-          <IonItem className="admin-item">
+          <IonItem className="admin-item ion-no-padding">
             <IonLabel>Start Time:</IonLabel>
             <IonInput
               type="time"
               value={start}
               onIonChange={(e) => setStart(e.detail.value)}
+              className="time-input"
             />
           </IonItem>
-          <IonItem className="admin-item">
+          <IonItem className="admin-item ion-no-padding">
             <IonLabel>End Time:</IonLabel>
             <IonInput
               type="time"
               value={end}
               onIonChange={(e) => setEnd(e.detail.value)}
+              className="time-input"
             />
           </IonItem>
           <div className="button0">
-            <IonButton className="ibutton3" onClick={handleAddUnavailability}>Add Unavailability</IonButton>
+          <IonButton className="admin-button" onClick={handleConfirm}>Add Unavailability</IonButton>
+          <IonAlert
+            isOpen={showAlert && !(!selectedDietician || !date || !start || !end)}
+            onDidDismiss={() => setShowAlert(false)}
+            header={'Confirm Unavailability'}
+            message={`Dietician: ${dieticians.find(d => d.id === selectedDietician)?.name}, Date: ${date}, Start Time: ${start}, End Time: ${end}`}
+            buttons={[
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                handler: () => {
+                  setShowAlert(false);
+                }
+              },
+              {
+                text: 'Confirm',
+                handler: confirmAddUnavailability
+              }
+            ]}
+          />
           </div>
         
         </div>
-
-
       </div>
-
     </>
   );
 };
