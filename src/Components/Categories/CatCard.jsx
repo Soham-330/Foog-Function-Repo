@@ -1,5 +1,6 @@
 import { setupIonicReact, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton } from "@ionic/react";
 import './CatCard.css';
+import { Link } from "react-router-dom";
 setupIonicReact();
 function CatCard(props){
 
@@ -13,7 +14,11 @@ function CatCard(props){
             </IonCardHeader>
 
             <IonCardContent>{props.text}</IonCardContent>
-            <IonButton className="card-btn">Explore</IonButton>
+            <div className="card-btn-container">
+                <Link to={`/category/${props.id}`}>
+                <IonButton className="card-btn">Explore</IonButton>
+                </Link>
+            </div>
         </IonCard>
         
         </>

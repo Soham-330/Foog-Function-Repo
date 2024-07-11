@@ -10,13 +10,15 @@ import DieticianSlotManager from './Components/Admin/BookedSlots'
 import UserDetails from './Components/UserDetails'
 import AllRoutes from './Components/Routes'
 import Availability from './Components/Appointment/Booking';
+import Products from './Components/Products';
+import ManageOrders from './Components/Admin/ManageOrders';
 setupIonicReact();
 
 function App() {
 
   return (
     <>
-      <AllRoutes />
+      <ManageOrders />
       
     </>
   )

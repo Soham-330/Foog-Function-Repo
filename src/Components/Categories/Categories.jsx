@@ -16,7 +16,6 @@ function Categories(){
         const getCatList = async () => {
             //Reading data from database
             //Setting the List according to data
-
             try{
                 const data = await getDocs(catCollectionRef);
                 const filteredData = data.docs.map((doc) => ({...doc.data(),id:doc.id}));
@@ -36,7 +35,7 @@ function Categories(){
         <div className="cat-body">
             {catList.map((cat) => (
                 <div>
-                    <CatCard name={cat.name} image={cat.image} text={cat.text} />
+                    <CatCard name={cat.name} image={cat.image} text={cat.text} id={cat.id} />
                 </div>
             ))}
         </div>
