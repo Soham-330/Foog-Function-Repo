@@ -64,12 +64,14 @@ const Availability = (props) => {
         start: format(selectedSlot.start, 'HH:mm'),
         end: format(selectedSlot.end, 'HH:mm'),
         dieticianId: id.id,
+        isCompleted:false,
       });
 
-      await addDoc(collection(db, 'dietician_unavial'), {
+      await addDoc(collection(db, 'dietician_unavail'), {
         date,
         start: format(selectedSlot.start, 'HH:mm'),
-        end: format(selectedSlot.end, 'HH:mm')
+        end: format(selectedSlot.end, 'HH:mm'),
+        dieticianId: id.id,
       });
 
       alert("Slot booked successfully!");
@@ -93,9 +95,9 @@ const Availability = (props) => {
   const fetchUnavailability = async (selectedDate) => {
     try {
       const q = query(
-        collection(db, 'dietician_unavial'),
+        collection(db, 'dietician_unavail'),
         where('date', '==', selectedDate),
-        where('consultantId', '==', id.id),
+        where('dieticianId', '==', id.id),
       );
       const snapshot = await getDocs(q);
       const data = snapshot.docs.map(doc => doc.data());

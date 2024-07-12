@@ -18,8 +18,8 @@ function App() {
 
   return (
     <>
-      <ManageOrders />
-      
+    <AllRoutes />
+    <DieticianSlotManager/>
     </>
   )
 }
