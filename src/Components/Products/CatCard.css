@@ -1,0 +1,41 @@
+.catCard{
+    height: max-content;
+    width: 300px;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 25px 0;
+}
+
+.catImg img{
+    height: 200px;  
+    width: 200px;
+    border-radius: 50%;
+    margin: 30px;
+
+}
+
+.catText{
+    color: white;
+    margin: 25px;
+}
+
+
+.cat-ibutton{
+    font-size: 1.2rem;
+    --ion-color-primary: #9c89ff;
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 770px) {
+
+    .catCard{
+        width: auto;
+        margin: 20px 20px;
+    }
+}

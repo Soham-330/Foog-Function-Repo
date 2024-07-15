@@ -1,55 +1,47 @@
-import Hero from "./components/Hero"
-import About from './components/About'
-import Contact from './components/Contact'
-import Testimonials from './components/Testimonial'
-import Footer from './components/Footer'
-import BookAppointment from './components/BookAppointment'
-import { Route, Routes } from "react-router-dom"
-
-import Categories from "./components/Categories"
-import AdminPrompt from "./components/admin/FeedbackList"
-import AdminAvailability from "./components/admin/a/DieticianUn (1)"
-
-import './App.css'
-import Home from "./components/Home"
-import AdminPage from "./components/Admin"
-import Navbar from "./components/navbar"
-import Products from "./components/Product and Cart/ProductCard"
-import ProductGrid from "./components/Product and Cart/ProductGrid"
-import Header from "./components/Product and Cart/header"
-import CartTab from "./components/Product and Cart/cartTab"
-
-
-
-
-
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home";
+import Footer from "./components/Footer/Footer";
+import AdminPage from "./components/Admin/Admin";
+import ManageItems from "./components/Admin/ManageItems";
+import Availability from "./components/Booking/Booking";
+import ManageBookings from "./components/Admin/ManageBookings";
+import FeedbackList from "./components/Admin/FeedbackList";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
+import BookAppointment from "./components/Booking/BookAppointment";
+import Testimonials from "./components/Footer/Testimonial";
+import Categories from "./components/Products/Categories";
+import { CartProvider } from "./components/Cart/CartProvider";
+import ProductGrid from "./components/Cart/ProductGrid";
+import CartTab from "./components/Cart/cartTab";
 function App() {
-
   return (
     <>
+      <CartProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Admin" element={<AdminPage />} />
+          <Route path="/Admin/ManageItems" element={<ManageItems />} />
+          <Route path="/Admin/ManageAvailability" element={<Availability />} />
+          <Route path="/Admin/ManageBookings" element={<ManageBookings />} />
+          <Route path="/Admin/Feedbacks" element={<FeedbackList />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/products" element={<ProductGrid />} />
+          <Route path="/bookappointment" element={<BookAppointment />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/cart" element={<CartTab />} />
+        </Routes>
 
+        <Footer />
 
-
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Admin" element={<AdminPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/products" element={<ProductGrid />} />
-        <Route path="/bookappointment" element={<BookAppointment />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/footer" element={<Footer />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/cart" element={<CartTab />} />
-
-
-      </Routes>
-
-     
+      </CartProvider>
     </>
-
-  )
+  );
 }
 
-export default App
+export default App;

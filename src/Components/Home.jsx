@@ -1,25 +1,24 @@
-import About from "./About"
-import BookAppointment from "./BookAppointment"
-import Categories from "./Categories"
-import Contact from "./Contact"
-import Footer from "./Footer"
-import Hero from "./Hero"
-import Testimonials from "./Testimonial"
+import About from "./About/About"
+import BookAppointment from "./Booking/BookAppointment"
+import Contact from "./Contact/Contact"
+import Testimonials from "./Footer/Testimonial"
+import Hero from "./Hero/Hero"
+import Categories from "./Products/Categories"
 
 
 function Home() {
 
     return (
         <>
-            <Hero/>
+            <Hero />
             <About />
-            <Contact />
+            <Contact/>
             <hr />
-            <Categories />
+            <Categories/>
             <hr />
-            <BookAppointment />
-            <Testimonials />
-            <Footer />
+            <BookAppointment/>
+            <Testimonials/>
+            
         </>
 
     )
