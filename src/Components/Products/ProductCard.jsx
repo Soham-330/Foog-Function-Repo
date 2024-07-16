@@ -12,10 +12,10 @@ function ProductCard(props) {
   const [quantity, setQuantity] = useState(props.minimumQuantity);
 
   const handleMinusQuantity = () => {
-    setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+    setQuantity(quantity <= props.minimumQuantity ? props.minimumQuantity : quantity - 1);
   };
   const handlePlusQuantity = () => {
-    setQuantity(quantity + 1);
+    setQuantity(Number(quantity) + 1);
   };
   // const handleAddToCart = (e, id) => {
   //   e.preventDefault();

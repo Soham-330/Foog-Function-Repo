@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Admin.css";
+import "./admin.css";
 function AdminPage() {
   return (
     <>
