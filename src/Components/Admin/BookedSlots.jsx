@@ -148,6 +148,7 @@ const DieticianSlotManager = () => {
         // Close the reschedule view and refresh booked slots
         setShowReschedule(false);
         fetchBookedSlots();
+        alert('Rescheduled SuccessFully!');
       } catch (error) {
         console.error('Error during rescheduling:', error);
       }

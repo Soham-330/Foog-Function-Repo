@@ -4,7 +4,6 @@ import { db } from "../../../firebase";
 import { Link, useParams } from "react-router-dom"
 import { format, addDays } from 'date-fns';
 import { IonContent, IonAlert, IonItem, IonLabel, IonRadio, IonRadioGroup, IonDatetime, IonButton, setupIonicReact } from '@ionic/react';
-// import '@ionic/react/css/core.css';
 
 setupIonicReact();
 

@@ -12,6 +12,7 @@ import AllRoutes from './Components/Routes'
 import Availability from './Components/Appointment/Booking';
 import Products from './Components/Products';
 import ManageOrders from './Components/Admin/ManageOrders';
+import OrdersComponent from './Components/Admin/ManageOrders';
 setupIonicReact();
 
 function App() {
@@ -19,7 +20,6 @@ function App() {
   return (
     <>
     <AllRoutes />
-    <DieticianSlotManager/>
     </>
   )
 }
