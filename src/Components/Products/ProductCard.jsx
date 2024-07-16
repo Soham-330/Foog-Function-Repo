@@ -9,7 +9,7 @@ setupIonicReact();
 function ProductCard(props) {
   const [cartList, setcartList] = useContext(CartContext);
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(props.minimumQuantity);
 
   const handleMinusQuantity = () => {
     setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
