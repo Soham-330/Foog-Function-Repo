@@ -43,6 +43,7 @@ const CartItem = (props) => {
       </div>
       <div className="itemDetails">
         <h3>{props.name}</h3>
+    Minimum Quantity: {props.minimumQuantity}
         <p>₹{props.price * props.quantity}</p>
         <div className="cartBtns">
           <button className="plusMinusBtn" onClick={() => handleMinusQuantity(props.id)}>

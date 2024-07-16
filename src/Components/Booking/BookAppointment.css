@@ -41,7 +41,6 @@
 
 }
 
-
 .creden {
     font-size: 1.2rem;
     margin: 10px;
@@ -92,6 +91,31 @@
     font-size: 1.3rem;
 }
 
+
+/* **********Booking********* */
+.bookingPage{
+    display: flex;
+    align-items: start;
+}
+.bookingForm{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+}
+.ionic{
+    width: 70%;
+}
+
+.bookingCalender{
+    margin: 30px;
+}
+
+.bookingSlots{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+}
 @media only screen and (max-width: 770px) {
 
 

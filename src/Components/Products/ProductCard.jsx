@@ -75,6 +75,7 @@ function handleAddToCart(e) {
                   name: props.name,
                   price: props.price,
                   image: props.image,
+                  minimumQuantity: props.minimumQuantity,
                   quantity: quantity,
                 },
               ]);
@@ -93,6 +94,7 @@ function handleAddToCart(e) {
           <h3>{props.name}</h3>
           <p>{props.text}</p>
           <p>₹{props.price}</p>
+          <p>Minimum Quantity: {props.minimumQuantity}</p>
           <div>
             <button className="plusMinusBtn" onClick={handleMinusQuantity}>
               -

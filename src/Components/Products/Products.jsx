@@ -44,6 +44,7 @@ function Products(){
                   image={product.image}
                   price={product.price}
                   text={product.text}
+                  minimumQuantity={product.minimumQuantity}
                 />
               ))
             : "loading"}

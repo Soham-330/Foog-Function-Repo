@@ -225,7 +225,7 @@ const Booking = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     // Basic validation
     if (!name || !validateMobileNumber(mobileNumber) || !validateAge(age) || !gender || !validateEmail(email)) {
       setError('Please fill in all fields correctly');
@@ -243,7 +243,7 @@ const Booking = (props) => {
         start: format(selectedSlot.start, 'HH:mm'),
         end: format(selectedSlot.end, 'HH:mm'),
         dieticianId: id.id,
-        isCompleted:false,
+        isCompleted: false,
       });
 
       await addDoc(collection(db, 'dietician_unavail'), {
@@ -380,91 +380,96 @@ const Booking = (props) => {
   }, [unavailability, date]);
 
   return (
-    <div>
-      <div>
-    <h1>Dietician Availability</h1>
-    <div>
-    <IonDatetime
-      displayFormat="YYYY-MM-DD"
-      min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
-      value={date}
-      onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
-      presentation="date"
-    />
-    </div>
-    {availability.length > 0 && (
-      <IonRadioGroup value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
-      {availability.map((slot, index) => (
-        <IonItem key={index} className="radio-item" onClick={() => setSelectedSlot(slot)}>
-          <div className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
-            {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
-            <input
-              type="radio"
-              className="radio-input"
-              name="slot"
-              value={index}
-              checked={selectedSlot === slot}
-              readOnly
-            />
-          </div>
-        </IonItem>
-      ))}
-    </IonRadioGroup>
-    )}
-    </div>
-    {/* <UserDetailsForm /> */}
-    
-    <div>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+    <>
+     <div className="title2 title3">
+        <h2>Dietician Availability</h2>
       </div>
-      <div>
-        <label>Mobile Number:</label>
-        <input type="text" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
+    <div className="bookingPage" >
+      <div className="ionic" >
+        <div className="bookingCalender">
+          <IonDatetime
+            displayFormat="YYYY-MM-DD"
+            min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
+            value={date}
+            onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
+            presentation="date"
+          />
+        </div>
+        <div >
+        {availability.length > 0 && (
+          <IonRadioGroup className="bookingSlots" value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
+            {availability.map((slot, index) => (
+              <IonItem key={index} className="radio-item" onClick={() => setSelectedSlot(slot)}>
+                <div className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
+                  {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
+                  <input
+                    type="radio"
+                    className="radio-input"
+                    name="slot"
+                    value={index}
+                    checked={selectedSlot === slot}
+                    readOnly
+                  />
+                </div>
+              </IonItem>
+            ))}
+          </IonRadioGroup>
+        )}
+            </div>
       </div>
-      <div>
-        <label>Age:</label>
-        <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
-      </div>
-      <div>
-        <label>Gender:</label>
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div>
-        <label>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <IonButton type="submit">Submit</IonButton>
-    </form>
-    </div>
-    {/*User details end */}
 
-    <IonAlert
-          isOpen={showAlert}
-          onDidDismiss={() => setShowAlert(false)}
-          header={'Confirm Booking'}
-          message={`Date: ${format(date, 'dd-MM-yyyy')} Time Slot: ${selectedSlot ? format(selectedSlot.start, 'HH:mm') : ''} - ${selectedSlot ? format(selectedSlot.end, 'HH:mm') : ''}`}
-          buttons={[
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              handler: () => setShowAlert(false)
-            },
-            {
-              text: 'Confirm',
-              handler: confirmBookSlot
-            }
-          ]}
-        />
+      <div className="bookingForm"> 
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          </div>
+          <div>
+            <label>Mobile Number:</label>
+            <input type="text" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
+          </div>
+          <div>
+            <label>Age:</label>
+            <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+          </div>
+          <div>
+            <label>Gender:</label>
+            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label>Email:</label>
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <IonButton className="ibutton3" type="submit">Submit</IonButton>
+        </form>
       </div>
+      {/*User details end */}
+
+      <IonAlert
+        isOpen={showAlert}
+        onDidDismiss={() => setShowAlert(false)}
+        header={'Confirm Booking'}
+        message={`Date: ${format(date, 'dd-MM-yyyy')} Time Slot: ${selectedSlot ? format(selectedSlot.start, 'HH:mm') : ''} - ${selectedSlot ? format(selectedSlot.end, 'HH:mm') : ''}`}
+        buttons={[
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => setShowAlert(false)
+          },
+          {
+            text: 'Confirm',
+            handler: confirmBookSlot
+          }
+        ]}
+      />
+    </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-// import '@ionic/react/css/core.css'; 
+
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -6,7 +6,6 @@ import Home from "./components/Home";
 import Footer from "./components/Footer/Footer";
 import AdminPage from "./components/Admin/Admin";
 import ManageItems from "./components/Admin/ManageItems";
-// import Availability from "./components/Booking/Booking";
 import ManageBookings from "./components/Admin/ManageBookings";
 import FeedbackList from "./components/Admin/FeedbackList";
 import About from "./components/About/About";

@@ -15,6 +15,13 @@ const CartTab = () => {
     setTotalPrice(newTotalPrice);
   }, [cartList]);
 
+  const handleCheckout = () => {
+      cartList.forEach((item) => {
+        if(!(item.quantity > item.minimumQuantity-1)){
+          alert(`Minimum Quantity does not meet for ${item.name}`);
+        }
+      });
+  }
 
   return (
     <>
@@ -27,6 +34,7 @@ const CartTab = () => {
             <CartItem
               name={item.name}
               quantity={item.quantity}
+              minimumQuantity={item.minimumQuantity}
               price={item.price}
               key={item.id}
               id = {item.id}
@@ -35,10 +43,10 @@ const CartTab = () => {
           )) : <div className="emptyCart"><h3>Your Cart is Empty</h3></div> }
         </div>
         <div>
-          <h3>Total Price : {totalPrice}</h3>
+          <h3>Total Price : ₹{totalPrice}</h3>
         </div>
         <div>
-          <button className="checkoutBtn"><h2>CHECKOUT</h2></button>
+          <button className="checkoutBtn" onClick={() => handleCheckout()}><h2>CHECKOUT</h2></button>
         </div>
       </div>
     </>
