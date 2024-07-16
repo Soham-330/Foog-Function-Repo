@@ -1,8 +1,8 @@
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
 import { IonSelect, IonSelectOption, IonAlert, IonItem, IonLabel, IonInput, IonButton, IonDatetime, setupIonicReact } from '@ionic/react';
 import { useEffect, useState } from "react";
 import { format, addDays } from "date-fns";
+import { db } from "../../../firebase";
 
 setupIonicReact();
 
@@ -65,6 +65,7 @@ const ManageAvailability = () => {
       <div className='title2 title3'>
         <h2>Admin: Add Unavailability</h2>
       </div>
+      
       <div className="doc-unavail">
 
 
@@ -105,7 +106,7 @@ const ManageAvailability = () => {
             />
           </IonItem>
           <div className="button0">
-          <IonButton className="admin-button" onClick={handleConfirm}>Add Unavailability</IonButton>
+          <IonButton className="ibutton3" onClick={handleConfirm}>Add Unavailability</IonButton>
           <IonAlert
             isOpen={showAlert && !(!selectedDietician || !date || !start || !end)}
             onDidDismiss={() => setShowAlert(false)}

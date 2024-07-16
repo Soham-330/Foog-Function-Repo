@@ -1,3 +1,26 @@
+.adminPage{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminBtns{
+    height: 150px;
+    width: 220px;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+    font-size: 1.4rem;
+}
+
+/* *********FeedBack Page******** */
 .adminFeedback {
     display: flex;
     flex-direction: column;
@@ -9,20 +32,17 @@
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     color: white;
-    width: 300px;
+    width: 275px;
 }
 
 .feedbacks {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
     flex-wrap: wrap;
     height: max-content;
-    margin: 30px 0;
 }
 
-
-
+/* *******Manage Availability***** */
 .doc-unavail {
     height: 100vh;
     display: flex;
@@ -42,8 +62,11 @@
 }
 
 
+/* ********Manage Items ******** */
+
 .addItems{
     margin: 50px;
+    width: 50%;
 }
 .addItems h2{
     color: white;
@@ -63,10 +86,104 @@
 }
 .addContainer{
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
+
+.delContainer h2{
+    color: white;
+    text-align: center;
+}
+
+.delPro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.selectBtn{
+    width: 300px;
+    margin: 25px;
+}
+
+
+.ibuttonDel {
+    margin: 10px;
+    font-size: 0.9rem;
+    --ion-color-primary: #ff4000;
+}
+
+/* ********Manage Appointment******* */
+.manageAppointment{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.manageAppointment h2{
+ color: white;
+}
+
+.bookings{
+    width: 100%;
+    height: max-content;
+}
+
+.toggleBtns{
+    background-color:#9c89ff;;
+    border-radius: 10px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    color: white;
+}
+
+.bookedSlots{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.slot{
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    margin: 30px;
+    padding: 30px;
+}
+
+.slot li, .order li{
+    list-style: none;
+}
+
+.manageOrders{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+.orders{ color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.order{
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    margin: 30px;
+    padding: 30px;
+}
 
 @media only screen and (max-width: 770px) {
 
@@ -75,7 +192,11 @@
         margin: 20px 20px;
     }
 
-    .addContainer{
+    .addContainer, .adminPage{
         flex-direction: column;
+    }
+
+    .addItems{
+        width: auto;
     }
 }

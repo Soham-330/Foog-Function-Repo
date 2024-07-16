@@ -95,8 +95,10 @@ const DeleteItems = () => {
   };
 
   return (
-    <div>
-      <h1>Delete Items</h1>
+    <div className="delContainer">
+       <div className='title2 title3'>
+                <h2>Delete Items</h2>
+            </div>
       <IonAlert
         isOpen={showAlert}
         onDidDismiss={() => setShowAlert(false)}
@@ -116,26 +118,31 @@ const DeleteItems = () => {
           }
         ]}
       />
+
       <h2>Delete Category</h2>
 
       <div className="cat-body">
         {categories.map((category) => (
-          <div className="catCard" key={category.id}>
-            <img src={category.image} height='200px' />
-            <h2>
-              <h3>{category.name}</h3>
-              <p>{category.text}</p>
-            </h2>
-            <div>
-              <IonButton color="danger" onClick={() => handleDeleteCategory(category.id)}>
-                Delete Category
-              </IonButton>
-            </div>
-          </div>
+             <div className="catCard" key={category.id}>
+             <div className="catImg">
+               <img alt={`Image of ${category.name}`} src={category.image} />
+             </div>
+             <h3>{category.name}</h3>
+             <div className="catText">
+               {category.text}
+             </div>
+             <div>
+               <IonButton className="ibuttonDel" onClick={() => handleDeleteCategory(category.id)}>
+                 Delete Category
+               </IonButton>
+             </div>
+           </div>
         ))}
       </div>
-      <h3>Delete Products from Category</h3>
-      <select value={selectedCategory} onChange={handleCategoryChange}>
+      <hr />
+      <h2>Delete Products from Category</h2>
+<div className="delPro">
+      <select className="selectBtn" value={selectedCategory} onChange={handleCategoryChange}>
         <option value="">Select Category</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
@@ -144,26 +151,29 @@ const DeleteItems = () => {
         ))}
       </select>
       {products.length > 0 && (
-        <div>
+        <div className="delPro">
           {products.map((product) => (
-            <div key={product.id}>
-              <img src={product.image} height='200px' />
-              <h2>
-                <h3>{product.name}</h3>
-                <p>{product.text}</p>
-              </h2>
+            <div className="catCard" key={product.id}>
+              <div className="catImg">
+                <img alt={`Image of ${product.name}`} src={product.image} />
+              </div>
+              <h3>{product.name}</h3>
+              <div className="catText">
+                {product.text}
+              </div>
               <div>
-                <IonButton color="danger" onClick={() => handleDeleteProduct(product.id)}>
+                <IonButton className="ibuttonDel" onClick={() => handleDeleteProduct(product.id)}>
                   Delete Product
                 </IonButton>
               </div>
             </div>
           ))}
-          <IonButton color="danger" onClick={handleDeleteProducts}>
+          <IonButton className="ibuttonDel" onClick={handleDeleteProducts}>
             Delete All Products
           </IonButton>
         </div>
       )}
+      </div>
     </div>
   );
 };

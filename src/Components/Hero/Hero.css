@@ -265,6 +265,7 @@ p {
 /* ******Footer***** */
 
 footer {
+    margin-top: 50px;
     color: white;
     display: flex;
     justify-content: space-around;

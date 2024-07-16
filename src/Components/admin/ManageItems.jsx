@@ -3,17 +3,19 @@ import AddProduct from "./subManagers/AddProduct"
 import DeleteItems from "./subManagers/DeleteItems"
 
 
-function ManageItems(){
+function ManageItems() {
 
-    return(
-    <>
-    <div className="addContainer">
-    <AddCategory/>
-    <AddProduct/>
-    </div>
-   
-    <DeleteItems/>
-    </>
+    return (
+        <>
+            <div className='title2 title3'>
+                <h2>Add Items</h2>
+            </div>
+            <div className="addContainer">
+                <AddCategory />
+                <AddProduct />
+            </div>
+            <DeleteItems />
+        </>
 
     )
 }

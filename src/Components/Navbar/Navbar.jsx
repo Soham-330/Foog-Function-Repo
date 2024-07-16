@@ -18,36 +18,26 @@ function Navbar() {
     <>
       <div className="navbar">
         <div className="logo">
-          <h2>FoogFunction</h2>
+          <a href="./">  <h2>FoogFunction</h2></a>
         </div>
         <div className="links">
           <Link className="link" to="/">
-            {" "}
-            Home{" "}
+            Home
           </Link>
           <Link className="link" to="/Admin">
-            {" "}
-            Admin{" "}
+            Admin
           </Link>
-          <Link className="link" to="/Products">
-            {" "}
-            Products{" "}
+          <Link className="link" to="/Categories">
+            Categories
           </Link>
           <Link className="link" to="/About">
-            {" "}
-            About{" "}
+            About
           </Link>
           <Link className="link" to="/Contact">
-            {" "}
-            Contact{" "}
-          </Link>
-          <Link className="link" to="/Testimonials">
-            {" "}
-            Testimonials{" "}
+            Contact
           </Link>
           <Link className="link" to="/BookAppointment">
-            {" "}
-            Book-Appointment{" "}
+            Book-Appointment
           </Link>
           <Link className="link" to="/Cart">Cart  <span className="quantity" >{totalQuantity}</span></Link>
         </div>
@@ -104,10 +94,10 @@ function Navbar() {
         <Link
           onClick={() => setMenuOpen(!menuOpen)}
           className="link"
-          to="/Testimonials"
+          to="/Cart"
         >
           {" "}
-          Testimonials{" "}
+          Cart{" "}
         </Link>
         <Link
           onClick={() => setMenuOpen(!menuOpen)}

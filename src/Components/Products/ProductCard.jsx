@@ -2,7 +2,7 @@ import "./Products.css";
 import React from "react";
 import { IonButton, setupIonicReact } from "@ionic/react";
 import { useContext, useState } from "react";
-import { CartContext } from "./CartProvider";
+import { CartContext } from "../Cart/CartProvider";
 
 setupIonicReact();
 
@@ -47,23 +47,26 @@ function ProductCard(props) {
 //   }
 
 
-function handleAddToCart(e, props) {
+function handleAddToCart(e) {
   e.preventDefault();
     // Check if the product is already in the cart
-    const index = cartList.findIndex(item => item.id === props.id);
 
-    if (index !== -1) {
+    let itemExists = false;
+    // const index = cartList.findIndex(item => item.id === props.id);
+
         // Product is already in the cart, update the quantity
 
-        var newCartList = cartList.map((item, i) => {
-            if (i === index) {
-                return { ...item, quantity: item.quantity + quantity };
-            } else {
-                return item;
-            }
+        const newCartList = cartList.map(item => {
+              if (item.id === props.id) {
+                itemExists = true;
+                return { ...item, quantity: item.quantity+quantity };
+              } else {
+                return item
+              }
         });
         setcartList(newCartList)
-    } else {
+ 
+    if(!itemExists) {
         // Product is not in the cart, add it
         setcartList((items) => [
                 ...items,
@@ -76,7 +79,6 @@ function handleAddToCart(e, props) {
                 },
               ]);
             };
-
   }
 
 
@@ -102,7 +104,7 @@ function handleAddToCart(e, props) {
           </div>
         </div>
         <div>
-          <IonButton className="ibutton3" onClick={(e) =>handleAddToCart(e, props)}>
+          <IonButton className="ibutton3" onClick={(e) =>handleAddToCart(e)}>
             Add To Cart
           </IonButton>
         </div>

@@ -3,6 +3,7 @@ import { collection, query, where, getDocs, updateDoc, doc, deleteDoc } from 'fi
 import { db } from '../../../../firebase';
 
 
+
 const OrderManager = () => {
   const [orders, setOrders] = useState([]);
   const [showCompleted, setShowCompleted] = useState(false);
@@ -48,15 +49,23 @@ const OrderManager = () => {
     const orderDoc = doc(db, 'orders', id);
     await updateDoc(orderDoc, { isCompleted: !isCompleted });
     fetchOrders(); // Refresh the list
+    window.confirm('The Order is completed')
   };
 
   return (
-    <div>
-      <button onClick={() => setShowCompleted(!showCompleted)}>
+    <>
+ 
+    <div className='title2 title3'>
+    <h2>Manage Orders</h2>
+</div>
+    <div className='manageOrders' >
+      <button className='toggleBtns' onClick={() => setShowCompleted(!showCompleted)}>
         {showCompleted ? 'Show Incomplete Orders' : 'Show Completed Orders'}
       </button>
+      <div className='orders'>
       <ul>
         {orders.map(order => (
+          <div className="order">
           <li key={order.id}>
             <p>Name: {order.name}</p>
             <p>Quantity: {order.quantity}</p>
@@ -69,20 +78,23 @@ const OrderManager = () => {
                   value={newQuantity}
                   onChange={(e) => setNewQuantity(e.target.value)}
                 />
-                <button onClick={() => modifyQuantity(order.id)}>Save</button>
-                <button onClick={() => setEditOrderId(null)}>Cancel</button>
+                <button className='toggleBtns' onClick={() => modifyQuantity(order.id)}>Save</button>
+                <button className='toggleBtns' onClick={() => setEditOrderId(null)}>Cancel</button>
               </>
             ) : (
-              <button onClick={() => setEditOrderId(order.id)}>Modify Quantity</button>
+              <button className='toggleBtns' onClick={() => setEditOrderId(order.id)}>Modify Quantity</button>
             )}
-            <button onClick={() => toggleCompletion(order.id, order.isCompleted)}>
+            <button className='toggleBtns' onClick={() => toggleCompletion(order.id, order.isCompleted)}>
               Mark as {order.isCompleted ? 'Incomplete' : 'Complete'}
             </button>
-            <button onClick={() => deleteOrder(order.id)}>Delete Order</button>
+            <button className='toggleBtns' onClick={() => deleteOrder(order.id)}>Delete Order</button>
           </li>
+          </div>
         ))}
       </ul>
+      </div>
     </div>
+    </>
   );
 };
 
