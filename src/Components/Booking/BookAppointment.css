@@ -16,6 +16,7 @@
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     width: 85%;
     height: 80%;
+    padding: 30px;
 
 }
 
@@ -59,7 +60,12 @@
 }
 
 .carousel {
-    width: 250px;
+    width: 450px;
+    padding: 50px;
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+    background: rgba(0, 0, 0, 0);
 }
 
 .carousel h3 {
@@ -73,11 +79,25 @@
     margin-left: 50px;
 }
 
+.carousel .control-dots {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 .description li {
     margin: 20px 0;
 }
 
+
 .doc-carousel img {
+    width: 250px;
     height: 250px;
     border-radius: 50%;
 
@@ -91,31 +111,43 @@
     font-size: 1.3rem;
 }
 
+.loadingPage {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+
 
 /* **********Booking********* */
-.bookingPage{
+.bookingPage {
     display: flex;
     align-items: start;
 }
-.bookingForm{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
+
+.bookingForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
-.ionic{
+
+.ionic {
     width: 70%;
 }
 
-.bookingCalender{
+.bookingCalender {
     margin: 30px;
 }
 
-.bookingSlots{
+.bookingSlots {
     display: flex;
     flex-wrap: wrap;
     margin: 30px;
 }
+
 @media only screen and (max-width: 770px) {
 
 
@@ -125,10 +157,10 @@
     }
 
     .container {
-        padding: 10px 0px;
+        padding: 10px 20px;
         flex-direction: column;
         height: max-content;
-        width: auto;
+        width: 95%;
         margin: 20px;
     }
 

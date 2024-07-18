@@ -31,7 +31,9 @@ function ConsultantCarousel(props) {
     },[]);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <div className="loadingPage">
+           <h1>Loading....</h1>
+        </div>;
     }
 
     if (consultants.length === 0) {
