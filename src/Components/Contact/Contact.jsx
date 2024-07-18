@@ -83,7 +83,6 @@ function Contact() {
                         onChange={handleChangeEmail} />
 
                     <IonButton className="ibuttons2" onClick={validateInput}>Send Message</IonButton>
-
                 </div>
 
 

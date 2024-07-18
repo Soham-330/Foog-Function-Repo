@@ -11,11 +11,11 @@ function CatCard(props) {
                 <div className="catImg">
                     <img alt={`Image of ${props.name}`} src={props.image} />
                 </div>
-                <h3>{props.name}</h3>
+                <h3>{props.name.toUpperCase()}</h3>
                 <div className="catText">
                     {props.text}
                 </div>
-                <Link to={`/categories/${props.id}`}>
+                <Link to={`/Products/${props.id}`}>
                 <IonButton className='cat-ibutton'>Explore</IonButton>
                 </Link>
             </div>

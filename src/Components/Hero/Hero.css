@@ -62,8 +62,11 @@ h1 {
 .ibutton {
     margin: 10px;
     width: 200px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     --ion-color-primary: #9c89ff;
+    --border-radius: 15px;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
 }
 
 
@@ -97,7 +100,6 @@ h1 {
 .img {
     height: 220px;
     width: 220px;
-    /* background-color: black; */
     margin: 20px;
     background-size: cover;
     background-position: center;
@@ -127,14 +129,23 @@ h1 {
 }
 
 .text h3 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     margin-left: 18px;
 }
 
-.box h4 {
+.text h4 {
+    font-size: 1.3rem;
     margin-left: 20px;
 }
+.even h3, .even h4{
+    text-align: end;
+    margin-right: 18px;
+}
 
+.text p {
+    text-align: justify;
+
+}
 
 /* ******ContactUS****** */
 
@@ -174,6 +185,7 @@ textarea {
     height: 200px;
     width: 350px;
     border: none;
+    resize: none;
     padding: 20px;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
@@ -197,10 +209,13 @@ input {
 }
 
 .ibuttons2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-top: 30px;
     --ion-color-primary: #9c89ff;
-    width: 100%;
+    width: 250px;
+    --border-radius: 15px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
 }
 
 
@@ -259,48 +274,49 @@ p {
     max-width: 500px;
     /* margin: 0 auto; */
     text-align: center;
-  }
-  
-  .admin-container h1 {
+}
+
+.admin-container h1 {
     margin-bottom: 20px;
-  }
-  
-  .admin-item {
+}
+
+.admin-item {
     margin-bottom: 20px;
-  }
-  
-  .ion-no-padding {
+}
+
+.ion-no-padding {
     padding: 0 !important;
-  }
-  
-  .radio-item {
+}
+
+.radio-item {
     display: inline-block;
     margin: 10px;
     cursor: pointer;
-  }
-  
-  .radio-label {
+}
+
+.radio-label {
     display: inline-block;
-    width: 120px; /* Adjust width as needed */
+    width: 120px;
+    /* Adjust width as needed */
     padding: 10px;
     border: 2px solid var(--ion-color-primary);
     border-radius: 5px;
     text-align: center;
     transition: background-color 0.3s;
-  }
-  
-  .radio-label.selected {
+}
+
+.radio-label.selected {
     background-color: var(--ion-color-primary);
     color: white;
-  }
-  
-  .radio-input {
+}
+
+.radio-input {
     display: none;
-  }
-  
-  .admin-button {
+}
+
+.admin-button {
     width: 100%;
-  }
+}
 
 
 
@@ -345,8 +361,8 @@ footer h3 {
     }
 
     .ibutton {
-        width: 130%;
-        height: 45px;
+        width: 250px;
+        margin: 5px;
     }
 
     .vl {
@@ -378,6 +394,14 @@ footer h3 {
     .even {
         flex-direction: column-reverse;
     }
+  
+    .text h3 {
+        text-align: center;
+    }
+    
+    .text h4 {
+        text-align: center;
+    }
 
     .box2 {
         flex-direction: column;
@@ -385,6 +409,7 @@ footer h3 {
         width: auto;
         margin: 40px 20px;
     }
+
 
     footer {
         flex-direction: column;

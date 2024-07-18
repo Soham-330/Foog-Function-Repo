@@ -20,7 +20,7 @@ function Hero() {
                     <Link className="link" to="/BookAppointment">
                         <IonButton className='ibutton'>Book Appointment</IonButton>
                     </Link>
-                    <Link className="link" to="/Categories">
+                    <Link className="link" to="/Products">
                         <IonButton className='ibutton'>Order Now</IonButton>
                     </Link>
 
