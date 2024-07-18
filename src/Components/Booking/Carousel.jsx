@@ -37,7 +37,6 @@ function ConsultantCarousel(props) {
     if (consultants.length === 0) {
         return <p>No consultants found!</p>;
     }
-    console.log(props);
     return (
         <>
             <div className="appointment-body">

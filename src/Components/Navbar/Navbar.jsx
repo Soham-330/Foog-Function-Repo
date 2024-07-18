@@ -27,8 +27,8 @@ function Navbar() {
           <Link className="link" to="/Admin">
             Admin
           </Link>
-          <Link className="link" to="/Categories">
-            Categories
+          <Link className="link" to="/Products">
+            Products
           </Link>
           <Link className="link" to="/About">
             About

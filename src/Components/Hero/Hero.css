@@ -344,6 +344,10 @@ footer h3 {
         flex-direction: column;
     }
 
+    .ibuttons2{
+        width: 50vw;
+    }
+
     .ibutton {
         width: 130%;
         height: 45px;

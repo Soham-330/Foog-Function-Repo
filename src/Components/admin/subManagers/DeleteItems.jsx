@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-
-import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
-import {
+import { collection, getDocs, deleteDoc, doc, query, where, updateDoc } from "firebase/firestore";
+import { 
   IonCard, IonCardHeader, IonCardSubtitle, IonCardContent,
-  IonCardTitle, IonButton, IonAlert, setupIonicReact
+  IonCardTitle, IonButton, IonAlert, setupIonicReact 
 } from "@ionic/react";
 import { db } from "../../../../firebase";
 setupIonicReact();
@@ -14,7 +13,9 @@ const DeleteItems = () => {
   const [products, setProducts] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [alertAction, setAlertAction] = useState(() => () => { });
+  const [alertAction, setAlertAction] = useState(() => () => {});
+  const [minQty, setMinQty] = useState(0);
+  const [availQty, setAvailQty] = useState(0);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -94,11 +95,37 @@ const DeleteItems = () => {
     fetchProducts(categoryId);
   };
 
+  const handleUpdateMinQty = async (productId, newQty) => {
+    try {
+      const productRef = doc(db, "products", productId);
+      await updateDoc(productRef, { minimumQuantity: newQty });
+      setProducts(products.map((product) =>
+        product.id === productId ? { ...product, minimumQuantity: newQty } : product
+      ));
+      alert("Minimum Quantity updated successfully!");
+    } catch (error) {
+      console.error("Error updating minimum quantity: ", error);
+    }
+  };
+
+  const handleUpdateAvailQty = async (productId, newQty) => {
+    try {
+      const productRef = doc(db, "products", productId);
+      await updateDoc(productRef, { availableQuantity: newQty });
+      setProducts(products.map((product) =>
+        product.id === productId ? { ...product, availableQuantity: newQty } : product
+      ));
+      alert("Available Quantity updated successfully!");
+    } catch (error) {
+      console.error("Error updating available quantity: ", error);
+    }
+  };
+
   return (
     <div className="delContainer">
-       <div className='title2 title3'>
-                <h2>Delete Items</h2>
-            </div>
+      <div className='title2 title3'>
+        <h2>Delete Items</h2>
+      </div>
       <IonAlert
         isOpen={showAlert}
         onDidDismiss={() => setShowAlert(false)}
@@ -118,61 +145,81 @@ const DeleteItems = () => {
           }
         ]}
       />
-
       <h2>Delete Category</h2>
-
       <div className="cat-body">
         {categories.map((category) => (
-             <div className="catCard" key={category.id}>
-             <div className="catImg">
-               <img alt={`Image of ${category.name}`} src={category.image} />
-             </div>
-             <h3>{category.name}</h3>
-             <div className="catText">
-               {category.text}
-             </div>
-             <div>
-               <IonButton className="ibuttonDel" onClick={() => handleDeleteCategory(category.id)}>
-                 Delete Category
-               </IonButton>
-             </div>
-           </div>
+          <div className="catCard" key={category.id}>
+            <div className="catImg">
+              <img alt={`Image of ${category.name}`} src={category.image} />
+            </div>
+            <h3>{category.name}</h3>
+            <div className="catText">
+              {category.text}
+            </div>
+            <div>
+              <IonButton className="ibuttonDel" onClick={() => handleDeleteCategory(category.id)}>
+                Delete Category
+              </IonButton>
+            </div>
+          </div>
         ))}
       </div>
       <hr />
-      <h2>Delete Products from Category</h2>
-<div className="delPro">
-      <select className="selectBtn" value={selectedCategory} onChange={handleCategoryChange}>
-        <option value="">Select Category</option>
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-      {products.length > 0 && (
-        <div className="delPro">
-          {products.map((product) => (
-            <div className="catCard" key={product.id}>
-              <div className="catImg">
-                <img alt={`Image of ${product.name}`} src={product.image} />
-              </div>
-              <h3>{product.name}</h3>
-              <div className="catText">
-                {product.text}
-              </div>
-              <div>
-                <IonButton className="ibuttonDel" onClick={() => handleDeleteProduct(product.id)}>
-                  Delete Product
-                </IonButton>
-              </div>
-            </div>
+      <h2>Delete/Modify Products from Category</h2>
+      <div className="delPro">
+        <select className="selectBtn" value={selectedCategory} onChange={handleCategoryChange}>
+          <option value="">Select Category</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
           ))}
-          <IonButton className="ibuttonDel" onClick={handleDeleteProducts}>
-            Delete All Products
-          </IonButton>
-        </div>
-      )}
+        </select>
+        {products.length > 0 && (
+          <div className="delPro">
+            {products.map((product) => (
+              <div className="catCard" key={product.id}>
+                <div className="catImg">
+                  <img alt={`Image of ${product.name}`} src={product.image} />
+                </div>
+                <h3>{product.name}</h3>
+                <div className="catText">
+                  {product.text}
+                </div>
+                <div>
+                  <IonButton className="ibuttonDel" onClick={() => handleDeleteProduct(product.id)}>
+                    Delete Product
+                  </IonButton>
+                </div>
+                <div>
+                  <label>Min Quantity:</label>
+                  <input
+                    type="number"
+                    value={minQty}
+                    onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
+                  />
+                  <IonButton onClick={() => handleUpdateMinQty(product.id, minQty)}>
+                    Update Min Quantity
+                  </IonButton>
+                </div>
+                <div>
+                  <label>Available Quantity:</label>
+                  <input
+                    type="number"
+                    value={availQty}
+                    onChange={(e) => setAvailQty(parseInt(e.target.value, 10))}
+                  />
+                  <IonButton onClick={() => handleUpdateAvailQty(product.id, availQty)}>
+                    Update Available Quantity
+                  </IonButton>
+                </div>
+              </div>
+            ))}
+            <IonButton className="ibuttonDel" onClick={handleDeleteProducts}>
+              Delete All Products
+            </IonButton>
+          </div>
+        )}
       </div>
     </div>
   );

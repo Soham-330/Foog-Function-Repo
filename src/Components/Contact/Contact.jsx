@@ -25,21 +25,17 @@ function Contact() {
 
     }, [])
 
-
     const [newFeedback, setFeedback] = useState("");
-
     const [newEmail, setEmail] = useState("");
 
-
-
-
-
     const onContactUs = async () => {
+        const currentTimestamp = new Date();
         await addDoc(feedbackCollectionRef, {
             numemail: newEmail,
             text: newFeedback,
+            timestamp: currentTimestamp,
         });
-    }
+    };
 
     const [message, setMessage] = useState('');
 
@@ -85,11 +81,6 @@ function Contact() {
                     <IonButton className="ibuttons2" onClick={validateInput}>Send Message</IonButton>
 
                 </div>
-
-
-
-
-
                 <div className="vl"> </div>
                 <div className="buttons2">
                     <IonButton className="ibuttons2" href='https://wa.me/919309417021/?text=Hello' target='_main'>Whatsapp Us</IonButton>

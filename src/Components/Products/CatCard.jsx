@@ -15,7 +15,7 @@ function CatCard(props) {
                 <div className="catText">
                     {props.text}
                 </div>
-                <Link to={`/categories/${props.id}`}>
+                <Link to={`/products/${props.id}`}>
                 <IonButton className='cat-ibutton'>Explore</IonButton>
                 </Link>
             </div>
