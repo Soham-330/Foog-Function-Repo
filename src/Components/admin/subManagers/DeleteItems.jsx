@@ -16,6 +16,7 @@ const DeleteItems = () => {
   const [alertAction, setAlertAction] = useState(() => () => {});
   const [minQty, setMinQty] = useState(0);
   const [availQty, setAvailQty] = useState(0);
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -121,6 +122,19 @@ const DeleteItems = () => {
     }
   };
 
+  const handleUpdatePrice = async (productId, newPrice) => {
+    try {
+      const productRef = doc(db, "products", productId);
+      await updateDoc(productRef, { price: newPrice });
+      setProducts(products.map((product) =>
+        product.id === productId ? { ...product, price: newPrice } : product
+      ));
+      alert("Price updated successfully!");
+    } catch (error) {
+      console.error("Error updating price: ", error);
+    }
+  };
+
   return (
     <div className="delContainer">
       <div className='title2 title3'>
@@ -165,7 +179,7 @@ const DeleteItems = () => {
         ))}
       </div>
       <hr />
-      <h2>Delete/Modify Products from Category</h2>
+      <h2>Delete Products from Category</h2>
       <div className="delPro">
         <select className="selectBtn" value={selectedCategory} onChange={handleCategoryChange}>
           <option value="">Select Category</option>
@@ -211,6 +225,17 @@ const DeleteItems = () => {
                   />
                   <IonButton onClick={() => handleUpdateAvailQty(product.id, availQty)}>
                     Update Available Quantity
+                  </IonButton>
+                </div>
+                <div>
+                  <label>Price:</label>
+                  <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(parseFloat(e.target.value))}
+                  />
+                  <IonButton onClick={() => handleUpdatePrice(product.id, price)}>
+                    Update Price
                   </IonButton>
                 </div>
               </div>
