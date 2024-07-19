@@ -318,7 +318,13 @@ p {
     width: 100%;
 }
 
-
+/* Calendar of Bookings.jsx */
+.date-time{
+    --background:  white;
+    --color: white;
+    --border-radius: 1px;
+    --box-shadow:0 4px 8px rgb(149, 255, 0);
+} 
 
 /* ******Footer***** */
 

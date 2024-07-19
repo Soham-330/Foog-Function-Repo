@@ -1,4 +1,3 @@
-import './index.css'
 import '@ionic/react/css/core.css';
 import './Components/Hero/Hero.css'
 import React from 'react'
