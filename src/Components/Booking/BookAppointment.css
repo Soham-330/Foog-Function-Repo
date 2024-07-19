@@ -151,6 +151,13 @@
     margin: 30px;
 }
 
+.date-time{
+    --background:  white;
+    --color: white;
+    --border-radius: 1px;
+    --box-shadow:0 4px 8px rgb(149, 255, 0);
+} 
+
 @media only screen and (max-width: 770px) {
 
 
