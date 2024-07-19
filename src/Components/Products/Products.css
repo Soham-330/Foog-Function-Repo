@@ -8,7 +8,7 @@
 }
 
 .proCard {
-    height: 600px;
+    height: 500px;
     width: 300px;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
@@ -18,7 +18,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    margin: 25px 0;
+    margin: 25px;
 }
 
 .proImg {
@@ -26,6 +26,7 @@
     width: 200px;
     border-radius: 50%;
     margin: 20px;
+    object-fit: cover;
 
 }
 
@@ -41,6 +42,9 @@
     font-size: 1.2rem;
     --ion-color-primary: #9c89ff;
     margin-bottom: 20px;
+    --border-radius: 12px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
 }
 
 
