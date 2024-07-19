@@ -26,7 +26,7 @@ function Products(){
         fetchProducts();
     },[]);
 
-    console.log(...proList)
+    // console.log(...proList)
 
     return(
         <>

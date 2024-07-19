@@ -1,24 +1,23 @@
-
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home";
-import Footer from "./components/Footer/Footer";
-import AdminPage from "./components/Admin/Admin";
-import ManageItems from "./components/Admin/ManageItems";
-import ManageBookings from "./components/Admin/ManageBookings";
-import FeedbackList from "./components/Admin/FeedbackList";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
-import BookAppointment from "./components/Booking/BookAppointment";
-import Testimonials from "./components/Footer/Testimonial";
-import { CartProvider } from "./components/Cart/CartProvider";
-import CartTab from "./components/Cart/cartTab";
-import Booking from "./components/Booking/Booking";
-import Products from "./components/Products/Products";
-import UserDetailsForm from "./components/Booking/UserDetails";
-import Categories from "./components/Products/Categories";
-import ManageAvailability from "./components/Admin/ManageAvailability";
+import Navbar from "./Components/Navbar/Navbar";
+import Home from "./Components/Home";
+import Footer from "./Components/Footer/Footer";
+import AdminPage from './Components/admin/Admin'
+import ManageItems from "./Components/admin/ManageItems";
+import ManageBookings from "./Components/admin/ManageBookings";
+import FeedbackList from "./Components/admin/FeedbackList";
+import About from "./Components/About/About";
+import Contact from "./Components/Contact/Contact";
+import BookAppointment from "./Components/Booking/BookAppointment";
+import Testimonials from "./Components/Footer/Testimonial";
+import { CartProvider } from "./Components/Cart/CartProvider";
+import CartTab from "./Components/Cart/cartTab";
+import Booking from "./Components/Booking/Booking";
+import Products from "./Components/Products/Products";
+import UserDetailsForm from "./Components/Booking/UserDetails";
+import Categories from "./Components/Products/Categories";
+import ManageAvailability from "./Components/admin/ManageAvailability";
 function App() {
   return (
     <>

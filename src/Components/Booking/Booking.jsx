@@ -393,6 +393,7 @@ const Booking = (props) => {
             value={date}
             onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
             presentation="date"
+            className="date-time"
           />
         </div>
         <div >

@@ -4,8 +4,7 @@ import { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export const CartProvider = (props) => {
-
-
+  
   const [cartList, setcartList] = useState(() => {
     // Retrieve the cart from local storage or initialize an empty array
     const savedCartList = localStorage.getItem('cartList');

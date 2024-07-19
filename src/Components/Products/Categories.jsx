@@ -29,12 +29,12 @@ function Categories(){
     return(
         <>
                 <div className='title2 title3'>
-                <h2>Categories</h2>
+                <h2>Products</h2>
             </div>
         <div className="cat-body">
             {catList.map((cat) => (
                 <div>
-                    <CatCard name={cat.name} image={cat.image} text={cat.text} id={cat.id} />
+                    <CatCard name={cat.name} image={cat.image} text={cat.text} id={cat.id}/>
                 </div>
             ))}
         </div>
