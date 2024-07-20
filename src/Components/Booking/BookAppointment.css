@@ -6,6 +6,9 @@
     height: 100vh;
     color: white;
 }
+.appointment-body p{
+    text-align: justify;
+}
 
 .container {
     display: flex;
@@ -42,6 +45,9 @@
 
 }
 
+.points{
+    margin: 20px;
+}
 .creden {
     font-size: 1.2rem;
     margin: 10px;
@@ -93,7 +99,6 @@
 }
 
 
-
 .description li {
     margin: 20px 0;
 }
@@ -103,7 +108,7 @@
     width: 250px;
     height: 250px;
     border-radius: 50%;
-
+    object-fit: cover;
 }
 
 .price {
@@ -128,17 +133,15 @@
 .bookingPage {
     display: flex;
     align-items: start;
+
 }
 
+.bookingPage input, .bookingPage select{
+    margin: 10px 0;
+
+}
 .bookingForm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: white;
-}
-
-.ionic {
-    width: 70%;
 }
 
 .bookingCalender {
@@ -152,10 +155,12 @@
 }
 
 .date-time{
-    --background:  white;
-    --color: white;
-    --border-radius: 1px;
-    --box-shadow:0 4px 8px rgb(149, 255, 0);
+    --ion-color-primary: #9c89ff;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+
 } 
 
 @media only screen and (max-width: 770px) {
@@ -167,16 +172,24 @@
     }
 
     .container {
-        padding: 10px 20px;
+        padding: 10px;
         flex-direction: column;
         height: max-content;
-        width: 95%;
+        width: 90vw;
         margin: 20px;
     }
 
     .carousel {
         width: 250px;
-        padding: 30px;
+        padding: 0px;
+    }
+
+    .carousel.carousel-slider .control-arrow:hover {
+        background: rgba(0, 0, 0, 0);
+    } 
+
+    .carousel .control-dots {
+        top: 95%;
     }
 
 
@@ -199,4 +212,12 @@
         height: 40px;
       
     }
+
+    .bookingPage{
+        flex-direction: column;
+        align-items: center;
+    }
 }
+
+
+ 

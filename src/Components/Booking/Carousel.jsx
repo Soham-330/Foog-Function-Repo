@@ -48,7 +48,7 @@ function ConsultantCarousel(props) {
                         <h2 className='heading'>{props.category.toUpperCase()} SERVICES</h2>
                         {(props.category === 'physician') ? <p>Book a one-on-one consultation with a certified dietician to discuss your dietary needs and health goals. Our consultants provide personalized advice, meal planning, and practical strategies to help you achieve better health.</p> : 
                         <p>Schedule a session with a certified life coach to help you identify and achieve your personal and professional goals. Our life coaches provide personalized strategies and support to help you unlock your potential and live a more fulfilling life.</p>}
-                        <div>
+                        <div className='points'>
                             <b>Benefits:</b>
                             <ul>{(props.category === 'physician') ?
                                 <>

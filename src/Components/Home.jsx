@@ -1,3 +1,4 @@
+import { IonButton } from "@ionic/react"
 import About from "./About/About"
 import BookAppointment from "./Booking/BookAppointment"
 import Contact from "./Contact/Contact"

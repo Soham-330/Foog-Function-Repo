@@ -194,9 +194,9 @@ const DeleteItems = () => {
           ))}
         </select>
         {products.length > 0 && (
-          <div className="delPro">
+          <div className="proCardsAdmin">
             {products.map((product) => (
-              <div className="catCard" key={product.id}>
+              <div className="proCardAdmin" key={product.id}>
                 <div className="catImg">
                   <img alt={`Image of ${product.name}`} src={product.image} />
                 </div>
@@ -209,46 +209,49 @@ const DeleteItems = () => {
                     Delete Product
                   </IonButton>
                 </div>
-                <div>
+        
                   <label>Min Quantity:</label>
                   <input
                     type="number"
                     value={minQty}
                     onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
                   />
-                  <IonButton onClick={() => handleUpdateMinQty(product.id, minQty)}>
+                  <IonButton className="ibuttonAdmin" onClick={() => handleUpdateMinQty(product.id, minQty)}>
                     Update Min Quantity
                   </IonButton>
-                </div>
-                <div>
+            
+            
                   <label>Available Quantity:</label>
                   <input
                     type="number"
                     value={availQty}
                     onChange={(e) => setAvailQty(parseInt(e.target.value, 10))}
                   />
-                  <IonButton onClick={() => handleUpdateAvailQty(product.id, availQty)}>
+                  <IonButton className="ibuttonAdmin" onClick={() => handleUpdateAvailQty(product.id, availQty)}>
                     Update Available Quantity
                   </IonButton>
-                </div>
-                <div>
+              
                   <label>Price:</label>
                   <input
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
                   />
-                  <IonButton onClick={() => handleUpdatePrice(product.id, price)}>
+                  <IonButton className="ibuttonAdmin" onClick={() => handleUpdatePrice(product.id, price)}>
                     Update Price
                   </IonButton>
-                </div>
+              
               </div>
             ))}
+            <div>
             <IonButton className="ibuttonDel" onClick={handleDeleteProducts}>
               Delete All Products
             </IonButton>
+            </div>
           </div>
+          
         )}
+       
       </div>
     </div>
   );

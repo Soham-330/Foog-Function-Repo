@@ -81,6 +81,7 @@ const ManageAvailability = () => {
           <IonItem className="admin-item">
             <IonLabel>Date:</IonLabel>
             <IonDatetime
+            color="new"
               displayFormat="YYYY-MM-DD"
               value={date}
               onIonChange={(e) => setDate(e.detail.value.split('T')[0])}

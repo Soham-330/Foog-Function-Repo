@@ -388,6 +388,7 @@ const Booking = (props) => {
       <div className="ionic" >
         <div className="bookingCalender">
           <IonDatetime
+           color="new"
             displayFormat="YYYY-MM-DD"
             min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
             value={date}
@@ -474,4 +475,4 @@ const Booking = (props) => {
   );
 };
 
-export default Booking
+export default Booking;

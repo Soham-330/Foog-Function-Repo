@@ -1,6 +1,6 @@
 .catCard{
     height: 500px;
-    width: 375px;
+    width: 300px;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
@@ -39,5 +39,9 @@
 }
 
 @media only screen and (max-width: 770px) {
+
+    .catCard{
+        width: 90vw;
+    }
 
 }

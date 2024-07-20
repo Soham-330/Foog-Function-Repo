@@ -1,11 +1,11 @@
-.adminPage{
+.adminPage {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.adminBtns{
+.adminBtns {
     height: 150px;
     width: 220px;
     background-color: rgba(240, 227, 227, 0.352);
@@ -27,7 +27,7 @@
     justify-content: center;
     align-items: center;
     padding: 15px;
-    margin: 10px; 
+    margin: 10px;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
@@ -49,59 +49,98 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    color: white;
 }
-.doc-unavail .ibutton3{
+
+.doc-unavail .ibutton3 {
     margin-top: 50px;
 
 }
+
 .button0 {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
 /* ********Manage Items ******** */
 
-.addItems{
+.addItems {
     margin: 50px;
     width: 50%;
 }
-.addItems h2{
+
+.addItems h2 {
     color: white;
 }
 
-.addItems button, select{
+.addItems button,
+select {
     width: 100%;
     margin-top: 30px;
     border: none;
     padding: 20px;
-    background-color:#9c89ff;;
+    background-color: #9c89ff;
+    ;
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     border: none;
     color: rgb(255, 255, 255);
 }
-.addContainer{
+
+.addContainer {
     display: flex;
     justify-content: center;
 }
 
 
-.delContainer h2{
+.delContainer h2 {
     color: white;
     text-align: center;
 }
 
-.delPro{
+.delPro {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-.selectBtn{
+
+.proCardsAdmin {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.proCardsAdmin input {
+    width: 80%;
+    margin: 10px;
+}
+
+
+.ibuttonAdmin{
+    --ion-color-primary: #36a709;
+    margin: 10px;
+}
+
+.proCardAdmin {
+    width: 300px;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin: 25px 10px;
+}
+
+.selectBtn {
     width: 300px;
     margin: 25px;
 }
@@ -114,22 +153,24 @@
 }
 
 /* ********Manage Appointment******* */
-.manageAppointment{
+.manageAppointment {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-.manageAppointment h2{
- color: white;
+
+.manageAppointment h2 {
+    color: white;
 }
 
-.bookings{
+.bookings {
     width: 100%;
     height: max-content;
 }
 
-.toggleBtns{
-    background-color:#9c89ff;;
+.toggleBtns {
+    background-color: #9c89ff;
+    ;
     border-radius: 10px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
@@ -139,7 +180,7 @@
     color: white;
 }
 
-.bookedSlots{
+.bookedSlots {
     color: white;
     display: flex;
     align-items: center;
@@ -147,7 +188,7 @@
     flex-direction: column;
 }
 
-.slot{
+.slot {
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
@@ -156,11 +197,12 @@
     padding: 30px;
 }
 
-.slot li, .order li{
+.slot li,
+.order li {
     list-style: none;
 }
 
-.manageOrders{
+.manageOrders {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,7 +210,9 @@
 
 
 }
-.orders{ color: white;
+
+.orders {
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,7 +220,7 @@
 
 }
 
-.order{
+.order {
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
@@ -187,16 +231,21 @@
 
 @media only screen and (max-width: 770px) {
 
-    .adminFeedback{
+    .adminFeedback {
         width: auto;
         margin: 20px 20px;
     }
 
-    .addContainer, .adminPage{
+    .addContainer,
+    .adminPage {
         flex-direction: column;
     }
 
-    .addItems{
+    .addItems {
         width: auto;
+    }
+
+    .proCardAdmin {
+        width: 90vw;
     }
 }
