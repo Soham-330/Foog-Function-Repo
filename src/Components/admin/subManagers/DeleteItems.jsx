@@ -41,6 +41,8 @@ const DeleteItems = () => {
       setProducts(products.map((product) =>
         product.id === productId ? { ...product, minimumQuantity: newQty } : product
       ));
+      //Making an Change Here
+      setMinQty(newQty);
       alert("Minimum Quantity updated successfully!");
     } catch (error) {
       console.error("Error updating minimum quantity: ", error);
@@ -213,8 +215,8 @@ const DeleteItems = () => {
                   <label>Min Quantity:</label>
                   <input
                     type="number"
-                    placeholder='0'
-                    onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
+                    placeholder={product.minimumQuantity}
+{/*                     onChange={(e) => setMinQty(parseInt(e.target.value, 10))} */}
                   />
                   <IonButton className="ibuttonAdmin" onClick={() => handleUpdateMinQty(product.id, minQty)}>
                     Update Min Quantity
