@@ -18,6 +18,7 @@ import Products from "./Components/Products/Products";
 import UserDetailsForm from "./Components/Booking/UserDetails";
 import Categories from "./Components/Products/Categories";
 import ManageAvailability from "./Components/admin/ManageAvailability";
+import PaymentPage from "./Components/Cart/PaymentPage";
 function App() {
   return (
     <>
@@ -40,6 +41,7 @@ function App() {
           <Route path="/Bookappointment" element={<BookAppointment />} />
           <Route path="/Testimonials" element={<Testimonials />} />
           <Route path="/cart" element={<CartTab />} />
+          <Route path="/payment" component={PaymentPage} />
         </Routes>
         <Footer />
       </CartProvider>

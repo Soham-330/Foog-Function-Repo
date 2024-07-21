@@ -51,7 +51,6 @@ const OrderManager = () => {
     fetchOrders(); // Refresh the list
     window.confirm('The Order is completed')
   };
-
   return (
     <>
  
@@ -67,10 +66,18 @@ const OrderManager = () => {
         {orders.map(order => (
           <div className="order">
           <li key={order.id}>
-            <p>Name: {order.name}</p>
-            <p>Quantity: {order.quantity}</p>
-            <p>Address: {order.address}</p>
-            <p>Completed: {order.isCompleted ? 'Yes' : 'No'}</p>
+          <p><strong>Name:</strong> {order.name}</p>
+          <p><strong>Phone Number:</strong> {order.number}</p>
+          <p><strong>Email:</strong> {order.email}</p>
+          <p><strong>Address:</strong> {order.address}</p>
+          {/* <p><strong>Items:</strong> {order.items.join(', ')}</p> */}
+          <ul>
+            {order.items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+          <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
+          <p><strong>Order Status:</strong> {order.isCompleted ? "Completed" : "Pending"}</p>
             {editOrderId === order.id ? (
               <>
                 <input
@@ -82,7 +89,9 @@ const OrderManager = () => {
                 <button className='toggleBtns' onClick={() => setEditOrderId(null)}>Cancel</button>
               </>
             ) : (
-              <button className='toggleBtns' onClick={() => setEditOrderId(order.id)}>Modify Quantity</button>
+              // <button className='toggleBtns' onClick={() => setEditOrderId(order.id)}>Modify Quantity</button>
+              //Currently commented this out
+              <p></p>
             )}
             <button className='toggleBtns' onClick={() => toggleCompletion(order.id, order.isCompleted)}>
               Mark as {order.isCompleted ? 'Incomplete' : 'Complete'}
