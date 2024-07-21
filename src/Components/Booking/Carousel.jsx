@@ -28,7 +28,7 @@ function ConsultantCarousel(props) {
             }
         };
         fetchConsultants();
-    },[]);
+    },[props.category]);
 
     if (loading) {
         return <div className="loadingPage">

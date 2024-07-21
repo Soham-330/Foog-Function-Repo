@@ -269,6 +269,22 @@ p {
 
 
 /* This is CSS of Radio Buttons of Bookings.jsx */
+.item-inner{
+    padding-right: 0 !important;
+}
+.item-native::after{
+    padding-left: 0 !important;
+}
+
+.item-native{
+    padding-left: 0 !important;
+}
+.input-wrapper{
+    border: 2px solid var(--ion-color-primary);
+    border-radius: 5px;
+    
+}
+
 .admin-container {
     padding: 20px;
     max-width: 500px;
@@ -299,8 +315,7 @@ p {
     width: 120px;
     /* Adjust width as needed */
     padding: 10px;
-    border: 2px solid var(--ion-color-primary);
-    border-radius: 5px;
+    
     text-align: center;
     transition: background-color 0.3s;
 }

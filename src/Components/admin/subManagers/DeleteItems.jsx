@@ -209,7 +209,8 @@ const DeleteItems = () => {
                   <label>Min Quantity:</label>
                   <input
                     type="number"
-                    value={minQty}
+                    // value={minQty}
+                    placeholder={product.minimumQuantity}
                     onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
                   />
                   <IonButton onClick={() => handleUpdateMinQty(product.id, minQty)}>
@@ -220,7 +221,8 @@ const DeleteItems = () => {
                   <label>Available Quantity:</label>
                   <input
                     type="number"
-                    value={availQty}
+                    // value={availQty}
+                    placeholder={product.availableQuantity}
                     onChange={(e) => setAvailQty(parseInt(e.target.value, 10))}
                   />
                   <IonButton onClick={() => handleUpdateAvailQty(product.id, availQty)}>
@@ -231,7 +233,7 @@ const DeleteItems = () => {
                   <label>Price:</label>
                   <input
                     type="number"
-                    value={price}
+                    placeholder={product.price}
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
                   />
                   <IonButton onClick={() => handleUpdatePrice(product.id, price)}>
