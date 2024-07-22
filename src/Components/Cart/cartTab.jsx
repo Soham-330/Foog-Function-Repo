@@ -34,7 +34,7 @@ const CartTab = () => {
 
   const handlePayment = async (customerDetails) => {
     // Create an array of items in the format "product_name - product_quantity"
-    const items = cartList.map(item => `${item.name} - ${item.quantity}`);
+    const items = cartList.map(item => `${item.name} - ${item.quantity} * ₹${item.price} = ₹${item.quantity * item.price}`);
 
     const order = {
       address: customerDetails.address,

@@ -59,8 +59,9 @@ const OrderManager = () => {
 </div>
     <div className='manageOrders' >
       <button className='toggleBtns' onClick={() => setShowCompleted(!showCompleted)}>
-        {showCompleted ? 'Show Incomplete Orders' : 'Show Completed Orders'}
+        {showCompleted ? 'Show Pending Orders' : 'Show Completed Orders'}
       </button>
+      <h2>{showCompleted ? 'Completed Orders' : 'Pending Orders'}</h2>
       <div className='orders'>
       <ul>
         {orders.map(order => (
@@ -70,11 +71,13 @@ const OrderManager = () => {
           <p><strong>Phone Number:</strong> {order.number}</p>
           <p><strong>Email:</strong> {order.email}</p>
           <p><strong>Address:</strong> {order.address}</p>
-          {/* <p><strong>Items:</strong> {order.items.join(', ')}</p> */}
           <ul>
-            {order.items.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
+          Items:
+            <ul>
+              {order.items.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
           </ul>
           <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
           <p><strong>Order Status:</strong> {order.isCompleted ? "Completed" : "Pending"}</p>

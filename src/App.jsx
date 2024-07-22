@@ -19,6 +19,7 @@ import UserDetailsForm from "./Components/Booking/UserDetails";
 import Categories from "./Components/Products/Categories";
 import ManageAvailability from "./Components/admin/ManageAvailability";
 import PaymentPage from "./Components/Cart/PaymentPage";
+import ManageConsultants from "./Components/admin/ManageConsultants";
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Admin/ManageAvailability" element={<ManageAvailability />} />
           <Route path="/Admin/ManageBookings" element={<ManageBookings />} />
           <Route path="/Admin/Feedbacks" element={<FeedbackList />} />
+          <Route path="/Admin/ManageConsultants" element={<ManageConsultants />} />
           <Route path="/Appointment" element={<BookAppointment />} />
           <Route path="/Appointment/:id" element={<Booking />} />
           <Route path="/Products" element={<Categories />} />
@@ -41,7 +43,7 @@ function App() {
           <Route path="/Bookappointment" element={<BookAppointment />} />
           <Route path="/Testimonials" element={<Testimonials />} />
           <Route path="/cart" element={<CartTab />} />
-          <Route path="/payment" component={PaymentPage} />
+          <Route path="/payment" element={<PaymentPage />} />
         </Routes>
         <Footer />
       </CartProvider>

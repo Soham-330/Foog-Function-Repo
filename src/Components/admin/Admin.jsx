@@ -20,6 +20,10 @@ function AdminPage() {
           {" "}
           See Feedbacks{" "}
         </Link>
+        <Link className="adminBtns" to="/Admin/ManageConsultants">
+          {" "}
+          ManageConsultants{" "}
+        </Link>
       </div>
 
     </>
