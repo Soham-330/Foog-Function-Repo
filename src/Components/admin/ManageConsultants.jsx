@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getFirestore, collection, addDoc, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../../firebase';
 
 
@@ -13,7 +13,9 @@ const ManageConsultants = () => {
   const [consultants, setConsultants] = useState({ physician: [], lifecoach: [] });
 
   const handleAddCredential = () => {
-    setCredentials([...credentials, credential]);
+    if(credential !== ''){
+        setCredentials([...credentials, credential]);
+    }
     setCredential('');
   };
 
@@ -83,17 +85,18 @@ const ManageConsultants = () => {
           placeholder="Credential"
         />
         <button type="button" onClick={handleAddCredential}>Add Credential</button>
-        <button type="submit">Add Consultant</button>
-      </form>
-
-      <div>
-        <h3>Credentials</h3>
+        <div>
+        <h3>{credentials.length === 0 ? ``:`Credentials`}</h3>
         <ul>
           {credentials.map((cred, index) => (
             <li key={index}>{cred}</li>
           ))}
         </ul>
-      </div>
+        </div>
+        <button type="submit">Add Consultant</button>
+      </form>
+
+      
 
       <h2>Delete Consultants</h2>
       {['physician', 'lifecoach'].map((cat) => (

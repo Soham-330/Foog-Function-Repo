@@ -22,8 +22,8 @@ const CartTab = () => {
   const handleCheckout = () => {
     let allQuantitiesMet = true;
     cartList.forEach((item) => {
-      if (!(item.quantity > item.minimumQuantity - 1)) {
-        alert(`Minimum Quantity does not meet for ${item.name}`);
+      if (!(item.quantity > item.availableQuantity)) {
+        alert(`This much Quantity of ${item.name} is not available in stock currently,\nPlease select a lower quantity`);
         allQuantitiesMet = false;
       }
     });
