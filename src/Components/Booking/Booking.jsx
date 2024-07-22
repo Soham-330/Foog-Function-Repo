@@ -238,10 +238,10 @@ const Booking = (props) => {
         dieticianId: id,
       });
 
-      alert("Slot booked successfully!");
+      // alert("Slot booked successfully!");
       setDate(format(addDays(new Date(), 1), 'yyyy-MM-dd'));
       setSelectedSlot(null);
-
+      alert('');
       setName('');
       setMobileNumber('');
       setAge('');
@@ -402,9 +402,6 @@ const Booking = (props) => {
                     </ul>
                     <h3 className='price'>{`Price: Rs ${consultant.fees}`}</h3>
                     <h3 className='duration'>Duration: 30 mins</h3>
-                    {/* <Link to={`/appointment/${consultant.id}`} >
-                      <IonButton className='book-btn'> Book An Appointment</IonButton>
-                    </Link> */}
                   </div>
               </div>  
             </div>
