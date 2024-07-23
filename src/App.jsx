@@ -19,18 +19,26 @@ import Products from "./components/Products/Products";
 import UserDetailsForm from "./components/Booking/UserDetails";
 import Categories from "./components/Products/Categories";
 import ManageAvailability from "./components/Admin/ManageAvailability";
+import { AuthContext } from "./components/Admin/AuthProvider";
+import { useContext } from "react";
+import PaymentPage from "./components/Cart/PaymentPage";
+import ManageConsultants from "./components/Admin/ManageConsultants";
 function App() {
+
+  const [password, setPassword] = useContext(AuthContext);
+
   return (
     <>
       <CartProvider>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Admin" element={<AdminPage />} />
-          <Route path="/Admin/ManageItems" element={<ManageItems />} />
-          <Route path="/Admin/ManageAvailability" element={<ManageAvailability />} />
-          <Route path="/Admin/ManageBookings" element={<ManageBookings />} />
-          <Route path="/Admin/Feedbacks" element={<FeedbackList />} />
+          <Route path={`/${password}`} element={<AdminPage />} />
+          <Route path={`/${password}/ManageItems`} element={<ManageItems />} />
+          <Route path={`/${password}/ManageAvailability`} element={<ManageAvailability />} />
+          <Route path={`/${password}/ManageBookings`} element={<ManageBookings />} />
+          <Route path={`/${password}/Feedbacks`} element={<FeedbackList />} />
+          <Route path={`/${password}/ManageConsultants`} element={<ManageConsultants />} />
           <Route path="/Appointment" element={<BookAppointment />} />
           <Route path="/Appointment/:id" element={<Booking />} />
           <Route path="/Products" element={<Categories />} />
@@ -40,7 +48,8 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Bookappointment" element={<BookAppointment />} />
           <Route path="/Testimonials" element={<Testimonials />} />
-          <Route path="/cart" element={<CartTab />} />
+          <Route path="/Cart" element={<CartTab />} />
+          <Route path="/Payment" element={<PaymentPage/>} />
         </Routes>
         <Footer />
       </CartProvider>

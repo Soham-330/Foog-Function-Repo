@@ -47,7 +47,9 @@ function Products(){
                   minimumQuantity={product.minimumQuantity}
                 />
               ))
-            : "loading"}
+            : <div className="loadingPage">
+            <h2>No Products Found</h2>
+         </div>}
         </div>
       </div>
         </>

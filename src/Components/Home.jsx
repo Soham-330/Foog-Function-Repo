@@ -14,9 +14,7 @@ function Home() {
             <Hero />
             <About />
             <Contact/>
-            <hr />
             <Categories/>
-            <hr />
             <BookAppointment/>
             <Testimonials/>
             

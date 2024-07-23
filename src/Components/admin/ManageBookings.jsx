@@ -1,8 +1,6 @@
 import AppointmentManager from "./subManagers/ManageAppointments"
 import OrderManager from "./subManagers/ManageOrders"
 
-
-
 function ManageBookings(){
 
     return(

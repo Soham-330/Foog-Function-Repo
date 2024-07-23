@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { collection, addDoc, DocumentReference } from "firebase/firestore";
 import { setupIonicReact, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonCardTitle, IonImg } from "@ionic/react";
 import { db } from "../../../../firebase";

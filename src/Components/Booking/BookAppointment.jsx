@@ -15,7 +15,9 @@ function BookAppointment(props) {
     };
 
     return (
-        <>
+        <><div className='title2 title3'>
+        <h2>Consultants</h2>
+    </div>
             <ConsultantCarousel category='physician'/>
             <ConsultantCarousel category='lifecoach'/>
         </>

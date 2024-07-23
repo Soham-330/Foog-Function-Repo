@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { setupIonicReact, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonCardTitle, IonImg } from "@ionic/react";
+import { setupIonicReact} from "@ionic/react";
 import { db } from "../../../../firebase";
 
 setupIonicReact();

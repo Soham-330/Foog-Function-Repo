@@ -4,11 +4,13 @@
     align-items: center;
     color: white;
     background-color: rgba(255, 255, 255, 0.084);
-    padding: 15px;
+    padding: 5px 15px;
 }
-.logo h2{
+
+.logo h2 {
     color: white;
 }
+
 .links {
     display: flex;
     align-items: center;
@@ -38,7 +40,7 @@
 
 }
 
-.sidebar a{
+.sidebar a {
     width: 100%;
     text-align: center;
     padding: 20px;
@@ -49,18 +51,18 @@
     cursor: pointer;
 }
 
-.cbtn{
+.cbtn {
     cursor: pointer;
 }
 
-.quantity{
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    background-color: red;
-    border-radius: 50%;
-    text-align: center;
+
+.quantity {
+    position:absolute;
+    translate: -33.5px 17px;
+    font-size: 16px;
+    color:  #1c1444;
 }
+
 
 @media only screen and (max-width: 770px) {
 
@@ -72,12 +74,8 @@
         display: block;
     }
 
-    .open{
+    .open {
         display: flex;
-        
-        }
+
+    }
 }
-
-
-
-

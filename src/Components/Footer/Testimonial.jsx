@@ -12,7 +12,7 @@ function Testimonials() {
                 <h2>Testimonials</h2>
             </div>
 
-            <Carousel>
+            <Carousel showStatus={false}>
                 <div className="box2">
                     <div className="img2 j1"></div>
                     <div className="text">

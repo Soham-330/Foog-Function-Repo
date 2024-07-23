@@ -216,7 +216,7 @@ const DeleteItems = () => {
                   <input
                     type="number"
                     placeholder={product.minimumQuantity}
-{/*                     onChange={(e) => setMinQty(parseInt(e.target.value, 10))} */}
+                  onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
                   />
                   <IonButton className="ibuttonAdmin" onClick={() => handleUpdateMinQty(product.id, minQty)}>
                     Update Min Quantity
@@ -226,7 +226,7 @@ const DeleteItems = () => {
                   <label>Available Quantity:</label>
                   <input
                     type="number"
-                    placeholder='0'
+                    placeholder={product.availableQuantity}
                     onChange={(e) => setAvailQty(parseInt(e.target.value, 10))}
                   />
                   <IonButton className="ibuttonAdmin" onClick={() => handleUpdateAvailQty(product.id, availQty)}>
@@ -236,7 +236,7 @@ const DeleteItems = () => {
                   <label>Price:</label>
                   <input
                     type="number"
-                    placeholder='0'
+                    placeholder={product.price}
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
                   />
                   <IonButton className="ibuttonAdmin" onClick={() => handleUpdatePrice(product.id, price)}>

@@ -6,7 +6,7 @@ const CartItem = (props) => {
 
     const handleMinusQuantity = (id) => {
       const newCartList = cartList.map(item => {
-        if (item.id === id && item.quantity>1) {
+        if (item.id === id && item.quantity>item.minimumQuantity) {
           return { ...item, quantity: Number(item.quantity)-1 };np
         } else {
           return item;

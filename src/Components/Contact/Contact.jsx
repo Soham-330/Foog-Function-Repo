@@ -1,5 +1,4 @@
 import { IonButton, setupIonicReact } from '@ionic/react'
-
 import { db } from '../../../firebase';
 import { useEffect, useState } from 'react';
 import { getDocs, collection, addDoc, query, where } from 'firebase/firestore';

@@ -70,7 +70,7 @@ const ManageAvailability = () => {
 
 
         <div className="timings0">
-          <IonItem className="admin-item">
+          <IonItem className="item-native">
             <IonLabel>Dietician:</IonLabel>
             <IonSelect value={selectedDietician} placeholder="Select Dietician" onIonChange={(e) => setSelectedDietician(e.detail.value)}>
               {dieticians.map((dietician) => (
@@ -78,17 +78,18 @@ const ManageAvailability = () => {
               ))}
             </IonSelect>
           </IonItem>
-          <IonItem className="admin-item">
+          <div className="admin-item">
             <IonLabel>Date:</IonLabel>
             <IonDatetime
+            className="date-time"
             color="new"
               displayFormat="YYYY-MM-DD"
               value={date}
               onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
               presentation="date"
             />
-          </IonItem>
-          <IonItem className="admin-item ion-no-padding">
+          </div>
+          <IonItem className="item-native">
             <IonLabel>Start Time:</IonLabel>
             <IonInput
               type="time"
@@ -97,7 +98,7 @@ const ManageAvailability = () => {
               className="time-input"
             />
           </IonItem>
-          <IonItem className="admin-item ion-no-padding">
+          <IonItem className="item-native">
             <IonLabel>End Time:</IonLabel>
             <IonInput
               type="time"

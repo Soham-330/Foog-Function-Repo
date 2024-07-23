@@ -70,7 +70,7 @@
 
 .carousel {
     width: 450px;
-    padding: 50px;
+    padding: 50px ;
 }
 
 .carousel.carousel-slider .control-arrow:hover {
@@ -160,9 +160,38 @@
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     color: white;
+}
 
-} 
+.date-time :host .calendar-days-of-week{
+    color: white;
+}
 
+.booking1{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+.booking2{
+    display: flex;
+}
+
+.booking3{
+    flex: 1;
+}
+
+.bookingCard{
+    width: 400px;
+    height: 500px;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+
+}
 @media only screen and (max-width: 770px) {
 
 
