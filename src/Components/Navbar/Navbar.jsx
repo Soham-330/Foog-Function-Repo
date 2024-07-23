@@ -71,7 +71,7 @@ const onedigit = totalQuantity<10;
         <Link
           onClick={() => setMenuOpen(!menuOpen)}
           className="link"
-          to="/Admin"
+          to={`/${password}`}
         >
           {" "}
           Admin{" "}
