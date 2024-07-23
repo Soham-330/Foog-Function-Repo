@@ -76,6 +76,10 @@
     color: white;
 }
 
+.calendar-days-of-week .day-of-week {
+    color: white !important;
+}
+
 
 /* ********Manage Items ******** */
 

@@ -160,6 +160,7 @@
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     color: white;
+
 }
 
 .date-time :host .calendar-days-of-week{

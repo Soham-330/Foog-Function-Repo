@@ -180,7 +180,7 @@ const Booking = (props) => {
   return (
     <>
       <div className="title2 title3">
-        <h2>Dietician Availability</h2>
+        <h2>Consultant Booking Page</h2>
       </div>
       <div className="bookingPage">
         {consultant && (
@@ -293,7 +293,8 @@ const Booking = (props) => {
                 value={date}
                 onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
                 presentation="date"
-                className="date-time"
+                     className="custom-datetime"
+
               />
             </div>
 

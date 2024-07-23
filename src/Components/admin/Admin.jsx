@@ -28,7 +28,7 @@ function AdminPage() {
         </Link>
         <Link className="adminBtns" to={`/${password}/ManageConsultants`}>
           {" "}
-          ManageConsultants{" "}
+          Manage Consultants{" "}
         </Link>
       </div>
 

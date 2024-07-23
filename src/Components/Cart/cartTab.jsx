@@ -46,6 +46,8 @@ const CartTab = () => {
       totalPrice: totalPrice
     };
 
+
+
     try {
       await addDoc(collection(db, "orders"), order);
       // Navigate to the payment page
