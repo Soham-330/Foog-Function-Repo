@@ -38,9 +38,9 @@ const AddProduct = () => {
         name,
         image,
         text,
-        price,
-        availableQuantity,
-        minimumQuantity,
+        price : Number(price),
+        availableQuantity: Number(availableQuantity),
+        minimumQuantity: Number(minimumQuantity),
         categoryId: selectedCategory
       });
       const newProduct = { id: docRef.id, name, image, text, price, availableQuantity, minimumQuantity, categoryId: selectedCategory };

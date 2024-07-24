@@ -27,9 +27,6 @@ const CartItem = (props) => {
 
     };
 
-    console.log(cartList)
-
-
   const handleDeleteItem = (id) => {
     const newCartList = cartList.filter((item) => item.id !== id);
     setcartList(newCartList);
@@ -43,7 +40,7 @@ const CartItem = (props) => {
       </div>
       <div className="itemDetails">
         <h3>{props.name}</h3>
-    Minimum Quantity: {props.minimumQuantity}
+        Minimum Quantity: {props.minimumQuantity}
         <p>₹{props.price * props.quantity}</p>
         <div className="cartBtns">
           <button className="plusMinusBtn" onClick={() => handleMinusQuantity(props.id)}>

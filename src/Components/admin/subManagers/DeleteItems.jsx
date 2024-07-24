@@ -14,9 +14,8 @@ const DeleteItems = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertAction, setAlertAction] = useState(() => () => {});
-  const [minQty, setMinQty] = useState(0);
-  const [availQty, setAvailQty] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [editCategory, setEditCategory] = useState(null);
+  const [editProduct, setEditProduct] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -96,42 +95,68 @@ const DeleteItems = () => {
     fetchProducts(categoryId);
   };
 
-  const handleUpdateMinQty = async (productId, newQty) => {
+  const handleUpdateProduct = async (product) => {
     try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { minimumQuantity: newQty });
-      setProducts(products.map((product) =>
-        product.id === productId ? { ...product, minimumQuantity: newQty } : product
+      const productRef = doc(db, "products", product.id);
+      await updateDoc(productRef, {
+        minimumQuantity: product.minimumQuantity,
+        availableQuantity: product.availableQuantity,
+        price: product.price
+      });
+      setProducts(products.map((p) =>
+        p.id === product.id ? product : p
       ));
-      alert("Minimum Quantity updated successfully!");
+      alert("Product updated successfully!");
     } catch (error) {
-      console.error("Error updating minimum quantity: ", error);
+      console.error("Error updating product: ", error);
     }
   };
 
-  const handleUpdateAvailQty = async (productId, newQty) => {
+  const handleEditCategory = (category) => {
+    setEditCategory(category);
+  };
+
+  const handleSaveCategory = async () => {
     try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { availableQuantity: newQty });
-      setProducts(products.map((product) =>
-        product.id === productId ? { ...product, availableQuantity: newQty } : product
+      const categoryRef = doc(db, "categories", editCategory.id);
+      await updateDoc(categoryRef, {
+        name: editCategory.name,
+        image: editCategory.image,
+        text: editCategory.text,
+      });
+      setCategories(categories.map((category) =>
+        category.id === editCategory.id ? editCategory : category
       ));
-      alert("Available Quantity updated successfully!");
+      setEditCategory(null);
+      alert("Category updated successfully!");
     } catch (error) {
-      console.error("Error updating available quantity: ", error);
+      console.error("Error updating category: ", error);
     }
   };
 
-  const handleUpdatePrice = async (productId, newPrice) => {
+  const handleEditProduct = (product) => {
+    setEditProduct(product);
+  };
+
+  const handleSaveProduct = async () => {
     try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { price: newPrice });
+      const productRef = doc(db, "products", editProduct.id);
+      await updateDoc(productRef, {
+        name: editProduct.name,
+        text: editProduct.text,
+        image: editProduct.image,
+        categoryId: editProduct.categoryId,
+        minimumQuantity: editProduct.minimumQuantity,
+        availableQuantity: editProduct.availableQuantity,
+        price: editProduct.price,
+      });
       setProducts(products.map((product) =>
-        product.id === productId ? { ...product, price: newPrice } : product
+        product.id === editProduct.id ? editProduct : product
       ));
-      alert("Price updated successfully!");
+      setEditProduct(null);
+      alert("Product updated successfully!");
     } catch (error) {
-      console.error("Error updating price: ", error);
+      console.error("Error updating product: ", error);
     }
   };
 
@@ -174,10 +199,43 @@ const DeleteItems = () => {
               <IonButton className="ibuttonDel" onClick={() => handleDeleteCategory(category.id)}>
                 Delete Category
               </IonButton>
+                <a href="#editCategory">
+                <IonButton className="ibuttonEdit" onClick={() => handleEditCategory(category)}>
+                  Modify Category
+                </IonButton>
+                </a>
+              
             </div>
           </div>
         ))}
       </div>
+      {editCategory && (
+        <div className="editCategory" id='editCategory'>
+          <h3>Edit Category</h3>
+          <p>Name</p>
+          <input
+            type="text"
+            value={editCategory.name}
+            onChange={(e) => setEditCategory({ ...editCategory, name: e.target.value })}
+            placeholder="Name"
+          />
+          <p>Image</p>
+          <input
+            type="text"
+            value={editCategory.image}
+            onChange={(e) => setEditCategory({ ...editCategory, image: e.target.value })}
+            placeholder="Image URL"
+          />
+          <p>Text</p>
+          <input
+            type="text"
+            value={editCategory.text}
+            onChange={(e) => setEditCategory({ ...editCategory, text: e.target.value })}
+            placeholder="Text"
+          />
+          <IonButton onClick={handleSaveCategory}>Save Category</IonButton>
+        </div>
+      )}
       <hr />
       <h2>Delete Products from Category</h2>
       <div className="delPro">
@@ -204,41 +262,12 @@ const DeleteItems = () => {
                   <IonButton className="ibuttonDel" onClick={() => handleDeleteProduct(product.id)}>
                     Delete Product
                   </IonButton>
-                </div>
-                <div>
-                  <label>Min Quantity:</label>
-                  <input
-                    type="number"
-                    // value={minQty}
-                    placeholder={product.minimumQuantity}
-                    onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
-                  />
-                  <IonButton onClick={() => handleUpdateMinQty(product.id, minQty)}>
-                    Update Min Quantity
+                  <a href="#editProduct">
+                  <IonButton className="ibuttonEdit" onClick={() => handleEditProduct(product)}>
+                    Modify Product
                   </IonButton>
-                </div>
-                <div>
-                  <label>Available Quantity:</label>
-                  <input
-                    type="number"
-                    // value={availQty}
-                    placeholder={product.availableQuantity}
-                    onChange={(e) => setAvailQty(parseInt(e.target.value, 10))}
-                  />
-                  <IonButton onClick={() => handleUpdateAvailQty(product.id, availQty)}>
-                    Update Available Quantity
-                  </IonButton>
-                </div>
-                <div>
-                  <label>Price:</label>
-                  <input
-                    type="number"
-                    placeholder={product.price}
-                    onChange={(e) => setPrice(parseFloat(e.target.value))}
-                  />
-                  <IonButton onClick={() => handleUpdatePrice(product.id, price)}>
-                    Update Price
-                  </IonButton>
+                  </a>
+                  
                 </div>
               </div>
             ))}
@@ -248,6 +277,65 @@ const DeleteItems = () => {
           </div>
         )}
       </div>
+      {editProduct && (
+        <div className="editProduct" id='editProduct'>
+          <h3>Edit Product</h3>
+          <p>Name</p>
+          <input
+            type="text"
+            value={editProduct.name}
+            onChange={(e) => setEditProduct({ ...editProduct, name: e.target.value })}
+            placeholder="Name"
+          />
+          <p>Text</p>
+          <input
+            type="text"
+            value={editProduct.text}
+            onChange={(e) => setEditProduct({ ...editProduct, text: e.target.value })}
+            placeholder="Text"
+          />
+          <p>Image</p>
+          <input
+            type="text"
+            value={editProduct.image}
+            onChange={(e) => setEditProduct({ ...editProduct, image: e.target.value })}
+            placeholder="Image URL"
+          />
+          <select
+            value={editProduct.categoryId}
+            onChange={(e) => setEditProduct({ ...editProduct, categoryId: e.target.value })}
+          >
+            <option value="">Select Category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+          <p>Minumum Qunatity</p>
+          <input
+            type="number"
+            value={editProduct.minimumQuantity}
+            onChange={(e) => setEditProduct({ ...editProduct, minimumQuantity: parseInt(e.target.value, 10) })}
+            placeholder="Minimum Quantity"
+          />
+          <p>Available Qunatity</p>
+          <input
+            type="number"
+            value={editProduct.availableQuantity}
+            onChange={(e) => setEditProduct({ ...editProduct, availableQuantity: parseInt(e.target.value, 10) })}
+            placeholder="Available Quantity"
+          />
+          <p>Price</p>
+          <input
+            type="number"
+            value={editProduct.price}
+            onChange={(e) => setEditProduct({ ...editProduct, price: parseFloat(e.target.value) })}
+            placeholder="Price"
+          />
+          <IonButton onClick={handleSaveProduct}>Save Product</IonButton>
+        </div>
+      )}
     </div>
   );
 };

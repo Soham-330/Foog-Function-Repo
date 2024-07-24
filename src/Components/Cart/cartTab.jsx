@@ -22,7 +22,8 @@ const CartTab = () => {
   const handleCheckout = () => {
     let allQuantitiesMet = true;
     cartList.forEach((item) => {
-      if (!(item.quantity > item.availableQuantity)) {
+      if ((item.quantity > item.availableQuantity)) {
+        console.log(item);
         alert(`This much Quantity of ${item.name} is not available in stock currently,\nPlease select a lower quantity`);
         allQuantitiesMet = false;
       }
@@ -43,7 +44,9 @@ const CartTab = () => {
       number: Number(customerDetails.phone),
       email: customerDetails.email,
       items: items,
-      totalPrice: totalPrice
+      totalPrice: totalPrice,
+      paid:false,
+      time: new Date(),
     };
 
     try {

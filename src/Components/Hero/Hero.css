@@ -334,12 +334,93 @@ p {
 }
 
 /* Calendar of Bookings.jsx */
-.date-time{
-    --background:  white;
-    --color: white;
-    --border-radius: 1px;
-    --box-shadow:0 4px 8px rgb(149, 255, 0);
-} 
+/* Ionic Calendar CSS */
+.date-time {
+    --ion-color-step-50: #f0f0f0; /* Light gray background for calendar days */
+    --ion-color-step-500: white;
+    --wheel-highlight-background: orange;
+    --wheel-fade-background-rgb: rgb(255,255,255);
+    --ion-color-primary: #9c89ff;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+  } 
+
+/* Customize the month and year toggle text color */
+.date-time::part(month-year-toggle) {
+    color: white !important; /* Change text color to white */
+}
+
+  :root {
+	--ion-color-new: #9c89ff;
+	--ion-color-new-rgb: 156,137,255;
+	--ion-color-new-contrast: #000000;
+	--ion-color-new-contrast-rgb: 0,0,0;
+	--ion-color-new-shade: #8979e0;
+	--ion-color-new-tint: #a695ff;
+}
+
+.ion-color-new {
+	--ion-color-base: var(--ion-color-new);
+	--ion-color-base-rgb: var(--ion-color-new-rgb);
+	--ion-color-contrast: var(--ion-color-new-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-new-contrast-rgb);
+	--ion-color-shade: var(--ion-color-new-shade);
+	--ion-color-tint: var(--ion-color-new-tint);
+}
+
+.bookingPage {
+    display: flex;
+    align-items: start;
+
+}
+
+.bookingPage input, .bookingPage select{
+    margin: 10px 0;
+
+}
+.bookingForm {
+    color: white;
+}
+
+.bookingCalender {
+    margin: 30px;
+}
+
+.bookingSlots {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.booking1{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+.booking2{
+    display: flex;
+}
+
+.booking3{
+    flex: 1;
+}
+
+.bookingCard{
+    width: 400px;
+    height: 500px;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+
+}
+  
 
 /* ******Footer***** */
 

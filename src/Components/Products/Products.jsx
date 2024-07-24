@@ -9,7 +9,6 @@ function Products(){
 
     
     const id = useParams();
-    console.log(id);
     // const [products, setProducts] = useState([]);
     const [proList, setProList] = useState([]);
 

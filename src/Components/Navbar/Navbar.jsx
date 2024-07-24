@@ -10,7 +10,7 @@ function Navbar() {
 
   useEffect(() => {
     let total = 0;
-    cartList.forEach((item) => (total += item.quantity));
+    cartList.forEach((item) => ((total) += Number(item.quantity)));
     setTotalQuantity(total);
   }, [cartList]);
 
