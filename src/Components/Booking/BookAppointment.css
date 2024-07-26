@@ -50,11 +50,11 @@
     margin: 10px 0;
 }
 
-.carousel li {
+.doc-carousel li {
     margin: 0 10px;
     text-align: start;
     list-style: disc;
-}
+} 
 
 .carousel .ibutton {
     padding: 0;
@@ -212,6 +212,7 @@
 li.slide::marker{
     display: none;
   }
+  
 
 
 @media only screen and (max-width: 1100px) {
@@ -257,8 +258,6 @@ li.slide::marker{
         margin: 0;
     
     }
-
-
 
     .bookingPage {
         flex-direction: column;
