@@ -171,12 +171,12 @@ const AppointmentManager = () => {
 
   const toggleSlotView = () => {
     setShowAllSlots(!showAllSlots);
-    {showAllSlots ? setSlotTitle('Today and Future Slots') : setSlotTitle('All Slots') }
+    { showAllSlots ? setSlotTitle('Today and Future Slots') : setSlotTitle('All Slots') }
   };
 
   const toggleCompletedSlotsView = () => {
     setShowCompletedSlots(!showCompletedSlots);
-   
+
   };
 
   const toggleSortOrder = () => {
@@ -201,16 +201,16 @@ const AppointmentManager = () => {
 
       {selectedDietician && (
         <div>
-                <div className="manageOrderButtons">
-          <button className="toggleBtns" onClick={toggleSlotView}>
-            {showAllSlots ? 'Show Today and Future Slots' : 'Show All Slots'}
-          </button>
-          <button className="toggleBtns" onClick={toggleCompletedSlotsView}>
-            {showCompletedSlots ? 'Show Incomplete Slots' : 'Show Completed Slots'}
-          </button>
-          <button className="toggleBtns" onClick={toggleSortOrder}>
-            {sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'}
-          </button>
+          <div className="manageOrderButtons">
+            <button className="toggleBtns" onClick={toggleSlotView}>
+              {showAllSlots ? 'Show Today and Future Slots' : 'Show All Slots'}
+            </button>
+            <button className="toggleBtns" onClick={toggleCompletedSlotsView}>
+              {showCompletedSlots ? 'Show Incomplete Slots' : 'Show Completed Slots'}
+            </button>
+            <button className="toggleBtns" onClick={toggleSortOrder}>
+              {sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'}
+            </button>
           </div>
           <div className="bookedSlots">
             <h3>{slotTitle}</h3>
@@ -226,7 +226,8 @@ const AppointmentManager = () => {
                       {slot.isCompleted ? 'Mark as Incomplete' : 'Complete Slot'}
                     </button>
                     <button className="toggleBtns" onClick={() => handleDeleteSlot(slot.id)}>Delete Slot</button>
-                    <button className="toggleBtns" onClick={() => handleRescheduleSlot(slot.id)}>Reschedule Slot</button>
+                    <a href="#reschedule"><button className="toggleBtns" onClick={() => handleRescheduleSlot(slot.id)}>Reschedule Slot</button></a>
+
                   </li>
                 </div>
               ))}
@@ -236,24 +237,26 @@ const AppointmentManager = () => {
       )}
 
       {showReschedule && (
-        <div>
-          <h3>Reschedule Slot</h3>
-          <label>
-            Select Date:
-            <input type="date" value={rescheduleDate} onChange={(e) => setRescheduleDate(e.target.value)} />
-          </label>
+        <div className='reschedule' id='reschedule'>
+          <h2>Reschedule Slot</h2>
+
+          <label>Select Date: </label>
+          <input type="date" value={rescheduleDate} onChange={(e) => setRescheduleDate(e.target.value)} />
+
+
           <div>
             <h4>Available Time Slots</h4>
             <ul>
               {rescheduleTimeSlots.map((slot, index) => (
                 <li key={index} onClick={() => setSelectedRescheduleSlot(slot)} style={{
+                  display: "flex",
                   cursor: 'pointer',
-                  padding: '10px',
-                  border: '1px solid #ccc',
-                  margin: '5px 0',
+                  padding: '15px 10px',
+                  margin: '10px 0',
                   borderRadius: '5px',
-                  backgroundColor: selectedRescheduleSlot === slot ? '#007bff' : '#f8f9fa',
-                  color: selectedRescheduleSlot === slot ? '#fff' : '#000'
+                  backgroundColor: selectedRescheduleSlot === slot ? '#5252ff' : '#f0e3e35a',
+                  boxshadow: '3px 5px 5px rgba(0, 0, 0, 0.1)',
+              
                 }}>
                   {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
                 </li>

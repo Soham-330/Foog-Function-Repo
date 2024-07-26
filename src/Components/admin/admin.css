@@ -236,6 +236,39 @@ select {
     color: white;
 }
 
+.reschedule{
+    color: white;
+}
+.reschedule input{
+   margin: 10px 0;
+}
+
+.reschedule li{
+
+    font-size: 1rem;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #f0e3e35a;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reschedule button{
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    padding: 20px;
+    background-color: #9c89ff;
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    color: rgb(255, 255, 255);
+}
+
+
 .bookings {
     width: 100%;
     height: max-content;
