@@ -221,6 +221,12 @@ li.slide::marker{
         width: 90vw;
         margin: 20px;
     }
+    .container h2 {
+     font-size: 1.8rem;
+    }
+    .container p {
+     font-size: 1rem;
+    }
 
     .appointment-body {
         height: max-content;
@@ -244,6 +250,12 @@ li.slide::marker{
 
     .container {
         padding: 15px;
+    }
+
+    .carousel .control-dots {
+        translate: 0;
+        margin: 0;
+    
     }
 
 

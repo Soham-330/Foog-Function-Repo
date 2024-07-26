@@ -320,6 +320,7 @@ select {
 }
 .manageOrderButtons button{
   flex: 1;
+  font-size: 0.7rem;
 }
 .orders {
     color: white;
