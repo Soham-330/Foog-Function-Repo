@@ -20,6 +20,10 @@ const CartTab = () => {
   }, [cartList]);
 
   const handleCheckout = () => {
+    if (cartList.length === 0) {
+      alert("Cart is Empty\nPlease Add some items to Cart");
+      return;
+    }
     let allQuantitiesMet = true;
     cartList.forEach((item) => {
       if ((item.quantity > item.availableQuantity)) {
@@ -43,7 +47,9 @@ const CartTab = () => {
       number: Number(customerDetails.phone),
       email: customerDetails.email,
       items: items,
-      totalPrice: totalPrice
+      totalPrice: totalPrice,
+      paid: false,
+      time: new Date(),
     };
 
 

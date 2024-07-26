@@ -9,6 +9,9 @@ function AdminPage() {
 
   return (
     <>
+       <div className='title2 title3'>
+                <h2>Admin Page</h2>
+            </div>
       <div className="adminPage">
         <Link className="adminBtns" to={`/${password}/ManageItems`}>
           {" "}

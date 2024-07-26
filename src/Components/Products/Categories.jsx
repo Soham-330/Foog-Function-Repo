@@ -29,7 +29,7 @@ function Categories(){
     return(
         <>
                 <div className='title2 title3'>
-                <h2>Categories</h2>
+                <h2>Products</h2>
             </div>
         <div className="cat-body">
             {catList.map((cat) => (

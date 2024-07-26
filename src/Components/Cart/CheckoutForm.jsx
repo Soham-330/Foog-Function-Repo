@@ -41,7 +41,7 @@ const CheckoutForm = ({ handleSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form className="checkoutForm" onSubmit={handleFormSubmit}>
       <div>
         <label>Name:</label>
         <input

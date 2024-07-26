@@ -4,9 +4,14 @@
     align-items: center;
     color: white;
     background-color: rgba(255, 255, 255, 0.084);
-    padding: 5px 15px;
+    padding: 10px 15px;
 }
 
+.navMob{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .logo h2 {
     color: white;
 }
@@ -58,17 +63,30 @@
 
 .quantity {
     position:absolute;
-    translate: -33.5px 17px;
+    translate: -31px -8px;
     font-size: 16px;
-    color:  #1c1444;
+    color:  white;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    text-align: center;
+    border-radius: 50%
+}
+
+.calendar-days-of-week.day-of-week {
+    margin-inline: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #de0000 !important;
 }
 
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1100px) {
 
     .links {
         display: none;
     }
+
 
     .mbtn {
         display: block;

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import { collection, getDocs, deleteDoc, doc, query, where, updateDoc } from "firebase/firestore";
 import {
-  IonCard, IonCardHeader, IonCardSubtitle, IonCardContent,
-  IonCardTitle, IonButton, IonAlert, setupIonicReact
+  IonButton, IonAlert, setupIonicReact
 } from "@ionic/react";
 import { db } from "../../../../firebase";
 setupIonicReact();
@@ -15,9 +13,8 @@ const DeleteItems = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertAction, setAlertAction] = useState(() => () => { });
-  const [minQty, setMinQty] = useState(0);
-  const [availQty, setAvailQty] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [editCategory, setEditCategory] = useState(null);
+  const [editProduct, setEditProduct] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -31,36 +28,7 @@ const DeleteItems = () => {
     };
 
     fetchCategories();
-
   }, []);
-
-  const handleUpdateMinQty = async (productId, newQty) => {
-    try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { minimumQuantity: newQty });
-      setProducts(products.map((product) =>
-        product.id === productId ? { ...product, minimumQuantity: newQty } : product
-      ));
-      //Making an Change Here
-      setMinQty(newQty);
-      alert("Minimum Quantity updated successfully!");
-    } catch (error) {
-      console.error("Error updating minimum quantity: ", error);
-    }
-  };
-
-  const handleUpdateAvailQty = async (productId, newQty) => {
-    try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { availableQuantity: newQty });
-      setProducts(products.map((product) =>
-        product.id === productId ? { ...product, availableQuantity: newQty } : product
-      ));
-      alert("Available Quantity updated successfully!");
-    } catch (error) {
-      console.error("Error updating available quantity: ", error);
-    }
-  };
 
   const fetchProducts = async (categoryId) => {
     const productsCollection = collection(db, "products");
@@ -126,16 +94,68 @@ const DeleteItems = () => {
     fetchProducts(categoryId);
   };
 
-  const handleUpdatePrice = async (productId, newPrice) => {
+  const handleUpdateProduct = async (product) => {
     try {
-      const productRef = doc(db, "products", productId);
-      await updateDoc(productRef, { price: newPrice });
-      setProducts(products.map((product) =>
-        product.id === productId ? { ...product, price: newPrice } : product
+      const productRef = doc(db, "products", product.id);
+      await updateDoc(productRef, {
+        minimumQuantity: product.minimumQuantity,
+        availableQuantity: product.availableQuantity,
+        price: product.price
+      });
+      setProducts(products.map((p) =>
+        p.id === product.id ? product : p
       ));
-      alert("Price updated successfully!");
+      alert("Product updated successfully!");
     } catch (error) {
-      console.error("Error updating price: ", error);
+      console.error("Error updating product: ", error);
+    }
+  };
+
+  const handleEditCategory = (category) => {
+    setEditCategory(category);
+  };
+
+  const handleSaveCategory = async () => {
+    try {
+      const categoryRef = doc(db, "categories", editCategory.id);
+      await updateDoc(categoryRef, {
+        name: editCategory.name,
+        image: editCategory.image,
+        text: editCategory.text,
+      });
+      setCategories(categories.map((category) =>
+        category.id === editCategory.id ? editCategory : category
+      ));
+      setEditCategory(null);
+      alert("Category updated successfully!");
+    } catch (error) {
+      console.error("Error updating category: ", error);
+    }
+  };
+
+  const handleEditProduct = (product) => {
+    setEditProduct(product);
+  };
+
+  const handleSaveProduct = async () => {
+    try {
+      const productRef = doc(db, "products", editProduct.id);
+      await updateDoc(productRef, {
+        name: editProduct.name,
+        text: editProduct.text,
+        image: editProduct.image,
+        categoryId: editProduct.categoryId,
+        minimumQuantity: editProduct.minimumQuantity,
+        availableQuantity: editProduct.availableQuantity,
+        price: editProduct.price,
+      });
+      setProducts(products.map((product) =>
+        product.id === editProduct.id ? editProduct : product
+      ));
+      setEditProduct(null);
+      alert("Product updated successfully!");
+    } catch (error) {
+      console.error("Error updating product: ", error);
     }
   };
 
@@ -163,12 +183,10 @@ const DeleteItems = () => {
           }
         ]}
       />
-
       <h2>Delete Category</h2>
-
       <div className="cat-body">
         {categories.map((category) => (
-          <div className="catCard" key={category.id}>
+          <div className="catCardAdmin" key={category.id}>
             <div className="catImg">
               <img alt={`Image of ${category.name}`} src={category.image} />
             </div>
@@ -176,16 +194,55 @@ const DeleteItems = () => {
             <div className="catText">
               {category.text}
             </div>
-            <div>
-              <IonButton className="ibuttonDel" onClick={() => handleDeleteCategory(category.id)}>
-                Delete Category
+            <IonButton className="ibuttonDel" onClick={() => handleDeleteCategory(category.id)}>
+              Delete Category
+            </IonButton>
+            <a href="#editCategory">
+              <IonButton className="ibuttonEdit" onClick={() => handleEditCategory(category)}>
+                Modify Category
               </IonButton>
-            </div>
+            </a>
           </div>
         ))}
       </div>
-      <hr />
-      <h2>Delete/Modify Products from Category</h2>
+      {editCategory && (
+        <>
+          <div id='editCategory' className='title2 title3'>
+            <h2>Edit Category</h2>
+          </div>
+          <div className="centreForm">
+            <div className="editItems">
+              <p>Name</p>
+              <input
+                type="text"
+                value={editCategory.name}
+                onChange={(e) => setEditCategory({ ...editCategory, name: e.target.value })}
+                placeholder="Name"
+              />
+              <p>Image</p>
+              <input
+                type="text"
+                value={editCategory.image}
+                onChange={(e) => setEditCategory({ ...editCategory, image: e.target.value })}
+                placeholder="Image URL"
+              />
+              <p>Text</p>
+              <input
+                type="text"
+                value={editCategory.text}
+                onChange={(e) => setEditCategory({ ...editCategory, text: e.target.value })}
+                placeholder="Text"
+              />
+              <button onClick={handleSaveCategory}>Save Category</button>
+            </div>
+          </div>
+        </>
+      )}
+
+      <div className='title2 title3'>
+        <h2>Delete Products from Category</h2>
+      </div>
+
       <div className="delPro">
         <select className="selectBtn" value={selectedCategory} onChange={handleCategoryChange}>
           <option value="">Select Category</option>
@@ -206,55 +263,90 @@ const DeleteItems = () => {
                 <div className="catText">
                   {product.text}
                 </div>
-                <div>
-                  <IonButton className="ibuttonDel" onClick={() => handleDeleteProduct(product.id)}>
-                    Delete Product
+                <IonButton className="ibuttonDel" onClick={() => handleDeleteProduct(product.id)}>
+                  Delete Product
+                </IonButton>
+                <a href="#editProduct">
+                  <IonButton className="ibuttonEdit" onClick={() => handleEditProduct(product)}>
+                    Modify Product
                   </IonButton>
-                </div>
-        
-                  <label>Min Quantity:</label>
-                  <input
-                    type="number"
-                    placeholder={product.minimumQuantity}
-                  onChange={(e) => setMinQty(parseInt(e.target.value, 10))}
-                  />
-                  <IonButton className="ibuttonAdmin" onClick={() => handleUpdateMinQty(product.id, minQty)}>
-                    Update Min Quantity
-                  </IonButton>
-            
-            
-                  <label>Available Quantity:</label>
-                  <input
-                    type="number"
-                    placeholder={product.availableQuantity}
-                    onChange={(e) => setAvailQty(parseInt(e.target.value, 10))}
-                  />
-                  <IonButton className="ibuttonAdmin" onClick={() => handleUpdateAvailQty(product.id, availQty)}>
-                    Update Available Quantity
-                  </IonButton>
-              
-                  <label>Price:</label>
-                  <input
-                    type="number"
-                    placeholder={product.price}
-                    onChange={(e) => setPrice(parseFloat(e.target.value))}
-                  />
-                  <IonButton className="ibuttonAdmin" onClick={() => handleUpdatePrice(product.id, price)}>
-                    Update Price
-                  </IonButton>
-              
+                </a>
               </div>
             ))}
-            <div>
             <IonButton className="ibuttonDel" onClick={handleDeleteProducts}>
               Delete All Products
             </IonButton>
+          </div>
+        )}
+      </div>
+
+      {editProduct && (
+        <>
+          <div id='editProduct' className='title2 title3'>
+            <h2>Edit Product</h2>
+          </div>
+          <div className="centreForm">
+            <div className="editItems">
+              <p>Name</p>
+              <input
+                type="text"
+                value={editProduct.name}
+                onChange={(e) => setEditProduct({ ...editProduct, name: e.target.value })}
+                placeholder="Name"
+              />
+              <p>Text</p>
+              <input
+                type="text"
+                value={editProduct.text}
+                onChange={(e) => setEditProduct({ ...editProduct, text: e.target.value })}
+                placeholder="Text"
+              />
+              <p>Image</p>
+              <input
+                type="text"
+                value={editProduct.image}
+                onChange={(e) => setEditProduct({ ...editProduct, image: e.target.value })}
+                placeholder="Image URL"
+              />
+              <p>Category</p>
+              <select
+                value={editProduct.categoryId}
+                onChange={(e) => setEditProduct({ ...editProduct, categoryId: e.target.value })}
+              >
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              <p>Minumum Quantity</p>
+              <input
+                type="number"
+                value={editProduct.minimumQuantity}
+                onChange={(e) => setEditProduct({ ...editProduct, minimumQuantity: parseInt(e.target.value, 10) })}
+                placeholder="Minimum Quantity"
+              />
+              <p>Available Quantity</p>
+              <input
+                type="number"
+                value={editProduct.availableQuantity}
+                onChange={(e) => setEditProduct({ ...editProduct, availableQuantity: parseInt(e.target.value, 10) })}
+                placeholder="Available Quantity"
+              />
+              <p>Price</p>
+              <input
+                type="number"
+                value={editProduct.price}
+                onChange={(e) => setEditProduct({ ...editProduct, price: parseFloat(e.target.value) })}
+                placeholder="Price"
+              />
+              <button onClick={handleSaveProduct}>Save Product</button>
             </div>
           </div>
-          
-        )}
-       
-      </div>
+        </>
+      )}
+
     </div>
   );
 };

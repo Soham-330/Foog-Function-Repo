@@ -1,123 +1,77 @@
 .appointment-body {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     color: white;
 }
-.appointment-body p{
-    text-align: justify;
-}
+
 
 .container {
+    width: 85vw;
+    height: 85vh;
+    padding: 30px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
-    width: 85%;
-    height: 80%;
-    padding: 30px;
-
 }
 
-
-
-
 .description {
-    width: 50vw;
-    font-size: 1rem;
-    color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: justify;
 }
 
 .description h2 {
-    font-size: 35px;
-    margin-left: 20px;
+    margin: 10px 20px;
 }
 
-.counselor-det {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #f2f2f2;
-
-}
-
-.points{
-    margin: 20px;
-}
-.creden {
-    font-size: 1.2rem;
-    margin: 10px;
-}
-
-.appointment-det {
-    font-size: 1.5rem;
-    margin: 10px;
-}
-
-.book-btn {
-    font-size: 0.8rem;
-    height: 45px;
-    margin: 30px 0;
-    --ion-color-primary: #9c89ff;
-    --border-radius: 12px;
-    --padding-top: 8px;
-    --padding-bottom: 8px;
+.description li {
+    margin: 10px 0;
 }
 
 .carousel {
     width: 450px;
-    padding: 50px ;
+    padding: 10px 50px;
 }
 
-.carousel.carousel-slider .control-arrow:hover {
-    background: rgba(0, 0, 0, 0);
-}
-
-.carousel h3 {
-    font-size: 1.2rem;
-}
-
-.carousel ul {
-    text-align: left;
-    margin: 10px;
-    font-size: 12px;
-    margin-left: 50px;
-}
-
-.carousel .control-dots {
-    position: absolute;
-    left: 50%;
-    top: 80%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.description li {
-    margin: 20px 0;
-}
-
-
-.doc-carousel img {
+.carousel img {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.price {
-    font-size: 1.5rem;
+.carousel ul {
+    margin: 10px 0;
 }
 
-.duration {
-    font-size: 1.3rem;
+.carousel li {
+    margin: 0 10px;
+    text-align: start;
+    list-style: disc;
 }
+
+.carousel .ibutton {
+    padding: 0;
+    width: 93%;
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+    background: rgba(0, 0, 0, 0);
+}
+
+.carousel .control-dots {
+    translate: -50px 0;
+    margin: 0;
+
+}
+
+
 
 .loadingPage {
     height: 100vh;
@@ -132,57 +86,50 @@
 /* **********Booking********* */
 .bookingPage {
     display: flex;
-    align-items: start;
-
+    flex-direction: column;
+    padding: 30px;
 }
 
-.bookingPage input, .bookingPage select{
+.bookingTop {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.bookingPage input,
+.bookingPage select {
     margin: 10px 0;
 
 }
-.bookingForm {
-    color: white;
-}
 
-.bookingCalender {
-    margin: 30px;
-}
 
 .bookingSlots {
+    flex: 1;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    margin: 30px;
 }
 
-.date-time{
+.date-time {
+    margin: 0 30px;
     --ion-color-primary: #9c89ff;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     color: white;
-
-}
-
-.date-time :host .calendar-days-of-week{
-    color: white;
-}
-
-.booking1{
-    display: flex;
-    flex-direction: column;
-    padding: 50px;
-}
-.booking2{
-    display: flex;
-}
-
-.booking3{
+    --ion-color-step-500: white;
+    --ion-color-step-650: white;
+    --ion-color-new-contrast: white;
+    --wheel-highlight-background: #ffa500;
+    --wheel-fade-background-rgb: rgb(255,255,255);
     flex: 1;
 }
 
-.bookingCard{
-    width: 400px;
-    height: 500px;
+.bookingCard {
+    width: 300px;
+    height: 350px;
     background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
@@ -191,23 +138,100 @@
     align-items: center;
     justify-content: space-around;
     color: white;
+    padding: 20px;
+    flex: 1;
+}
+.bookingCard p{
+    font-size: 1rem;
+}
+.bookingCard img {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* This is CSS of Radio Buttons of Bookings.jsx */
+
+.radio-item {
+    display: inline-block;
+    font-size: 1rem;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: rgba(240, 227, 227, 0.352);
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.radio-label {
+    display: inline-block;
+    width: 150px;
+    /* Adjust width as needed */
+    padding: 15px 10px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.radio-label.selected {
+    background-color: #5252ff;
 
 }
-@media only screen and (max-width: 770px) {
 
+.radio-input {
+    display: none;
+}
+
+
+.bookingForm {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.bookingForm h2{
+    margin-left: 10px;
+}
+.bookingForm .section {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.field {
+    flex: 1;
+    margin: 10px;
+}
+
+.bookBtn{
+    margin-left: 10px;
+}
+li.slide::marker{
+    display: none;
+  }
+
+
+@media only screen and (max-width: 1100px) {
+    .container {
+        flex-direction: column;
+        height: max-content;
+        width: 90vw;
+        margin: 20px;
+    }
 
     .appointment-body {
         height: max-content;
         margin: 50px 0px;
     }
 
-    .container {
-        padding: 10px;
-        flex-direction: column;
-        height: max-content;
-        width: 90vw;
-        margin: 20px;
-    }
+}
+
+
+@media only screen and (max-width: 770px) {
+
 
     .carousel {
         width: 250px;
@@ -216,38 +240,35 @@
 
     .carousel.carousel-slider .control-arrow:hover {
         background: rgba(0, 0, 0, 0);
-    } 
+    }
 
-    .carousel .control-dots {
-        top: 95%;
+    .container {
+        padding: 15px;
     }
 
 
-    .description {
-        width: 100%;
-        padding: 10px;
 
-    }
-
-    .description h2 {
-        font-size: 30px;
-    }
-
-    .description p {
-        font-size: 0.9rem;
-    }
-
-    .book-btn {
-        font-size: 1rem;
-        height: 40px;
-      
-    }
-
-    .bookingPage{
+    .bookingPage {
         flex-direction: column;
         align-items: center;
     }
+
+    .bookingTop {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .date-time {
+        margin: 30px 0;
+        width: 90vw;
+    }
+
+    .bookingForm{
+        margin: 0;
+        margin-top: 30px;
+    }
+    .bookingForm .section {
+        display: block;
+    }
 }
-
-
- 

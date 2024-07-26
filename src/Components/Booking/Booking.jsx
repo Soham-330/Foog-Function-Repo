@@ -30,9 +30,7 @@ const Booking = (props) => {
   const validateAge = (age) => !isNaN(parseInt(age, 10)) && parseInt(age, 10) >= 1 && parseInt(age, 10) <= 100;
   const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     if (!name || !validateMobileNumber(mobileNumber) || !validateAge(age) || !gender || !validateEmail(email)) {
       setError('Please fill in all fields correctly');
       return;
@@ -50,6 +48,7 @@ const Booking = (props) => {
         end: format(selectedSlot.end, 'HH:mm'),
         dieticianId: id,
         isCompleted: false,
+        timestamp: new Date(),
       });
 
       await addDoc(collection(db, 'dietician_unavail'), {
@@ -62,7 +61,6 @@ const Booking = (props) => {
       alert("Slot booked successfully!");
       setDate(format(addDays(new Date(), 1), 'yyyy-MM-dd'));
       setSelectedSlot(null);
-      alert('');
       setName('');
       setMobileNumber('');
       setAge('');
@@ -182,169 +180,158 @@ const Booking = (props) => {
       <div className="title2 title3">
         <h2>Consultant Booking Page</h2>
       </div>
+
       <div className="bookingPage">
-        {consultant && (
-          <div className="appointment-body">
-            <div className="container">
-              <div className="description">
-                <h2 className='heading'>{consultant.category.toUpperCase()} SERVICES</h2>
-                {(consultant.category === 'physician') ? 
-                  <p>Book a one-on-one consultation with a certified dietician to discuss your dietary needs and health goals. Our consultants provide personalized advice, meal planning, and practical strategies to help you achieve better health.</p> : 
-                  <p>Schedule a session with a certified life coach to help you identify and achieve your personal and professional goals. Our life coaches provide personalized strategies and support to help you unlock your potential and live a more fulfilling life.</p>}
-                <div>
-                  <b>Benefits:</b>
-                  <ul>{(consultant.category === 'physician') ?
-                    <>
-                      <li>Tailored Guidance: Customized nutrition plans based on your lifestyle and goals.</li>
-                      <li>Expert Support: Professional advice from certified consultants.</li>
-                      <li>Health Monitoring: Regular follow-ups to track and adjust your progress.</li>
-                      <li>Convenience: In-person or virtual appointments to fit your schedule.</li>
-                    </> :
-                    <>
-                      <li>Tailored Guidance: Personalized strategies to achieve your personal and professional goals.</li>
-                      <li>Expert Support: Professional advice from certified life coaches.</li>
-                      <li>Goal Setting: Help in identifying and setting achievable goals.</li>
-                      <li>Convenience: In-person or virtual appointments to fit your schedule.</li>
-                    </>
-                  }
-                  </ul>
-                </div>
+        <div className="bookingTop">
+          <div className="bookingDoc">
+            {consultant && (
+              <div className="bookingCard ">
+                <img src={consultant.image} alt={`Dietician ${consultant.name}`} />
+                <p>
+                <h3>{consultant.name}</h3>
+                <ul>
+                  {Array.isArray(consultant.credentials) ? (
+                    consultant.credentials.map((credential, credIndex) => (
+                      <li key={credIndex}>{credential}</li>
+                    ))
+                  ) : (<li>No credentials available</li>)}
+                </ul>
+                <h3 className='price'>{`Price: Rs ${consultant.fees}`}</h3>
+                <h3 className='duration'>Duration: 30 mins</h3>
+                </p>
               </div>
-              <div className="carousel">
-                  <div className='doc-carousel'>
-                    <img src={consultant.image} alt={`Dietician ${consultant.name}`} />
-                    <h3>{consultant.name}</h3>
-                    <ul>
-                      {Array.isArray(consultant.credentials) ? (
-                        consultant.credentials.map((credential, credIndex) => (
-                          <li key={credIndex}>{credential}</li>
-                        ))
-                      ) : (<li>No credentials available</li>)}
-                    </ul>
-                    <h3 className='price'>{`Price: Rs ${consultant.fees}`}</h3>
-                    <h3 className='duration'>Duration: 30 mins</h3>
-                  </div>
-              </div>  
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="container">
-        <form onSubmit={handleSubmit}>
-          <div className="section">
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
+            )}
 
-          <div className="section">
-            <label htmlFor="mobileNumber">Mobile Number</label>
-            <input
-              id="mobileNumber"
-              type="text"
-              value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
-            />
           </div>
-
-          <div className="section">
-            <label htmlFor="age">Age</label>
-            <input
-              id="age"
-              type="text"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-          </div>
-
-          <div className="section">
-            <label htmlFor="gender">Gender</label>
-            <select
-              id="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div className="section">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-
           <div className="bookingCalender">
-              <IonDatetime
-                color="new"
-                displayFormat="YYYY-MM-DD"
-                min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
-                value={date}
-                onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
-                presentation="date"
-                     className="custom-datetime"
-
-              />
-            </div>
-
-
-            <div >
-              {availability.length > 0 && (
-                <IonRadioGroup className="bookingSlots" value={selectedSlot} onIonChange={(e) => setSelectedSlot(e.detail.value)}>
-                  {availability.map((slot, index) => (
-                    <IonItem key={index} className="radio-item" onClick={() => setSelectedSlot(slot)}>
-                      <div className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
-                        {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
-                        <input
-                          type="radio"
-                          className="radio-input"
-                          name="slot"
-                          value={index}
-                          checked={selectedSlot === slot}
-                          readOnly
-                        />
-                      </div>
-                    </IonItem>
-                  ))}
-                </IonRadioGroup>
-              )}
-            </div>
-
-
-          <div className="section">
-            <IonButton type="submit" disabled={!selectedSlot} onClick={handleConfirm}>Book Slot</IonButton>
+            <IonDatetime
+              color="new"
+              displayFormat="YYYY-MM-DD"
+              min={format(addDays(new Date(), 1), 'yyyy-MM-dd')}
+              value={date}
+              onIonChange={(e) => setDate(e.detail.value.split('T')[0])}
+              presentation="date"
+              className="date-time"
+              max={format(addDays(new Date(), 365), 'yyyy-MM-dd')}
+            />
           </div>
-        </form>
-        <IonAlert
-          isOpen={showAlert}
-          onDidDismiss={() => setShowAlert(false)}
-          header={'Confirm Booking'}
-          message={'Do you want to confirm the booking?'}
-          buttons={[
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              handler: () => {
-                console.log('Confirm Cancel');
+
+          <div className="bookingSlots">
+            {availability.length > 0 && (
+              <div className="bookingSlots">
+                {availability.map((slot, index) => (
+                  <button
+                    key={index}
+                    className={`radio-item ${selectedSlot === slot ? 'selected' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSelectedSlot(slot);
+                    }}
+                  >
+                    <div className={`radio-label ${selectedSlot === slot ? 'selected' : ''}`}>
+                      {format(slot.start, 'HH:mm')} - {format(slot.end, 'HH:mm')}
+                      <input
+                        type="radio"
+                        className="radio-input"
+                        name="slot"
+                        value={index}
+                        checked={selectedSlot === slot}
+                        readOnly
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+  
+        <div className="bookingForm">
+          <form onSubmit={handleSubmit}>
+          <h2>Fill the form please</h2>
+            <div className="section">
+              <div className="field">
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                placeholder="Name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              </div>
+              <div className="field">
+               <label htmlFor="age">Age</label>
+              <input
+                id="age"
+                placeholder="Age"
+                type="text"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
+              </div>
+                <div className="field">
+               <label htmlFor="gender">Gender</label>
+              <select
+                id="gender"
+                placeholder="Gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              </div>
+            </div>
+
+            <div className="section">
+              <div className="field">
+              <label htmlFor="mobileNumber">Mobile Number</label>
+              <input
+                id="mobileNumber"
+                placeholder="Enter your Mobile Number"
+                type="text"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+              />
+              </div>
+              <div className="field">
+               <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                placeholder="Enter your Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              </div>
+            </div>
+
+              <IonButton className="bookBtn ibutton" type="button" disabled={!selectedSlot} onClick={handleConfirm}>Book Slot</IonButton>
+  
+          </form>
+          <IonAlert
+            isOpen={showAlert}
+            onDidDismiss={() => setShowAlert(false)}
+            header={'Confirm Booking'}
+            message={'Do you want to confirm the booking?'}
+            buttons={[
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Confirm Cancel');
+                }
+              },
+              {
+                text: 'Confirm',
+                handler: confirmBookSlot
               }
-            },
-            {
-              text: 'Confirm',
-              handler: confirmBookSlot
-            }
-          ]}
-        />
+            ]}
+          />
+        </div>
       </div>
     </>
   );

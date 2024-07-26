@@ -145,6 +145,32 @@ margin: 0px;
     color: white;
 }
 
+.checkoutForm{
+    color: white;
+}
+
+.checkoutForm input{
+    margin: 10px 0;
+}
+.checkoutForm button{
+    width: 100%;
+    margin-top: 30px;
+    border: none;
+    padding: 20px;
+    background-color: #9c89ff;
+    ;
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    color: rgb(255, 255, 255);
+}
+
+.payment{
+    color: white;
+    text-align: center;
+}
+
 @media only screen and (max-width: 770px) {
 
     .proCard {

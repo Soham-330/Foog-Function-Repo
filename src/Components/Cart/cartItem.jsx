@@ -27,9 +27,6 @@ const CartItem = (props) => {
 
     };
 
-    console.log(cartList)
-
-
   const handleDeleteItem = (id) => {
     const newCartList = cartList.filter((item) => item.id !== id);
     setcartList(newCartList);

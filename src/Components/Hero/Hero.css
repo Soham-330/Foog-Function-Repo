@@ -17,14 +17,13 @@ hr {
     background-color: #ffffff0a;
     border: none;
 }
-
 :root {
-	--ion-color-new: #9c89ff;
-	--ion-color-new-rgb: 156,137,255;
-	--ion-color-new-contrast: #000000;
-	--ion-color-new-contrast-rgb: 0,0,0;
-	--ion-color-new-shade: #8979e0;
-	--ion-color-new-tint: #a695ff;
+	--ion-color-new: #5252ff;
+	--ion-color-new-rgb: 82,82,255;
+	--ion-color-new-contrast: #ffffff;
+	--ion-color-new-contrast-rgb: 255,255,255;
+	--ion-color-new-shade: #4848e0;
+	--ion-color-new-tint: #6363ff;
 }
 
 .ion-color-new {
@@ -293,55 +292,6 @@ p {
 }
 
 
-/* This is CSS of Radio Buttons of Bookings.jsx */
-.admin-container {
-    padding: 20px;
-    max-width: 500px;
-    /* margin: 0 auto; */
-    text-align: center;
-}
-
-.admin-container h1 {
-    margin-bottom: 20px;
-}
-
-.admin-item {
-    margin-bottom: 20px;
-}
-
-.ion-no-padding {
-    padding: 0 !important;
-}
-
-.radio-item {
-    display: inline-block;
-    margin: 10px;
-    cursor: pointer;
-}
-
-.radio-label {
-    display: inline-block;
-    width: 120px;
-    /* Adjust width as needed */
-    padding: 10px;
-    border: 2px solid var(--ion-color-primary);
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s;
-}
-
-.radio-label.selected {
-    background-color: var(--ion-color-primary);
-    color: white;
-}
-
-.radio-input {
-    display: none;
-}
-
-.admin-button {
-    width: 100%;
-}
 
 
 

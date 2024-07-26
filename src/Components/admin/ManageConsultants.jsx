@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getFirestore, collection, addDoc, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc, getDocs, query, where, updateDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
-
+import { IonButton } from '@ionic/react';
 
 const ManageConsultants = () => {
     const [name, setName] = useState('');
@@ -11,14 +11,9 @@ const ManageConsultants = () => {
     const [credential, setCredential] = useState('');
     const [credentials, setCredentials] = useState([]);
     const [consultants, setConsultants] = useState({ physician: [], lifecoach: [] });
-
-    const handleAddCredential = () => {
-        setCredentials([...credentials, credential]);
-        if (credential !== '') {
-            setCredentials([...credentials, credential]);
-        }
-        setCredential('');
-    };
+    const [isEditing, setIsEditing] = useState(false);
+    const [editId, setEditId] = useState(null);
+    const [editCredentialIndex, setEditCredentialIndex] = useState(null);
 
     const handleAddConsultant = async () => {
         try {
@@ -35,6 +30,7 @@ const ManageConsultants = () => {
             setFees('');
             setCategory('physician');
             setCredentials([]);
+            fetchConsultants();
         } catch (error) {
             console.error('Error adding consultant: ', error);
         }
@@ -64,52 +60,123 @@ const ManageConsultants = () => {
         }
     };
 
+    const handleEditConsultant = (consultant) => {
+        setIsEditing(true);
+        setEditId(consultant.id);
+        setName(consultant.name);
+        setImage(consultant.image);
+        setFees(consultant.fees);
+        setCategory(consultant.category);
+        setCredentials(consultant.credentials);
+    };
+
+    const handleAddCredential = () => {
+        if (credential !== '') {
+            const newCredentials = credential.split('.').map(cred => cred.trim()).filter(cred => cred !== '');
+            setCredentials([...credentials, ...newCredentials]);
+        }
+        setCredential('');
+    };
+
+    const handleUpdateCredential = () => {
+        if (credential !== '') {
+            const updatedCredentials = credential.split('.').map(cred => cred.trim()).filter(cred => cred !== '');
+            const currentCredentials = [...credentials];
+            currentCredentials.splice(editCredentialIndex, 1, ...updatedCredentials);
+            setCredentials(currentCredentials);
+            setCredential('');
+            setEditCredentialIndex(null);
+        }
+    };
+
+    const handleEditCredential = (index) => {
+        setEditCredentialIndex(index);
+        setCredential(credentials[index]);
+    };
+
+    const handleDeleteCredential = (index) => {
+        const updatedCredentials = credentials.filter((_, i) => i !== index);
+        setCredentials(updatedCredentials);
+    };
+
+    const handleUpdateConsultant = async () => {
+        try {
+            await updateDoc(doc(db, 'dietician', editId), {
+                name,
+                image,
+                fees: Number(fees),
+                category,
+                credentials,
+            });
+            alert('Consultant updated successfully!');
+            setName('');
+            setImage('');
+            setFees('');
+            setCategory('physician');
+            setCredentials([]);
+            setIsEditing(false);
+            setEditId(null);
+            fetchConsultants();
+        } catch (error) {
+            console.error('Error updating consultant: ', error);
+        }
+    };
+
     useEffect(() => {
         fetchConsultants();
     }, []);
 
     return (
         <>
-            <div className='title2 title3'>
-                <h2>Add Consultant</h2>
+            <div id='editConsultant' className='title2 title3'>
+                <h2>{isEditing ? 'Edit Consultant' : 'Add Consultant'}</h2>
             </div>
 
             <div className="manageConsultants">
-
-
-                <div className='addConsultants'>
-                    <form onSubmit={(e) => { e.preventDefault(); handleAddConsultant(); }}>
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
-                        <input type="text" value={image} onChange={(e) => setImage(e.target.value)} placeholder="Image URL" required />
-                        <input type="number" value={fees} onChange={(e) => setFees(e.target.value)} placeholder="Fees" required />
-                        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                            <option value="physician">Physician</option>
-                            <option value="lifecoach">Life Coach</option>
-                        </select>
-                        <input
-                            type="text"
-                            value={credential}
-                            onChange={(e) => setCredential(e.target.value)}
-                            placeholder="Credential"
-                        />
-                        <button type="button" onClick={handleAddCredential}>Add Credential</button>
-                        <div>
-                            <h3>{credentials.length === 0 ? `` : `Credentials`}</h3>
-                            <ul>
-                                {credentials.map((cred, index) => (
-                                    <li key={index}>{cred}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <button type="submit">Add Consultant</button>
-                    </form>
-                </div>
+                <form className='addConsultants' onSubmit={(e) => { e.preventDefault(); isEditing ? handleUpdateConsultant() : handleAddConsultant(); }}>
+                    <p>Name</p>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
+                    <p>Image URL</p>
+                    <input type="text" value={image} onChange={(e) => setImage(e.target.value)} placeholder="Image URL" required />
+                    <p>Fees</p>
+                    <input type="number" value={fees} onChange={(e) => setFees(e.target.value)} placeholder="Fees" required />
+                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <option value="physician">Physician</option>
+                        <option value="lifecoach">Life Coach</option>
+                    </select>
+                    <input
+                        type="text"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        placeholder="Credential (use '.' as separator)"
+                    />
+                    <button type="button" onClick={editCredentialIndex !== null ? handleUpdateCredential : handleAddCredential}>
+                        {editCredentialIndex !== null ? 'Update Credential' : 'Add Credential'}
+                    </button>
+                    <div>
+                        <h3>{credentials.length === 0 ? '' : 'Credentials'}</h3>
+                        <ul>
+                            {credentials.map((cred, index) => (
+                                <li key={index}>
+                                    <div className="editBtnsAdmin">
+                                    {cred}
+                                    <button type="button" onClick={() => handleEditCredential(index)}>Edit</button>
+                                    <button type="button" onClick={() => handleDeleteCredential(index)}>Delete</button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <button type="submit">
+                        {isEditing ? 'Update Consultant' : 'Add Consultant'}
+                    </button>
+                </form>
             </div>
 
-            <strong></strong>
             <div className='title2 title3'>
-                <h2>Delete Consultant</h2>
+                <h2>Consultants</h2>
             </div>
+
             <div className="deleteConsultants">
                 {['physician', 'lifecoach'].map((cat) => (
                     <div key={cat}>
@@ -127,7 +194,11 @@ const ManageConsultants = () => {
                                         ) : (<li>No credentials available</li>)}
                                     </ul></p>
                                     <p><strong>Fees: </strong>{consultant.fees}</p>
-                                    <button onClick={() => handleDeleteConsultant(consultant.id)}>Delete Consultant</button>
+                                    <IonButton className="ibuttonDel" onClick={() => handleDeleteConsultant(consultant.id)}>Delete Consultant</IonButton>
+<a href="#editConsultant">
+    <IonButton className="ibuttonEdit" onClick={() => handleEditConsultant(consultant)}>Modify Consultant</IonButton>
+</a>
+
                                 </div>
                             ))}
                         </div>
@@ -139,3 +210,6 @@ const ManageConsultants = () => {
 };
 
 export default ManageConsultants;
+
+
+

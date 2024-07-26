@@ -3,7 +3,6 @@ import { collection, getDocs, getDoc, query, where, doc, deleteDoc, updateDoc, a
 import { format, addDays } from 'date-fns';
 import { db } from '../../../../firebase';
 
-
 const AppointmentManager = () => {
   const [dieticians, setDieticians] = useState([]);
   const [selectedDietician, setSelectedDietician] = useState('');
@@ -16,6 +15,7 @@ const AppointmentManager = () => {
   const [rescheduleTimeSlots, setRescheduleTimeSlots] = useState([]);
   const [selectedRescheduleSlot, setSelectedRescheduleSlot] = useState(null);
   const [slotTitle, setSlotTitle] = useState('Booked Slots');
+  const [sortOrder, setSortOrder] = useState('desc');
 
   useEffect(() => {
     const fetchDieticians = async () => {
@@ -33,7 +33,7 @@ const AppointmentManager = () => {
     } else {
       setBookedSlots([]);
     }
-  }, [selectedDietician, showAllSlots, showCompletedSlots]);
+  }, [selectedDietician, showAllSlots, showCompletedSlots, sortOrder]);
 
   useEffect(() => {
     if (showReschedule && selectedDietician) {
@@ -52,7 +52,20 @@ const AppointmentManager = () => {
     }
 
     const slotsSnapshot = await getDocs(q);
-    setBookedSlots(slotsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    const slots = slotsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    // Sort slots based on timestamp
+    const sortedSlots = slots.sort((a, b) => {
+      console.log(`Comparing ${a.timestamp} and ${b.timestamp}`); // Debugging log
+      if (sortOrder === 'asc') {
+        return new Date(a.timestamp.seconds) - new Date(b.timestamp.seconds);
+      } else {
+        return new Date(b.timestamp.seconds) - new Date(a.timestamp.seconds);
+      }
+    });
+
+    console.log('Sorted Slots:', sortedSlots); // Debugging log
+    setBookedSlots(sortedSlots);
   };
 
   const handleDieticianChange = (event) => {
@@ -166,6 +179,10 @@ const AppointmentManager = () => {
    
   };
 
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
   return (<>
     <div className='title2 title3'>
       <h2>Manage Appointments</h2>
@@ -184,27 +201,33 @@ const AppointmentManager = () => {
 
       {selectedDietician && (
         <div>
+                <div className="manageOrderButtons">
           <button className="toggleBtns" onClick={toggleSlotView}>
             {showAllSlots ? 'Show Today and Future Slots' : 'Show All Slots'}
           </button>
           <button className="toggleBtns" onClick={toggleCompletedSlotsView}>
             {showCompletedSlots ? 'Show Incomplete Slots' : 'Show Completed Slots'}
           </button>
+          <button className="toggleBtns" onClick={toggleSortOrder}>
+            {sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'}
+          </button>
+          </div>
           <div className="bookedSlots">
             <h3>{slotTitle}</h3>
+            <h4>{sortOrder === 'asc' ? 'Showing Latest Last' : 'Showing Latest First'}</h4>
             <ul>
               {bookedSlots.map(slot => (
-                <div className="slot">
-                <li  key={slot.id}>
-                  <p>{slot.date} - {slot.start} to {slot.end}</p>
-                  <p>{`Name: ${slot.name}, Mobile Number: ${slot.mobileNumber}, Email: ${slot.email}`}</p>
-                  <p>{`Age: ${slot.age}, Gender: ${slot.gender}`}</p>
-                  <button className="toggleBtns" onClick={() => handleCompleteSlot(slot.id, slot.isCompleted)}>
-                    {slot.isCompleted ? 'Mark as Incomplete' : 'Complete Slot'}
-                  </button>
-                  <button className="toggleBtns" onClick={() => handleDeleteSlot(slot.id)}>Delete Slot</button>
-                  <button className="toggleBtns" onClick={() => handleRescheduleSlot(slot.id)}>Reschedule Slot</button>
-                </li>
+                <div className="slot" key={slot.id}>
+                  <li>
+                    <p>{slot.date} - {slot.start} to {slot.end}</p>
+                    <p>{`Name: ${slot.name}, Mobile Number: ${slot.mobileNumber}, Email: ${slot.email}`}</p>
+                    <p>{`Age: ${slot.age}, Gender: ${slot.gender}`}</p>
+                    <button className="toggleBtns" onClick={() => handleCompleteSlot(slot.id, slot.isCompleted)}>
+                      {slot.isCompleted ? 'Mark as Incomplete' : 'Complete Slot'}
+                    </button>
+                    <button className="toggleBtns" onClick={() => handleDeleteSlot(slot.id)}>Delete Slot</button>
+                    <button className="toggleBtns" onClick={() => handleRescheduleSlot(slot.id)}>Reschedule Slot</button>
+                  </li>
                 </div>
               ))}
             </ul>
@@ -244,4 +267,4 @@ const AppointmentManager = () => {
   </>);
 };
 
-export default AppointmentManager
+export default AppointmentManager;

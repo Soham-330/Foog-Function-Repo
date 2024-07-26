@@ -2,68 +2,82 @@ import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../firebase';
 
-
-
 const OrderManager = () => {
   const [orders, setOrders] = useState([]);
   const [showCompleted, setShowCompleted] = useState(false);
-  const [editOrderId, setEditOrderId] = useState(null);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-  const [newQuantity, setNewQuantity] = useState('');
+  const [showPaid, setShowPaid] = useState(false);
+  const [sortType, setSortType] = useState('time-asc');
+  const [currentFilter, setCurrentFilter] = useState('Time (Ascending)');
 
   useEffect(() => {
     fetchOrders();
-  }, [showCompleted]);
+  }, [showCompleted, showPaid, sortType]);
 
   const fetchOrders = async () => {
-    const q = query(
-      collection(db, 'orders'),
-      where('isCompleted', '==', showCompleted)
-    );
+    let q = query(collection(db, 'orders'));
+
+    if (showCompleted) {
+      q = query(q, where('isCompleted', '==', true));
+    } else {
+      q = query(q, where('isCompleted', '==', false));
+    }
+
+    if (showPaid) {
+      q = query(q, where('paid', '==', true));
+    }
 
     const querySnapshot = await getDocs(q);
-    const fetchedOrders = querySnapshot.docs.map(doc => ({
+    let fetchedOrders = querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
+
+    if (sortType === 'time-asc') {
+      fetchedOrders = fetchedOrders.sort((a, b) => a.time - b.time);
+      setCurrentFilter('Time (Ascending)');
+    } else if (sortType === 'time-desc') {
+      fetchedOrders = fetchedOrders.sort((a, b) => b.time - a.time);
+      setCurrentFilter('Time (Descending)');
+    } else if (sortType === 'price-asc') {
+      fetchedOrders = fetchedOrders.sort((a, b) => a.totalPrice - b.totalPrice);
+      setCurrentFilter('Price (Ascending)');
+    } else if (sortType === 'price-desc') {
+      fetchedOrders = fetchedOrders.sort((a, b) => b.totalPrice - a.totalPrice);
+      setCurrentFilter('Price (Descending)');
+    }
+
     setOrders(fetchedOrders);
   };
 
-  const modifyQuantity = async (orderId, itemIndex) => {
-    const order = orders.find(order => order.id === orderId);
-    const updatedItems = [...order.items];
-    const itemParts = updatedItems[itemIndex].split(' - ');
-    const productDetails = itemParts[1].split(' * ');
-    const currentQuantity = productDetails[0];
-    const itemPrice = productDetails[1].split(' = ')[0];
-
-    if (parseInt(newQuantity, 10) === 0) {
-      // Remove the item from the items array
-      updatedItems.splice(itemIndex, 1);
-    } else {
-      // Update the item quantity
-      updatedItems[itemIndex] = `${itemParts[0]} - ${newQuantity} * ${itemPrice} = ${parseInt(newQuantity, 10) * parseFloat(itemPrice.replace('₹', ''))}`;
-    }
-
-    //Calculating total price
-    const newTotalPrice = updatedItems.reduce((total, item) => {
-      const itemDetails = item.split(' - ')[1].split(' * ');
-      const quantity = parseInt(itemDetails[0], 10);
-      const price = parseFloat(itemDetails[1].split(' = ')[0].replace('₹', ''));
-      return total + (quantity * price);
-    }, 0);
-
+  const togglePaid = async (orderId, isPaid, items) => {
     const orderDoc = doc(db, 'orders', orderId);
-    await updateDoc(orderDoc, {
-      items: updatedItems,
-      totalPrice: newTotalPrice,
+    const newPaidStatus = !isPaid;
+    await updateDoc(orderDoc, { paid: newPaidStatus });
+
+    items.forEach(async (item) => {
+      const productName = item.split(' - ')[0].trim();
+      const productQuantity = parseInt(item.split(' - ')[1].split(' * ')[0].trim(), 10);
+
+      const productQuery = query(collection(db, 'products'), where('name', '==', productName));
+      const productSnapshot = await getDocs(productQuery);
+      if (!productSnapshot.empty) {
+        const productDoc = productSnapshot.docs[0];
+        const productData = productDoc.data();
+        if (newPaidStatus) {
+          await updateDoc(productDoc.ref, {
+            availableQuantity: productData.availableQuantity - productQuantity
+          });
+          alert(`The Available Quantity of ${productName}: Decreased by ${productQuantity}`);
+        } else {
+          await updateDoc(productDoc.ref, {
+            availableQuantity: productData.availableQuantity + productQuantity
+          });
+          alert(`The Available Quantity of ${productName}: Increased by ${productQuantity}`);
+        }
+      }
     });
 
-    setEditOrderId(null);
-    setSelectedItemIndex(null);
-    setNewQuantity('');
-    alert('Updated the Quantity Successfully!');
-    fetchOrders(); // Refresh the list
+    fetchOrders();
   };
 
   const deleteOrder = async (id) => {
@@ -82,69 +96,65 @@ const OrderManager = () => {
     window.confirm('The Order is completed')
   };
 
+  const toggleSort = (type) => {
+    if (type === 'time') {
+      setSortType((prevSortType) => (prevSortType === 'time-asc' ? 'time-desc' : 'time-asc'));
+    } else if (type === 'price') {
+      setSortType((prevSortType) => (prevSortType === 'price-asc' ? 'price-desc' : 'price-asc'));
+    }
+  };
+
   return (
     <>
-
       <div className='title2 title3'>
         <h2>Manage Orders</h2>
       </div>
       <div className='manageOrders'>
+        <div className="manageOrderButtons">
         <button className='toggleBtns' onClick={() => setShowCompleted(!showCompleted)}>
           {showCompleted ? 'Show Pending Orders' : 'Show Completed Orders'}
         </button>
+        <button className='toggleBtns' onClick={() => setShowPaid(!showPaid)}>
+          {showPaid ? 'Show Unpaid Orders' : 'Show Paid Orders'}
+        </button>
+        <button className='toggleBtns' onClick={() => toggleSort('time')}>
+          Sort by Time {sortType.includes('time-asc') ? '(Descending)' : '(Ascending)'}
+        </button>
+        <button className='toggleBtns' onClick={() => toggleSort('price')}>
+          Sort by Price {sortType.includes('price-asc') ? '(Descending)' : '(Ascending)'}
+        </button>
+        </div>
+        <p>Current sorting: {currentFilter}</p>
         <h2>{showCompleted ? 'Completed Orders' : 'Pending Orders'}</h2>
+        <h3>{showPaid ? 'Paid Orders' : 'Unpaid Orders'}</h3>
         <div className='orders'>
           <ul>
             {orders.map(order => (
               <div className="order" key={order.id}>
-                <li>
-                  <p><strong>Order Id: </strong>{order.id}</p>
-                  <p><strong>Name:</strong> {order.name}</p>
-                  <p><strong>Phone Number:</strong> {order.number}</p>
-                  <p><strong>Email:</strong> {order.email}</p>
-                  <p><strong>Address:</strong> {order.address}</p>
-                  <p>
+              <li>
+                <p><strong>Order Id: </strong>{order.id}</p>
+                <p><strong>Name:</strong> {order.name}</p>
+                <p><strong>Phone Number:</strong> {order.number}</p>
+                <p><strong>Email:</strong> {order.email}</p>
+                <p><strong>Address:</strong> {order.address}</p>
+                <p>
 
 
-                    <strong>Items:</strong>
-                    <ul>
-                      {order.items.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </p>
-                  <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
+                  <strong>Items:</strong>
+                  <ul>
+                    {order.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </p>
+                <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
                   <p><strong>Order Status:</strong> {order.isCompleted ? "Completed" : "Pending"}</p>
-                  {editOrderId === order.id ? (
-                    <>
-                      <select
-                        onChange={(e) => setSelectedItemIndex(e.target.value)}
-                        value={selectedItemIndex}
-                      >
-                        <option value={null}>Select Item</option>
-                        {order.items.map((item, index) => (
-                          <option key={index} value={index}>
-                            {item.split(' - ')[0]}
-                          </option>
-                        ))}
-                      </select>
-                      {selectedItemIndex !== null && (
-                        <>
-                          <input
-                            type="number"
-                            value={newQuantity}
-                            onChange={(e) => setNewQuantity(e.target.value)}
-                          />
-                          <button className='toggleBtns' onClick={() => modifyQuantity(order.id, selectedItemIndex)}>Save</button>
-                          <button className='toggleBtns' onClick={() => setEditOrderId(null)}>Cancel</button>
-                        </>
-                      )}
-                    </>
-                  ) : (
-                    <button className='toggleBtns' onClick={() => setEditOrderId(order.id)}>Modify Quantity</button>
-                  )}
+                  <p><strong>Paid Status:</strong> {order.paid ? "Paid" : "Unpaid"}</p>
                   <button className='toggleBtns' onClick={() => toggleCompletion(order.id, order.isCompleted)}>
                     Mark as {order.isCompleted ? 'Incomplete' : 'Complete'}
+                  </button>
+                  <button className='toggleBtns' onClick={() => togglePaid(order.id, order.paid, order.items)}>
+                    Mark as {order.paid ? 'Unpaid' : 'Paid'}
                   </button>
                   <button className='toggleBtns' onClick={() => deleteOrder(order.id)}>Delete Order</button>
                 </li>

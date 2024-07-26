@@ -9,8 +9,7 @@ function Products(){
 
     
     const id = useParams();
-    console.log(id);
-    // const [products, setProducts] = useState([]);
+
     const [proList, setProList] = useState([]);
 
     useEffect(() => {
@@ -25,8 +24,6 @@ function Products(){
         }
         fetchProducts();
     },[]);
-
-    console.log(...proList)
 
     return(
         <>
@@ -43,8 +40,9 @@ function Products(){
                   name={product.name}
                   image={product.image}
                   price={product.price}
-                  text={product.text}
                   minimumQuantity={product.minimumQuantity}
+                  availableQuantity={product.availableQuantity}
+                  text={product.text}
                 />
               ))
             : <div className="loadingPage">

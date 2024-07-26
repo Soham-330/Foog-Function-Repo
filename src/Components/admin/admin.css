@@ -18,6 +18,7 @@
     text-align: center;
     margin: 20px;
     font-size: 1.4rem;
+    font-weight: 500;
 }
 
 /* *********FeedBack Page******** */
@@ -53,8 +54,9 @@
 }
 
 .doc-unavail .ibutton3 {
-    margin-top: 50px;
-
+    margin-top: 30px;
+    --padding-top:12px;
+    --padding-bottom:12px;
 }
 
 .button0 {
@@ -66,20 +68,29 @@
 
 .item-native {
     --background: rgba(240, 227, 227, 0.352);
+    border-radius: 14px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    margin: 15px 0;
+}
+
+.item-native::after {
+    color: white;
+}
+
+.dateTime{
+    margin: 15px 0;
+    --ion-color-primary: #9c89ff;
+    background-color: rgba(240, 227, 227, 0.352);
     border-radius: 20px;
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
     color: white;
-    margin-top: 20px;
+    --ion-color-step-500: white;
+    --ion-color-step-650: white;
+    --ion-color-new-contrast: white;
+    --wheel-highlight-background: orange;
+    --wheel-fade-background-rgb: rgb(255,255,255);
 }
-
-.item-native::after{
-    color: white;
-}
-
-.calendar-days-of-week .day-of-week {
-    color: white !important;
-}
-
 
 /* ********Manage Items ******** */
 
@@ -120,9 +131,8 @@ select {
 
 .delPro {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .proCardsAdmin {
@@ -132,13 +142,9 @@ select {
     flex-wrap: wrap;
 }
 
-.proCardsAdmin input {
-    width: 80%;
-    margin: 10px;
-}
 
 
-.ibuttonAdmin {
+.ibuttonEdit {
     --ion-color-primary: #36a709;
     margin: 10px;
 }
@@ -154,6 +160,7 @@ select {
     align-items: center;
     flex-direction: column;
     margin: 25px 10px;
+    padding: 20px;
 }
 
 .selectBtn {
@@ -166,6 +173,56 @@ select {
     margin: 10px;
     font-size: 0.9rem;
     --ion-color-primary: #ff4000;
+}
+
+.catCardAdmin {
+    width: 325px;
+    min-height: 500px;
+    background-color: rgba(240, 227, 227, 0.352);
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin: 25px 10px;
+    padding: 20px;
+}
+
+.centreForm {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.editItems {
+    color: white;
+    padding: 30px;
+    max-width: 500px;
+
+}
+
+.editItems input,
+.editItems select {
+    margin: 10px 0;
+}
+
+.editItems p {
+    margin: 10px 0;
+}
+
+.editItems button {
+    width: 100%;
+    margin-top: 30px;
+    border: none;
+    padding: 20px;
+    background-color: #9c89ff;
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    color: rgb(255, 255, 255);
 }
 
 /* ********Manage Appointment******* */
@@ -225,7 +282,12 @@ select {
     flex-direction: column;
     color: white;
 }
-
+.manageOrderButtons{
+    display: flex;
+}
+.manageOrderButtons button{
+  flex: 1;
+}
 .orders {
     color: white;
     display: flex;
@@ -253,18 +315,25 @@ select {
     align-items: center;
     justify-content: center;
     padding: 30px;
+    color: white;
 }
 
 .addConsultants {
     max-width: 500px;
 
 }
+.addConsultants p{
+    margin: 0;
+}
+.addConsultants input{
+    margin: 15px 0;
+}
 
 .addConsultants button,
 select,
 .deleteConsultants button {
     width: 100%;
-    margin-top: 30px;
+    margin: 15px 0;
     border: none;
     padding: 20px;
     background-color: #9c89ff;
@@ -275,6 +344,14 @@ select,
     color: rgb(255, 255, 255);
 }
 
+.manageConsultantsBtns{
+    display: flex;
+}
+.manageConsultantsBtns button{ 
+margin: 5px 15px;
+width: auto;
+}
+
 .deleteConsultants {
     display: flex;
     flex-direction: column;
@@ -282,6 +359,17 @@ select,
     flex-wrap: wrap;
     color: white;
     text-align: center;
+}
+
+.editBtnsAdmin{
+    display: flex;
+    align-items: center;
+
+}
+.editBtnsAdmin button{
+    margin: 5px;
+    padding: 10px;
+    width: 20%;
 }
 
 .consultantsCat {
@@ -302,7 +390,7 @@ select,
     justify-content: space-around;
     color: white;
     margin: 30px;
-    padding: 30px;
+    padding: 15px;
     text-align: start;
 
 }
@@ -312,6 +400,7 @@ select,
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
+    margin:0 20px ;
 }
 
 @media only screen and (max-width: 770px) {
@@ -330,12 +419,22 @@ select,
         width: auto;
     }
 
-    .proCardAdmin {
+    .proCardAdmin, .catCardAdmin {
         width: 90vw;
     }
 
     .consultantsCard {
         width: 90vw;
         margin: 30px 0;
+    }
+
+    .order{
+        width: 90vw;
+        margin: 0;
+        margin-top: 30px;
+    }
+    
+    .manageConsultantsBtns button{
+        font-size: 0.7rem;
     }
 }
