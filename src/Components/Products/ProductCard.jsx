@@ -41,6 +41,7 @@ function ProductCard(props) {
           image: props.image,
           price: Number(props.price),
           minimumQuantity: Number(props.minimumQuantity),
+          availableQuantity: Number(props.availableQuantity),
           quantity: Number(quantity),
         },
       ]);

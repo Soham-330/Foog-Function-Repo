@@ -214,8 +214,7 @@ li.slide::marker{
   }
   
 
-
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1250px) {
     .container {
         flex-direction: column;
         height: max-content;
@@ -229,12 +228,16 @@ li.slide::marker{
      font-size: 1rem;
     }
 
+    .doc-carousel{
+        padding: 15px 0px;
+    }
     .appointment-body {
         height: max-content;
         margin: 50px 0px;
     }
 
 }
+
 
 
 @media only screen and (max-width: 770px) {
