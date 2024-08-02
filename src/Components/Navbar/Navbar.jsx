@@ -40,13 +40,6 @@ function Navbar() {
           <Link className="link" to="/About">
             About
           </Link>
-          <Link className="link" to={`/${password}`}>
-            Admin
-          </Link>
-
-          {/* <Link className="link" to="/Cart">
-          <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#e8eaed"><path d="M286.79-81Q257-81 236-102.21t-21-51Q215-183 236.21-204t51-21Q317-225 338-203.79t21 51Q359-123 337.79-102t-51 21Zm400 0Q657-81 636-102.21t-21-51Q615-183 636.21-204t51-21Q717-225 738-203.79t21 51Q759-123 737.79-102t-51 21ZM235-741l110 228h288l125-228H235Zm-30-60h589.07q22.97 0 34.95 21 11.98 21-.02 42L694-495q-11 19-28.56 30.5T627-453H324l-56 104h491v60H277q-42 0-60.5-28t.5-63l64-118-152-322H51v-60h117l37 79Zm140 288h288-288Z"/></svg>
-            <span className="quantity" >{totalQuantity}</span></Link> */}
         </div>
 
         <div className="navMob">
@@ -75,14 +68,6 @@ function Navbar() {
         <Link onClick={() => setMenuOpen(!menuOpen)} className="link" to="/">
           {" "}
           Home{" "}
-        </Link>
-        <Link
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="link"
-          to={`/${password}`}
-        >
-          {" "}
-          Admin{" "}
         </Link>
         <Link
           onClick={() => setMenuOpen(!menuOpen)}

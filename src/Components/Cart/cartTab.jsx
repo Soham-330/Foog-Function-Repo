@@ -61,6 +61,7 @@ const CartTab = () => {
       await addDoc(collection(db, "orders"), order);
       // Navigate to the payment page
       navigate("/payment");
+  
     } catch (error) {
       console.error("Error adding document: ", error);
     }
